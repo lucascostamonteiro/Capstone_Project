@@ -19,10 +19,10 @@ class Listing(db.Model):
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now(), onupdate=datetime.now())
 
-    user = db.relationship("User", back_populates='listings')
-    images = db.relationship('Image', back_populates='listings', cascade="all, delete")
-    reviews = db.relationship("Review", back_populates="listings", cascade="all, delete")
-
+    user = db.relationship("User", back_populates='listing')
+    image = db.relationship('Image', back_populates='listing', cascade="all, delete")
+    review = db.relationship("Review", back_populates='listing', cascade="all, delete")
+    amendities = db.relationship('Amendity', back_populates='listing', cascade="all, delete")
 
     def to_dict(self):
         return {

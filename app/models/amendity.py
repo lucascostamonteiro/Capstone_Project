@@ -5,7 +5,7 @@ class Amendity(db.Model):
     __tablename__ = 'amendities'
 
     id = db.Column(db.Integer, primary_key=True)
-    listing_id = db.Column(db.Integer, db.ForeignKey('listing.id'), nullable=False)
+    listing_id = db.Column(db.Integer, db.ForeignKey('listings.id'), nullable=False)
     free_parking = db.Column(db.Boolean, nullable=False)
     wifi = db.Column(db.Boolean, nullable=False)
     air_conditioning = db.Column(db.Boolean, nullable=False)
@@ -25,6 +25,4 @@ class Amendity(db.Model):
             "air_conditioning": self.air_conditioning,
             "pool": self.pool,
             "listing": self.listing.to_dict(),
-            "created_at": self.created_at,
-            "updated_at": self.updated_at,
         }
