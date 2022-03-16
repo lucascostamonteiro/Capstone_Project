@@ -8,7 +8,6 @@ class Review(db.Model):
     user_id =db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     listing_id = db.Column(db.Integer, db.ForeignKey('listing.id'), nullable=False)
     content = db.Column(db.Text)
-    url = db.Column(db.String)
     rating = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now(), onupdate=datetime.now())
@@ -24,7 +23,6 @@ class Review(db.Model):
             "listing_id": self.listing_id,
             "content": self.content,
             "rating": self.rating,
-            "url": self.url,
             "listing": self.listing.to_dict(),
             "user": self.user.to_dict(),
             "created_at": self.created_at,
