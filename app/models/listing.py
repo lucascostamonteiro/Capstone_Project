@@ -17,13 +17,14 @@ class Listing(db.Model):
     address = db.Column(db.String, nullable=False)
     city = db.Column(db.String, nullable=False)
     state = db.Column(db.String, nullable=False)
+    url= db.Column(db.String, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now(), onupdate=datetime.now())
 
     user = db.relationship("User", back_populates='listing')
-    image = db.relationship('Image', back_populates='listing', cascade="all, delete")
+    # image = db.relationship('Image', back_populates='listing', cascade="all, delete")
     reviews = db.relationship("Review", back_populates='listing', cascade="all, delete")
-    amendities = db.relationship('Amendity', back_populates='listing', cascade="all, delete")
+    # amendities = db.relationship('Amendity', back_populates='listing', cascade="all, delete")
 
     def to_dict(self):
         return {
@@ -38,5 +39,6 @@ class Listing(db.Model):
             'address': self.address,
             'city': self.city,
             'state': self.state,
-            'image': [{'id':url.id,"image":url.url} for url in self.image],
+            'url': self.url,
+            # 'image': [{'id':url.id,"image":url.url} for url in self.image],
         }

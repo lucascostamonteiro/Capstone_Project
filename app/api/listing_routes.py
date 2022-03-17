@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required
-from app.models import db, Listing, Image
+from app.models import db, Listing
 # from app.forms import ListingForm
 
 listing_routes = Blueprint('listings_routes',__name__)
