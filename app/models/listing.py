@@ -1,5 +1,6 @@
 from app.models.db import db
 from datetime import datetime
+import json
 
 
 class Listing(db.Model):
@@ -21,7 +22,7 @@ class Listing(db.Model):
 
     user = db.relationship("User", back_populates='listing')
     image = db.relationship('Image', back_populates='listing', cascade="all, delete")
-    review = db.relationship("Review", back_populates='listing', cascade="all, delete")
+    reviews = db.relationship("Review", back_populates='listing', cascade="all, delete")
     amendities = db.relationship('Amendity', back_populates='listing', cascade="all, delete")
 
     def to_dict(self):
@@ -37,6 +38,5 @@ class Listing(db.Model):
             'address': self.address,
             'city': self.city,
             'state': self.state,
-            "images": [image.to_dict() for image in self.images],
-            "reviews": [review.to_dict() for review in self.reviews],
+            'image': [{'id':url.id,"image":url.url} for url in self.image],
         }
