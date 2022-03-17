@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import Demo from './Demo';
 
-const SignUpForm = () => {
+const SignUpForm = ({ setPage }) => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -14,13 +15,18 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
-      if (data) {
-        setErrors(data)
+    const data = await dispatch(signUp(username, email, password, repeatPassword));
+    if (data) {
+      const errors = []
+      errors.push(...data)
+      setErrors(errors)
+      if (password !== repeatPassword) {
+        setPassword('');
+        setRepeatPassword('')
       }
     }
   };
+
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -42,43 +48,63 @@ const SignUpForm = () => {
     return <Redirect to='/' />;
   }
 
+
   return (
-    <form onSubmit={onSignUp}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
+    < form className="main-auth-user-container" onSubmit={onSignUp}>
+      <div className='errors-div'>
+        {errors.map((error, i) => (
+          <div className='single-error-div' key={i}>{error}</div>
         ))}
       </div>
+      <div id="sub-auth-div">
+        <div id="signup-titles">
+          <h2 className='form-title'>Signup</h2>
+        </div>
+        <div>
+          <button
+            id="auth-login-button"
+            onClick={() => setPage(1)}
+          >Login</button>
+        </div>
+      </div>
       <div>
-        <label>User Name</label>
+        <label id='username-label'>Username</label>
         <input
+          className='auth-form-input'
           type='text'
           name='username'
           onChange={updateUsername}
           value={username}
+          required={true}
         ></input>
       </div>
       <div>
-        <label>Email</label>
+        <label className='email-label'>Email</label>
         <input
+          className='auth-form-input'
           type='text'
           name='email'
           onChange={updateEmail}
           value={email}
+          required={true}
         ></input>
       </div>
       <div>
         <label>Password</label>
         <input
+          className='auth-form-input'
           type='password'
           name='password'
           onChange={updatePassword}
           value={password}
+          required={true}
         ></input>
       </div>
       <div>
         <label>Repeat Password</label>
         <input
+          className='auth-form-input'
+          id='repeat-password-input'
           type='password'
           name='repeat_password'
           onChange={updateRepeatPassword}
@@ -86,8 +112,12 @@ const SignUpForm = () => {
           required={true}
         ></input>
       </div>
-      <button type='submit'>Sign Up</button>
+      <div className='auth-user-div'>
+        <button className='auth-user-buttons' type='submit'>Sign Up</button>
+        <Demo />
+      </div>
     </form>
+
   );
 };
 
