@@ -16,6 +16,11 @@ function Listings() {
 
   return (
     null
+    // <div>
+    //   {allListings?.map(listing => (
+    //     <div>listing</div>
+    //   ))}
+    // </div>
   )
 }
 

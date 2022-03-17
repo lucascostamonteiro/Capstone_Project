@@ -49,7 +49,7 @@ def seed_listings():
       guest = 8,
       bedroom= 5,
       bathroom = 3,
-      address="Rua Silva Jardim 1896",
+      address="Rua Arco Iris 254",
       city="Sao Miguel dos Milagres",
       state="Alagoas",
     )
@@ -60,9 +60,9 @@ def seed_listings():
       Designed to be fully integrated into the beautiful natural surroundings. This house perfectly combines luxury amenities and the finest natural materials.
       Stones, wood, straw, coconut trees and green plants are associated with large sofas, a kitchen, lovely terraces around a jade-colored pool.""",
       price= 150,
-      guest = 8,
-      bedroom= 5,
-      bathroom = 3,
+      guest = 6,
+      bedroom= 4,
+      bathroom = 2.5,
       address="Rua Silva Jardim 1896",
       city="Jericoacoara",
       state="Ceara",

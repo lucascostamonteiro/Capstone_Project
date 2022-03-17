@@ -38,6 +38,5 @@ class Listing(db.Model):
             'address': self.address,
             'city': self.city,
             'state': self.state,
-            # "image": [image.to_dict() for image in self.image],
             'image': [{'id':url.id,"image":url.url} for url in self.image],
         }
