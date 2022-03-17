@@ -12,7 +12,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     listing = db.relationship("Listing", back_populates='user')
-    review = db.relationship("Review", back_populates='user')
+    reviews = db.relationship("Review", back_populates='user')
 
 
     @property

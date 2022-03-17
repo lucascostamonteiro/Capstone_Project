@@ -12,8 +12,8 @@ class Review(db.Model):
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now(), onupdate=datetime.now())
 
-    listing = db.relationship('Listing', back_populates='review')
-    user = db.relationship("User", back_populates="review")
+    listing = db.relationship('Listing', back_populates='reviews')
+    user = db.relationship("User", back_populates="reviews")
 
 
     def to_dict(self):

@@ -10,8 +10,8 @@ def seed_listings():
       guest = 3,
       bedroom= 1,
       bathroom = 2,
-      address="Estrada da Raínha, 1009 ",
-      city="Balneário Camboriú",
+      address="Estrada da Rainha, 1009 ",
+      city="Balneario Camboriu",
       state="Santa Catarina",
   )
   listing_2 = Listing(
@@ -22,20 +22,20 @@ def seed_listings():
       guest = 16,
       bedroom= 9,
       bathroom = 7.5,
-      address="Vila Galícia, 946",
+      address="Vila Galicia, 946",
       city="Trancoso",
       state="Bahia",
     )
   listing_3 = Listing(
       user_id=1,
       title="Charming house between river and sea",
-      description= "Caraíva provides an experience of peace and quiet. The house has a privileged location, close to the river and Caraíva beach. The balcony is the luxury of the house, it has a beautiful look and on full moon nights, the show is on nature. Waking up to the singing of birds and sleeping with the sound of the sea makes your days in paradise even happier.",
+      description= "Caraiva provides an experience of peace and quiet. The house has a privileged location, close to the river and Caraiva beach. The balcony is the luxury of the house, it has a beautiful look and on full moon nights, the show is on nature. Waking up to the singing of birds and sleeping with the sound of the sea makes your days in paradise even happier.",
       price= 51,
       guest = 4,
       bedroom= 2,
       bathroom = 1,
-      address="Rua Heroína Maria Quitéria 1494",
-      city="Caraíva",
+      address="Rua Heroina Maria Quiteria 1494",
+      city="Caraiva",
       state="Bahia",
     )
   listing_4 = Listing(
@@ -50,12 +50,12 @@ def seed_listings():
       bedroom= 5,
       bathroom = 3,
       address="Rua Silva Jardim 1896",
-      city="São Miguel dos Milagres",
+      city="Sao Miguel dos Milagres",
       state="Alagoas",
     )
   listing_5 = Listing(
       user_id=1,
-      title="Villa Majica",
+      title="Vila Majica",
       description= """Beautifully located in front of the dunes of Jericoacoara National Park
       Designed to be fully integrated into the beautiful natural surroundings. This house perfectly combines luxury amenities and the finest natural materials.
       Stones, wood, straw, coconut trees and green plants are associated with large sofas, a kitchen, lovely terraces around a jade-colored pool.""",
@@ -65,12 +65,12 @@ def seed_listings():
       bathroom = 3,
       address="Rua Silva Jardim 1896",
       city="Jericoacoara",
-      state="Ceará",
+      state="Ceara",
     )
   listing_6 = Listing(
       user_id=1,
       title="Casa ponta dos cocoqueiros",
-      description= "Shipyard beach house on Interbeaches with the best view of the region! Large room with tasted bathroom all rooms with balcony, sea view, heated pool, parking and garden. Access near Balneário Camboriú and itapema!",
+      description= "Shipyard beach house on Interbeaches with the best view of the region! Large room with tasted bathroom all rooms with balcony, sea view, heated pool, parking and garden. Access near Balneario Camboriu and itapema!",
       price= 135,
       guest = 8,
       bedroom= 4,
