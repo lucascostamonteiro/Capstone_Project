@@ -26,6 +26,7 @@ def get_listings():
     return {"all_listings":[listing.to_dict() for listing in listings]}
 
 
+
 # POST
 @listing_routes.route('/', methods=["POST"])
 @login_required
