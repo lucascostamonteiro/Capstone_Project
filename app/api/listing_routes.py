@@ -1,7 +1,9 @@
+from ctypes import addressof
 from flask import Blueprint, request
 from flask_login import login_required
+from app.forms.listing_form import ListingForm
 from app.models import db, Listing
-# from app.forms import ListingForm
+from app.forms import ListingForm
 
 listing_routes = Blueprint('listings_routes',__name__)
 
@@ -13,7 +15,7 @@ def validation_errors_to_error_messages(validation_errors):
     errorMessages = []
     for field in validation_errors:
         for error in validation_errors[field]:
-            errorMessages.append(f'{field.capitalize()} : {error}')
+            errorMessages.append(f'{error}')
     return errorMessages
 
 
@@ -26,17 +28,69 @@ def get_listings():
 
 # POST
 @listing_routes.route('/', methods=["POST"])
+@login_required
 def create_listing():
-  pass
+  form = ListingForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+  data = form.data
+
+  if form.validate_on_submit():
+    listing = Listing(
+      user_id=data['user_id'],
+      title=data['title'],
+      description=data['description'],
+      price=data['price'],
+      guest=data['guest'],
+      bedroom=data['bedroom'],
+      bathroom=data['bathroom'],
+      address=data['address'],
+      city=data['city'],
+      state=data['state'],
+      url=data['url']
+    )
+
+    db.session.add(listing)
+    db.session.commit()
+    return listing.to_dict()
+  return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 # PUT
-@listing_routes.route('/', methods=["PUT"])
-def edit_listing():
-  pass
+@listing_routes.route('/<int:id>', methods=["PUT"])
+@login_required
+def edit_listing(id):
+  form = ListingForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+  data = form.data
+
+  if form.validate_on_submit():
+    listing = Listing.query.get(id)
+
+    listing.title=data['title'],
+    listing.description=data['description'],
+    listing.price=data['price'],
+    listing.guest=data['guest'],
+    listing.bedroom=data['bedroom'],
+    listing.bathroom=data['bathroom'],
+    listing.address=data['address'],
+    listing.city=data['city'],
+    listing.state=data['state'],
+    listing.url=data['url']
+
+    db.session.commit()
+    return listing.to_dict()
+  return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
 
 
 # DELETE
-@listing_routes.route('/', methods=["DELETE"])
-def delete_listing():
-  pass
+@listing_routes.route('/<int:id>', methods=["DELETE"])
+@login_required
+def delete_listing(id):
+  listing = Listing.query.get(id)
+  deleted_listing = listing.to_dict()
+
+  db.session.delete(listing)
+  db.session.commit()
+
+  return deleted_listing
