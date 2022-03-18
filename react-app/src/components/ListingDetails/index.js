@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import EditListingModal from "../EditListingModal";
 
 
 const ListingDetails = () => {
@@ -8,12 +9,15 @@ const ListingDetails = () => {
   const sessionUser = useSelector(state => state.session.user);
   const listing = useSelector(state => state.listings[id]);
 
-// TODO Check if user is logged in
+  // TODO Check if user is logged in
   return (
     <div>
       <div className="main-listing-div">
         <div className="listing-title">{listing?.title}</div>
         <div className="listing-location">{listing?.city}, {listing?.state}</div>
+        <div>
+          <EditListingModal />
+        </div>
         <div className="image-div"><img crossOrigin="anonymous" key={listing?.id} src={listing?.url} /></div>
         <div className="listing-description">{listing?.description}</div>
         <div className="listing-price">${listing?.price} / night</div>

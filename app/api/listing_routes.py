@@ -67,6 +67,7 @@ def edit_listing(id):
   if form.validate_on_submit():
     listing = Listing.query.get(id)
 
+    listing.user_id=data['user_id']
     listing.title=data['title'],
     listing.description=data['description'],
     listing.price=data['price'],

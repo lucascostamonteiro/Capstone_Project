@@ -1,24 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
-import { createListing } from '../../store/listing';
-import './CreateListing.css'
+import { Redirect, useHistory, useParams } from 'react-router-dom';
+import { editListing } from '../../store/listing';
 
-const CreateListing = ({ setShowModal }) => {
+
+const EditListing = ({ setShowModal }) => {
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
   const history = useHistory();
+  const { id } = useParams();
+  const sessionUser = useSelector(state => state.session.user);
+  const listing = useSelector(state => state.listings[id]);
 
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [price, setPrice] = useState('');
-  const [guest, setGuest] = useState('');
-  const [bedroom, setBedroom] = useState('');
-  const [bathroom, setBathroom] = useState('');
-  const [address, setAddress] = useState('');
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('');
-  const [url, setUrl] = useState('');
+  const [title, setTitle] = useState(listing.title);
+  const [description, setDescription] = useState(listing.description);
+  const [price, setPrice] = useState(listing.price);
+  const [guest, setGuest] = useState(listing.guest);
+  const [bedroom, setBedroom] = useState(listing.bedroom);
+  const [bathroom, setBathroom] = useState(listing.bathroom);
+  const [address, setAddress] = useState(listing.address);
+  const [city, setCity] = useState(listing.city);
+  const [state, setState] = useState(listing.state);
+  const [url, setUrl] = useState(listing.url);
   const [errors, setErrors] = useState([]);
 
 
@@ -30,7 +32,8 @@ const CreateListing = ({ setShowModal }) => {
     e.preventDefault();
     // const userId = sessionUser.id;
     // console.log('USER', userId)
-    const newListing = {
+    const editedListing = {
+      id,
       user_id: sessionUser.id,
       title,
       description,
@@ -44,9 +47,9 @@ const CreateListing = ({ setShowModal }) => {
       url
     };
 
-    // console.log('DATA', newListing)
+    // console.log('DATA', editedListing)
 
-    const data = await dispatch(createListing(newListing))
+    const data = await dispatch(editListing(editedListing))
     if (data.errors) {
       setErrors(data.errors)
     } else if (data) {
@@ -153,11 +156,11 @@ const CreateListing = ({ setShowModal }) => {
         required
       />
       <button onClick={handleSubmit}>
-        Submit Listing
+        Edit Listing
       </button>
     </form>
   )
 };
 
 
-export default CreateListing;
+export default EditListing;
