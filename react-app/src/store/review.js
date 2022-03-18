@@ -56,7 +56,7 @@ export const editListing = (review) => async (dispatch) => {
   const res = await fetch(`/api/reviews/${review.id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(listing),
+    body: JSON.stringify(review),
   });
   if (res.ok) {
     const editedReview = await res.json();
@@ -68,15 +68,14 @@ export const editListing = (review) => async (dispatch) => {
   }
 };
 
-export const deleteListing = (listing) => async (dispatch) => {
-  console.log('LISTING', listing)
-  const res = await fetch(`/api/listings/${listing.id}`, {
+export const deleteReview = (review) => async (dispatch) => {
+  const res = await fetch(`/api/reviews/${review.id}`, {
     method: 'DELETE',
   });
   if (res.ok) {
-    const deletedListing = await res.json();
-    dispatch(remove(deletedListing));
-    return deletedListing;
+    const deletedReview = await res.json();
+    dispatch(remove(deletedReview));
+    return deletedReview;
   } else {
     const errors = await res.json();
     return errors;
@@ -85,30 +84,30 @@ export const deleteListing = (listing) => async (dispatch) => {
 
 let initialState = {};
 
-const listingsReducer = (state = initialState, action) => {
+const reviewsReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
-    case LOAD_LISTINGS: {
+    case LOAD_REVIEWS: {
       newState = { ...state };
-      action.listings.all_listings.forEach((listing) => {
-        newState[listing.id] = listing;
+      action.review.review.forEach((review) => {
+        newState[review.id] = review;
       });
       return newState;
     }
 
-    case CREATE_LISTING: {
-      return { [action.newListing.id]: action.newListing, ...state };
+    case CREATE_REVIEW: {
+      return { [action.newReview.id]: action.newReview, ...state };
     }
 
-    case EDIT_LISTING: {
+    case EDIT_REVIEW: {
       newState = { ...state }
-      newState[action.editedListing.id] = action.editedListing;
+      newState[action.editedReview.id] = action.editedReview;
       return newState;
     }
 
-    case DELETE_LISTING: {
+    case DELETE_REVIEW: {
       newState = { ...state };
-      delete newState[action.deletedListing.id];
+      delete newState[action.deletedReview.id];
       return newState;
     }
     default:
@@ -116,4 +115,4 @@ const listingsReducer = (state = initialState, action) => {
   }
 };
 
-export default listingsReducer;
+export default reviewsReducer;
