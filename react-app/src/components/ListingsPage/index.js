@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Link, NavLink } from 'react-router-dom';
+import {Link } from 'react-router-dom';
 import { getListings } from "../../store/listing"
 
 
@@ -9,7 +9,7 @@ function Listings() {
   const allListingsObj = useSelector(state => state.listings)
   const allListings = Object.values(allListingsObj)
 
-  console.log("ALL", allListings)
+  // console.log("ALL", allListings)
 
   useEffect(() => {
     dispatch(getListings())

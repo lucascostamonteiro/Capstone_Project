@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createListing } from '../../store/listing';
 import { Redirect, useHistory } from 'react-router-dom';
+import './CreateListing.css'
 
 const CreateListing = ({ setShowModal }) => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const CreateListing = ({ setShowModal }) => {
   // TODO Check in the backend
   // useEffect(() => {
   //   const validationErrors = []
-  //   if (price > 5000 || price < 1) validationErrors.push("Price must be between $1 - $5000");
+  //   if (price > 5000 || price < 1) validationErrors.push("Price must be between $1 - $5,000");
   //   if (guest > 20 || guest < 1) validationErrors.push('Number of guests must be between 1 - 20');
   //   if (bedroom > 10 || bedroom < 1) validationErrors.push('Number of bedrooms must be between 1 - 10');
   //   if (bathroom > 10 || bathroom < 1) validationErrors.push('Number of bathrooms must be between 1 - 10');
@@ -64,7 +65,7 @@ const CreateListing = ({ setShowModal }) => {
 
 
   return (
-    <form>
+    <form className='main-create-listing'>
       <div className="errors-list">
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
