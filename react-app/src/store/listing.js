@@ -55,7 +55,6 @@ export const createListing = (listing) => async (dispatch) => {
 };
 
 export const editListing = (listing) => async (dispatch) => {
-	console.log('LISTING', listing)
 	const res = await fetch(`/api/listings/${listing.id}`, {
 		method: 'PUT',
 		headers: { 'Content-Type': 'application/json' },
@@ -72,10 +71,10 @@ export const editListing = (listing) => async (dispatch) => {
 	}
 };
 
-export const deleteProduct = (listing) => async (dispatch) => {
-	const res = await fetch(`/api/listing/${listing.id}`, {
+export const deleteListing = (listing) => async (dispatch) => {
+	console.log('LISTING', listing)
+	const res = await fetch(`/api/listings/${listing.id}`, {
 		method: 'DELETE',
-		body: JSON.stringify(listing),
 	});
 	if (res.ok) {
 		const deletedListing = await res.json();
@@ -106,7 +105,7 @@ const listingsReducer = (state = initialState, action) => {
 
 		case EDIT_LISTING: {
 			newState = { ...state }
-			newState[action.editedListing.id]= action.editedListing;
+			newState[action.editedListing.id] = action.editedListing;
 			return newState;
 		}
 

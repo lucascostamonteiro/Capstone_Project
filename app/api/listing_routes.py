@@ -89,10 +89,9 @@ def edit_listing(id):
 @listing_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete_listing(id):
-  listing = Listing.query.get(id)
-  deleted_listing = listing.to_dict()
+  deleted_listing = Listing.query.get(id)
 
-  db.session.delete(listing)
+  db.session.delete(deleted_listing)
   db.session.commit()
 
-  return deleted_listing
+  return deleted_listing.to_dict()
