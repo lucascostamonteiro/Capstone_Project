@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import EditListingModal from "../EditListingModal";
+import CreateReviewModal from "../ReviewModal";
 import { deleteListing } from "../../store/listing";
+import SingleReview from "../SingleReview";
 
 
 const ListingDetails = () => {
@@ -44,7 +46,12 @@ const ListingDetails = () => {
           `${listing?.bathroom} Bathroom` :
           `${listing?.bathroom} Bathrooms`} <i className="fa-solid fa-bath"></i></div>
       </div>
-      {/* //TODO - ADD REVIEWS */}
+      <div>
+        <strong>REVIEWS</strong>
+        {sessionUser && listing?.user_id !== sessionUser?.id &&
+          <CreateReviewModal />}
+        <SingleReview />
+      </div>
     </div>
   )
 }

@@ -11,6 +11,8 @@ import Listings from './components/ListingsPage';
 import ListingDetails from './components/ListingDetails';
 import { authenticate } from './store/session';
 import { getListings } from './store/listing';
+import { getReviews } from './store/review';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -20,6 +22,7 @@ function App() {
     (async () => {
       await dispatch(authenticate());
       await dispatch(getListings());
+      await dispatch(getReviews());
       setLoaded(true);
     })();
   }, [dispatch]);

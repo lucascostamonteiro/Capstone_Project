@@ -29,6 +29,7 @@ export const getReviews = () => async dispatch => {
   if (res.ok) {
     const reviews = await res.json()
     dispatch(load(reviews))
+    // console.log('***REVIEWS', reviews)
   } else {
     const errors = await res.json();
     return errors;
@@ -52,7 +53,7 @@ export const createReview = (review) => async (dispatch) => {
   }
 };
 
-export const editListing = (review) => async (dispatch) => {
+export const editReview = (review) => async (dispatch) => {
   const res = await fetch(`/api/reviews/${review.id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
@@ -89,8 +90,9 @@ const reviewsReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_REVIEWS: {
       newState = { ...state };
-      action.review.review.forEach((review) => {
+      action.reviews.all_reviews.forEach((review) => {
         newState[review.id] = review;
+        // console.log('REVIEWS REDUCER', action.reviews.all_reviews)
       });
       return newState;
     }
