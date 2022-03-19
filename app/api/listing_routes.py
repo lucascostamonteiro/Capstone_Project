@@ -1,11 +1,10 @@
-from ctypes import addressof
 from flask import Blueprint, request
 from flask_login import login_required
 from app.forms.listing_form import ListingForm
 from app.models import db, Listing
 
 
-listing_routes = Blueprint('listings_routes',__name__)
+listings_routes = Blueprint('listings_routes',__name__)
 
 
 def validation_errors_to_error_messages(validation_errors):
@@ -20,7 +19,7 @@ def validation_errors_to_error_messages(validation_errors):
 
 
 # GET
-@listing_routes.route('/')
+@listings_routes.route('/')
 def get_listings():
     listings = Listing.query.all()
     return {"all_listings":[listing.to_dict() for listing in listings]}
@@ -28,7 +27,7 @@ def get_listings():
 
 
 # POST
-@listing_routes.route('/', methods=["POST"])
+@listings_routes.route('/', methods=["POST"])
 @login_required
 def create_listing():
   form = ListingForm
@@ -57,7 +56,7 @@ def create_listing():
 
 
 # PUT
-@listing_routes.route('/<int:id>', methods=["PUT"])
+@listings_routes.route('/<int:id>', methods=["PUT"])
 @login_required
 def edit_listing(id):
   form = ListingForm()
@@ -86,7 +85,7 @@ def edit_listing(id):
 
 
 # DELETE
-@listing_routes.route('/<int:id>', methods=["DELETE"])
+@listings_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete_listing(id):
   deleted_listing = Listing.query.get(id)

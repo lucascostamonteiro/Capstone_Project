@@ -18,7 +18,7 @@ function Listings() {
   return (
     <div>
       {allListings?.map(listing => (
-        <div>
+        <div key={listing?.id}>
           <div className="main-listing-div">
             <Link key={listing?.id} to={`/listings/${listing?.id}`}>
               <div className="listing-title">{listing?.title}</div>

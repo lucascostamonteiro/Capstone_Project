@@ -1,8 +1,7 @@
-from ctypes import addressof
 from flask import Blueprint, request
 from flask_login import login_required
 from app.forms.review_form import ReviewForm
-from app.models import db, Review, review
+from app.models import db, Review
 
 
 
