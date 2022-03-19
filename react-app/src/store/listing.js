@@ -37,6 +37,7 @@ export const getListings = () => async dispatch => {
 
 
 export const createListing = (listing) => async (dispatch) => {
+	// console.log('LISTING', listing)
 	const res = await fetch('/api/listings/', {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
@@ -44,6 +45,7 @@ export const createListing = (listing) => async (dispatch) => {
 	});
 	if (res.ok) {
 		const newListing = await res.json();
+		// console.log('NEW', newListing)
 		dispatch(create(newListing));
 		return newListing;
 	} else {
@@ -53,7 +55,7 @@ export const createListing = (listing) => async (dispatch) => {
 };
 
 export const editListing = (listing) => async (dispatch) => {
-	const res = await fetch(`/api/listing/${listing.id}`, {
+	const res = await fetch(`/api/listings/${listing.id}`, {
 		method: 'PUT',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(listing),
@@ -61,6 +63,7 @@ export const editListing = (listing) => async (dispatch) => {
 	if (res.ok) {
 		const editedListing = await res.json();
 		dispatch(edit(editedListing));
+		// console.log('EDIT', editedListing);
 		return editedListing;
 	} else {
 		const errors = await res.json();
@@ -68,10 +71,10 @@ export const editListing = (listing) => async (dispatch) => {
 	}
 };
 
-export const deleteProduct = (listing) => async (dispatch) => {
-	const res = await fetch(`/api/listing/${listing.id}`, {
+export const deleteListing = (listing) => async (dispatch) => {
+	console.log('LISTING', listing)
+	const res = await fetch(`/api/listings/${listing.id}`, {
 		method: 'DELETE',
-		body: JSON.stringify(listing),
 	});
 	if (res.ok) {
 		const deletedListing = await res.json();
@@ -101,7 +104,9 @@ const listingsReducer = (state = initialState, action) => {
 		}
 
 		case EDIT_LISTING: {
-			return { [action.editedListing.id]: action.editedListing, ...state };
+			newState = { ...state }
+			newState[action.editedListing.id] = action.editedListing;
+			return newState;
 		}
 
 		case DELETE_LISTING: {

@@ -10,6 +10,7 @@ import User from './components/User';
 import Listings from './components/ListingsPage';
 import ListingDetails from './components/ListingDetails';
 import { authenticate } from './store/session';
+import { getListings } from './store/listing';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -18,6 +19,7 @@ function App() {
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
+      await dispatch(getListings());
       setLoaded(true);
     })();
   }, [dispatch]);

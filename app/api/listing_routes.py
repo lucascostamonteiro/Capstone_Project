@@ -3,7 +3,7 @@ from flask import Blueprint, request
 from flask_login import login_required
 from app.forms.listing_form import ListingForm
 from app.models import db, Listing
-from app.forms import ListingForm
+
 
 listing_routes = Blueprint('listings_routes',__name__)
 
@@ -31,7 +31,7 @@ def get_listings():
 @listing_routes.route('/', methods=["POST"])
 @login_required
 def create_listing():
-  form = ListingForm()
+  form = ListingForm
   form['csrf_token'].data = request.cookies['csrf_token']
   data = form.data
 
@@ -67,6 +67,7 @@ def edit_listing(id):
   if form.validate_on_submit():
     listing = Listing.query.get(id)
 
+    listing.user_id=data['user_id']
     listing.title=data['title'],
     listing.description=data['description'],
     listing.price=data['price'],
@@ -88,10 +89,9 @@ def edit_listing(id):
 @listing_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete_listing(id):
-  listing = Listing.query.get(id)
-  deleted_listing = listing.to_dict()
+  deleted_listing = Listing.query.get(id)
 
-  db.session.delete(listing)
+  db.session.delete(deleted_listing)
   db.session.commit()
 
-  return deleted_listing
+  return deleted_listing.to_dict()
