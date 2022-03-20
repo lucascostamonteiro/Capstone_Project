@@ -13,8 +13,19 @@ const ListingDetails = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   const listing = useSelector(state => state.listings[id]);
+  const reviewsObj = useSelector(state => state?.reviews);
+  const reviews = Object.values(reviewsObj);
+  const listingReview = reviews.filter(({ listing_id }) => listing_id === +id);
 
-  // console.log('++++', listing.id)
+  // Average Rating
+  const ratings = [];
+  for (let i = 0; i < listingReview.length; i++) {
+    ratings.push(listingReview[i].rating);
+  }
+
+  const averageRating = ratings.reduce((a, b) => a + b, 0) / listingReview.length;
+
+
 
   const handleDelete = async (e) => {
     e.preventDefault();

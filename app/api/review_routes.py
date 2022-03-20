@@ -39,8 +39,8 @@ def create_review():
     review = Review(
       user_id=data['user_id'],
       listing_id=data['listing_id'],
-      content=data['content'],
-      rating=data['rating']
+      rating=data['rating'],
+      content=data['content']
     )
 
     db.session.add(review)
