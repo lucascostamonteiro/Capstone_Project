@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import EditListingModal from "../EditListingModal";
+import CreateReviewModal from "../ReviewModal";
 import { deleteListing } from "../../store/listing";
+import SingleReview from "../SingleReview";
 
 
 const ListingDetails = () => {
@@ -11,8 +13,22 @@ const ListingDetails = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   const listing = useSelector(state => state.listings[id]);
+  const reviewsObj = useSelector(state => state?.reviews);
+  const reviews = Object.values(reviewsObj);
+  const listingReview = reviews.filter(({ listing_id }) => listing_id === +id);
 
-  // console.log('++++', listing.id)
+  // Average Rating
+  const ratings = [];
+  for (let i = 0; i < listingReview.length; i++) {
+    ratings.push(listingReview[i].rating);
+  }
+
+  const averageRating = ratings.reduce((a, b) => a + b, 0) / listingReview.length;
+
+  // TODO BROKEN IMAGE
+  // const handleImgError = (e) => {
+  //   e.target.src
+  // }
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -25,6 +41,7 @@ const ListingDetails = () => {
     <div>
       <div className="main-listing-div">
         <div className="listing-title">{listing?.title}</div>
+        <div>{averageRating}</div>
         <div className="listing-location">{listing?.city}, {listing?.state}</div>
         <div>
           {sessionUser?.id === listing?.user_id && (
@@ -44,7 +61,12 @@ const ListingDetails = () => {
           `${listing?.bathroom} Bathroom` :
           `${listing?.bathroom} Bathrooms`} <i className="fa-solid fa-bath"></i></div>
       </div>
-      {/* //TODO - ADD REVIEWS */}
+      <div>
+        <strong>REVIEWS</strong>
+        {sessionUser && listing?.user_id !== sessionUser?.id &&
+          <CreateReviewModal />}
+        <SingleReview />
+      </div>
     </div>
   )
 }

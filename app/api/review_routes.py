@@ -1,8 +1,7 @@
-from ctypes import addressof
 from flask import Blueprint, request
 from flask_login import login_required
 from app.forms.review_form import ReviewForm
-from app.models import db, Review, review
+from app.models import db, Review
 
 
 
@@ -40,8 +39,8 @@ def create_review():
     review = Review(
       user_id=data['user_id'],
       listing_id=data['listing_id'],
-      content=data['content'],
-      rating=data['rating']
+      rating=data['rating'],
+      content=data['content']
     )
 
     db.session.add(review)
@@ -63,8 +62,8 @@ def edit_review(id):
 
     review.user_id=data['user_id']
     review.listing_id=data['listing_id'],
-    review.content=data['content'],
     review.rating=data['rating'],
+    review.content=data['content']
 
 
     db.session.commit()
@@ -78,7 +77,7 @@ def edit_review(id):
 @login_required
 def delete_review(id):
   deleted_review = Review.query.get(id)
-
+  print('*******BACKEND', deleted_review)
   db.session.delete(deleted_review)
   db.session.commit()
 

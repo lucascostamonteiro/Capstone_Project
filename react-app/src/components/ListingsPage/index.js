@@ -9,7 +9,10 @@ function Listings() {
   const allListingsObj = useSelector(state => state.listings)
   const allListings = Object.values(allListingsObj)
 
-  // console.log("ALL", allListings)
+  // TODO BROKEN IMAGE
+  // const handleImgError = (e) => {
+  //   e.target.src
+  // }
 
   useEffect(() => {
     dispatch(getListings())
@@ -18,12 +21,12 @@ function Listings() {
   return (
     <div>
       {allListings?.map(listing => (
-        <div>
+        <div key={listing?.id}>
           <div className="main-listing-div">
             <Link key={listing?.id} to={`/listings/${listing?.id}`}>
               <div className="listing-title">{listing?.title}</div>
               <div className="listing-location">{listing?.city}, {listing?.state}</div>
-              <div className="image-div"><img crossOrigin="anonymous" key={listing?.id} src={listing?.url} /></div>
+              <div className="image-div"><img  crossOrigin="anonymous" key={listing?.id} src={listing?.url} /></div>
             </Link>
             <div className="listing-price">${listing?.price} / night</div>
           </div>
