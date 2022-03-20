@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import CreateReviewForm from '../ReviewForm';
-
+import './ReviewModal.css'
 
 
 function CreateReviewModal() {
