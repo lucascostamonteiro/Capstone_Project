@@ -42,9 +42,7 @@ const CreateListing = ({ setShowModal }) => {
       city,
       state,
       url
-    };
-
-    // console.log('DATA', newListing)
+    }
 
     const data = await dispatch(createListing(newListing))
     if (data.errors) {
@@ -53,7 +51,7 @@ const CreateListing = ({ setShowModal }) => {
       history.push(`/listings/${data.id}`)
       setShowModal(false)
     }
-  }
+  };
 
 
   return (

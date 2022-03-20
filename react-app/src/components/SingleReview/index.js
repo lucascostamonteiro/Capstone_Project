@@ -2,23 +2,25 @@ import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import dayjs from 'dayjs'
+import EditReviewModal from '../EditReviewModal'
 import { deleteReview } from '../../store/review'
 
 
 const SingleReview = () => {
   const { id } = useParams();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   const reviewObj = useSelector(state => state.reviews);
   const reviews = Object.values(reviewObj);
   const listingReview = reviews.filter(({ listing_id }) => listing_id === +id);
-  // console.log('REVIEW', listingReview);
+  console.log('REVIEW', listingReview.id);
 
 
-  //   const handleDelete = async () => {
-  //     e.preventDefault();
-  //     await dispatch(deleteReview(listingReview))
-  //   }
+  const handleDelete = async (review, e) => {
+    e.preventDefault();
+    await dispatch(deleteReview(review))
+  }
+
 
   return (
     <div>
@@ -33,14 +35,16 @@ const SingleReview = () => {
             ))}
           </div>
           <div>{review.content}</div>
+          <div>
+            {sessionUser?.id === review?.user?.id &&
+              <>
+                <EditReviewModal review={review} />
+                <button onClick={(e) => handleDelete(review, e)}>Delete</button>
+              </>
+            }
+          </div>
         </div>
       ))}
-      {/* <div>
-      {sessionUser === listingReview.user.id &&
-        <EditReviewModal />
-      }
-      <button onClick={handleDelete}>Delete</button>
-    </div> */}
     </div>
   )
 }

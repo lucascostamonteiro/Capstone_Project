@@ -1,30 +1,30 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createReview } from "../../store/review";
+import { editReview } from "../../store/review";
 import { useParams } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
-import './ReviewForm.css'
 
-function CreateReviewForm({ setShowModal }) {
-  const { id } = useParams();
-  const sessionUser = useSelector(state => state.session.user)
+
+function EditReviewForm({review, setShowModal }) {
+  const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
-  const [rating, setRating] = useState(0)
+  const [rating, setRating] = useState(review.rating)
   const [hover, setHover] = useState(null)
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState(review.content);
   const [errors, setErrors] = useState([]);
 
+  console.log('+++', review)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newReview = {
+    const editedReview = {
+      id: review.id,
       user_id: sessionUser.id,
-      listing_id: id,
+      listing_id: review.listing_id,
       rating,
       content
     }
-    console.log('NEWR', newReview)
-    const data = await dispatch(createReview(newReview));
+    const data = await dispatch(editReview(editedReview));
     if (data.errors) setErrors(data.errors)
     else if (data) setShowModal(false)
   };
@@ -33,7 +33,7 @@ function CreateReviewForm({ setShowModal }) {
     <>
       <form
         className="review-form"
-        onSubmit={handleSubmit}>
+        onSubmit={handleSubmit} >
         <div className="create-review-div">
           <h2> Share a review </h2>
         </div>
@@ -77,7 +77,7 @@ function CreateReviewForm({ setShowModal }) {
             <textarea
               value={content}
               onChange={(e) => setContent(e.target.value)}
-              // required
+              required
             />
           </label>
         </div>
@@ -87,4 +87,4 @@ function CreateReviewForm({ setShowModal }) {
   );
 }
 
-export default CreateReviewForm;
+export default EditReviewForm;

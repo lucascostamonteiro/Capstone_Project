@@ -25,7 +25,10 @@ const ListingDetails = () => {
 
   const averageRating = ratings.reduce((a, b) => a + b, 0) / listingReview.length;
 
-
+  // TODO BROKEN IMAGE
+  // const handleImgError = (e) => {
+  //   e.target.src
+  // }
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -38,6 +41,7 @@ const ListingDetails = () => {
     <div>
       <div className="main-listing-div">
         <div className="listing-title">{listing?.title}</div>
+        <div>{averageRating}</div>
         <div className="listing-location">{listing?.city}, {listing?.state}</div>
         <div>
           {sessionUser?.id === listing?.user_id && (
