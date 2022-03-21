@@ -1,0 +1,11 @@
+.main-auth-user-container {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  background-color: white;
+  height: fit-content;
+  padding: 70px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 21px;
+}

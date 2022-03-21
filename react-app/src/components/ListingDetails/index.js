@@ -58,23 +58,24 @@ const ListingDetails = () => {
           </div>
         </div>
         <div className="image-div"><img crossOrigin="anonymous" key={listing?.id} src={listing?.url} /></div>
-
-        <div className="listing-info">
-          <div className="listing-description">{listing?.description}</div>
-          <div className="listing-price">${listing?.price} / night</div>
-          <div className="listing-bedroom">{listing?.bedroom === 1 ?
-            `${listing?.bedroom} Bedroom` :
-            `${listing?.bedroom} Bedrooms`} <i className="fa-solid fa-bed"></i></div>
-          <div className="listing-bathroom">{listing?.bathroom === 1 ?
-            `${listing?.bathroom} Bathroom` :
-            `${listing?.bathroom} Bathrooms`} <i className="fa-solid fa-bath"></i></div>
-        </div>
-        <div className="review-div">
-          <strong>REVIEWS</strong>
-          {sessionUser && listing?.user_id !== sessionUser?.id &&
-            <div> <CreateReviewModal /> </div>
-          }
-          <SingleReview />
+        <div className="reviews-info-div">
+          <div className="listing-info">
+            <div className="listing-description">{listing?.description}</div>
+            <div className="listing-price">${listing?.price} / night</div>
+            <div className="listing-bedroom">{listing?.bedroom === 1 ?
+              `${listing?.bedroom} Bedroom` :
+              `${listing?.bedroom} Bedrooms`} <i className="fa-solid fa-bed"></i></div>
+            <div className="listing-bathroom">{listing?.bathroom === 1 ?
+              `${listing?.bathroom} Bathroom` :
+              `${listing?.bathroom} Bathrooms`} <i className="fa-solid fa-bath"></i></div>
+          </div>
+          <div className="review-div">
+            <strong>REVIEWS</strong>
+            {sessionUser && listing?.user_id !== sessionUser?.id &&
+              <div> <CreateReviewModal /> </div>
+            }
+            <SingleReview />
+          </div>
         </div>
       </div>
     </div>
