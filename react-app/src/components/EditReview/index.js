@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editReview } from "../../store/review";
-import { useParams } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 
 
@@ -13,7 +12,7 @@ function EditReviewForm({review, setShowModal }) {
   const [content, setContent] = useState(review.content);
   const [errors, setErrors] = useState([]);
 
-  console.log('+++', review)
+  // console.log('+++', review)
 
   const handleSubmit = async (e) => {
     e.preventDefault();

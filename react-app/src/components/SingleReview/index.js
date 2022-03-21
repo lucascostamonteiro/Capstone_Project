@@ -35,11 +35,11 @@ const SingleReview = () => {
           </div>
           <span className='review-date'>{dayjs(review.createdAt).format("MMMM YYYY")}</span>
           <div>{review.content}</div>
-          <div>
+          <div className='review-buttons'>
             {sessionUser?.id === review?.user?.id &&
               <>
                 <EditReviewModal review={review} />
-                <button onClick={(e) => handleDelete(review, e)}>Delete</button>
+                <button className="button-class delete-button" onClick={(e) => handleDelete(review, e)}>Delete</button>
               </>
             }
           </div>
