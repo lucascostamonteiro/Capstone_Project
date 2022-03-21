@@ -23,18 +23,19 @@ const SingleReview = () => {
 
 
   return (
-    <div>
+    <div className='single-div-main'>
       {listingReview.map(review => (
-        <div className='single-review-div' key={review.id}>
+        <div className='single-review' key={review.id}>
           <span className='review-username'>{review.user.username}</span>
-          {/* <div>{review.rating}</div> */}
-          <div>
-            {[...Array(review.rating)].map((star, idx) => (
-              <i className="fa-solid fa-star" key={idx}></i>
-            ))}
+          <div className='rating-date-div'>
+            <div className='star-rating'>
+              {[...Array(review.rating)].map((star, i) => (
+                <i className="fa-solid fa-star" key={i}></i>
+              ))}
+            </div>
+            <div className='review-date'>{dayjs(review.createdAt).format("MMMM YYYY")}</div>
           </div>
-          <span className='review-date'>{dayjs(review.createdAt).format("MMMM YYYY")}</span>
-          <div>{review.content}</div>
+          <div className='review-content'>{review.content}</div>
           <div className='review-buttons'>
             {sessionUser?.id === review?.user?.id &&
               <>
