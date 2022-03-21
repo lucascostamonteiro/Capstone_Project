@@ -5,6 +5,7 @@ import EditListingModal from "../EditListingModal";
 import CreateReviewModal from "../ReviewModal";
 import { deleteListing } from "../../store/listing";
 import SingleReview from "../SingleReview";
+import './ListingDetails.css'
 
 
 const ListingDetails = () => {
@@ -38,34 +39,43 @@ const ListingDetails = () => {
 
 
   return (
-    <div>
-      <div className="main-listing-div">
-        <div className="listing-title">{listing?.title}</div>
-        <div>{averageRating}</div>
-        <div className="listing-location">{listing?.city}, {listing?.state}</div>
-        <div>
-          {sessionUser?.id === listing?.user_id && (
-            <>
-              <EditListingModal />
-              <button id='delete-listing-button' onClick={handleDelete}>Delete</button>
-            </>
-          )}
+    <div className="listing-details-page">
+      <div>
+        <div className="listing-div-title">
+          <div className="listing-title">{listing?.title}</div>
+          {listingReview.length > 0 ?
+            <div>{averageRating}</div> :
+            <div>No Reviews yet</div>
+          }
+          <div className="listing-location">{listing?.city}, {listing?.state}</div>
+          <div className="editing-buttons">
+            {sessionUser?.id === listing?.user_id && (
+              <>
+                <EditListingModal />
+                <button id='delete-listing-button' onClick={handleDelete}>Delete</button>
+              </>
+            )}
+          </div>
         </div>
         <div className="image-div"><img crossOrigin="anonymous" key={listing?.id} src={listing?.url} /></div>
-        <div className="listing-description">{listing?.description}</div>
-        <div className="listing-price">${listing?.price} / night</div>
-        <div className="listing-bedroom">{listing?.bedroom === 1 ?
-          `${listing?.bedroom} Bedroom` :
-          `${listing?.bedroom} Bedrooms`} <i className="fa-solid fa-bed"></i></div>
-        <div className="listing-bathroom">{listing?.bathroom === 1 ?
-          `${listing?.bathroom} Bathroom` :
-          `${listing?.bathroom} Bathrooms`} <i className="fa-solid fa-bath"></i></div>
-      </div>
-      <div>
-        <strong>REVIEWS</strong>
-        {sessionUser && listing?.user_id !== sessionUser?.id &&
-          <CreateReviewModal />}
-        <SingleReview />
+
+        <div className="listing-info">
+          <div className="listing-description">{listing?.description}</div>
+          <div className="listing-price">${listing?.price} / night</div>
+          <div className="listing-bedroom">{listing?.bedroom === 1 ?
+            `${listing?.bedroom} Bedroom` :
+            `${listing?.bedroom} Bedrooms`} <i className="fa-solid fa-bed"></i></div>
+          <div className="listing-bathroom">{listing?.bathroom === 1 ?
+            `${listing?.bathroom} Bathroom` :
+            `${listing?.bathroom} Bathrooms`} <i className="fa-solid fa-bath"></i></div>
+        </div>
+        <div className="review-div">
+          <strong>REVIEWS</strong>
+          {sessionUser && listing?.user_id !== sessionUser?.id &&
+            <div> <CreateReviewModal /> </div>
+          }
+          <SingleReview />
+        </div>
       </div>
     </div>
   )

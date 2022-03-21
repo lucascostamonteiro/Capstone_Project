@@ -1,0 +1,28 @@
+.listing-div-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.editing-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.listing-details-page {
+  display: flex;
+  flex-direction: column;
+  margin: 100px auto 0 auto;
+  width: 70%;
+}
+
+.listing-info {
+  width: 20%;
+  float: left;
+}
+
+.review-div {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  float: right;
+}

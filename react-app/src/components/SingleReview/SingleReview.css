@@ -1,0 +1,14 @@
+.single-review-div {
+  margin-top: 20px;
+  /* display: flex; */
+  /* flex-direction: column; */
+  width: 100%;
+  /* border: solid 1px #d3dgit3d3; */
+  padding: 10px;
+  border-bottom: 1px solid lightgray;
+}
+
+.review-username{
+  display: inline-block;
+  
+}
