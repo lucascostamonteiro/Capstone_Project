@@ -12,8 +12,8 @@ const SingleReview = () => {
   const sessionUser = useSelector(state => state.session.user);
   const reviewObj = useSelector(state => state.reviews);
   const reviews = Object.values(reviewObj);
-  const listingReview = reviews.filter(({ listing_id }) => listing_id === +id);
-  // console.log('REVIEW', listingReview.id);
+  const listingReviews = reviews.filter(({ listing_id }) => listing_id === +id);
+  // console.log('REVIEW', listingReviews.id);
 
 
   const handleDelete = async (review, e) => {
@@ -24,16 +24,18 @@ const SingleReview = () => {
 
   return (
     <div className='single-div-main'>
-      {listingReview.map(review => (
+      {listingReviews.map(review => (
         <div className='single-review' key={review.id}>
-          <span className='review-username'>{review.user.username}</span>
-          <div className='rating-date-div'>
-            <div className='star-rating'>
-              {[...Array(review.rating)].map((star, i) => (
-                <i className="fa-solid fa-star" key={i}></i>
-              ))}
+          <div className='review-user-div'>
+            <div className='review-username'><span><i className="fa-solid fa-circle-user"></i> </span> {review.user.username}</div>
+            <div className='rating-date-div'>
+              <div className='star-rating'>
+                {[...Array(review.rating)].map((star, i) => (
+                  <i className="fa-solid fa-star" key={i}></i>
+                ))}
+              </div>
+              <div className='review-date'>{dayjs(review.createdAt).format("MMMM YYYY")}</div>
             </div>
-            <div className='review-date'>{dayjs(review.createdAt).format("MMMM YYYY")}</div>
           </div>
           <div className='review-content'>{review.content}</div>
           <div className='review-buttons'>
@@ -44,9 +46,9 @@ const SingleReview = () => {
               </>
             }
           </div>
-        </div>
+        </div >
       ))}
-    </div>
+    </div >
   )
 }
 
