@@ -8,7 +8,7 @@ const EditReviewModal = ({ review }) => {
 
   return (
     <div>
-      <button className="button-class" onClick={() => setShowModal(true)} >
+      <button id="edit-review-button" onClick={() => setShowModal(true)} >
         Edit Review
       </button>
       {

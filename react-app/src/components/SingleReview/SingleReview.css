@@ -53,9 +53,9 @@ input[type="radio"] {
   text-transform: capitalize;
 }
 
-.fa-circle-user {
+/* .fa-circle-user {
   font-size: 15px;
-}
+} */
 
 .star-rating {
   display: flex;

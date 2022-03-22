@@ -61,19 +61,30 @@ const ListingDetails = () => {
             )}
           </div>
         </div>
-        <div className="image-div"><img crossOrigin="anonymous" key={listing?.id} src={listing?.url} /></div>
+        <div className="detail-image-div">
+          <img crossOrigin="anonymous" key={listing?.id} src={listing?.url} />
+        </div>
         <div className="reviews-info-div">
           <div className="listing-info">
             <div className="listing-description">{listing?.description}</div>
             <div className="listing-price">${listing?.price} / night</div>
-            <div className="listing-bedroom">{listing?.bedroom === 1 ?
-              `${listing?.bedroom} Bedroom` :
-              `${listing?.bedroom} Bedrooms`} <i className="fa-solid fa-bed"></i></div>
+            <div className="listing-bathroom">
+              {listing?.guest === 1 ?
+                `${listing?.guest} Guest` :
+                `${listing?.guest} Guests`}
+              <i className="fa-solid fa-people-group"></i>
+            </div>
+            <div className="listing-bedroom">
+              {listing?.bedroom === 1 ?
+                `${listing?.bedroom} Bedroom` :
+                `${listing?.bedroom} Bedrooms`}
+              <i className="fa-solid fa-bed"></i>
+            </div>
             <div className="listing-bathroom">
               {listing?.bathroom === 1 ?
                 `${listing?.bathroom} Bathroom` :
                 `${listing?.bathroom} Bathrooms`}
-                <i className="fa-solid fa-bath"></i>
+              <i className="fa-solid fa-bath"></i>
             </div>
           </div>
           <div className="review-div">

@@ -42,7 +42,7 @@ const SingleReview = () => {
             {sessionUser?.id === review?.user?.id &&
               <>
                 <EditReviewModal review={review} />
-                <button className="button-class delete-button" onClick={(e) => handleDelete(review, e)}>Delete</button>
+                <button id="delete-review-button" className="delete-button" onClick={(e) => handleDelete(review, e)}>Delete</button>
               </>
             }
           </div>

@@ -26,7 +26,9 @@ function Listings() {
             <Link key={listing?.id} to={`/listings/${listing?.id}`}>
               <div className="listing-title">{listing?.title}</div>
               <div className="listing-location">{listing?.city}, {listing?.state}</div>
-              <div className="image-div"><img  crossOrigin="anonymous" key={listing?.id} src={listing?.url} /></div>
+              <div className="listings-image-div">
+                <img crossOrigin="anonymous" key={listing?.id} src={listing?.url} />
+              </div>
             </Link>
             <div className="listing-price">${listing?.price} / night</div>
           </div>
