@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import NavBarIcons from './NavBarIcons';
 import CreateListingModal from "../CreateListingModal";
+// import MyListings from '../MyListings';
 
 
 const NavBar = () => {
@@ -22,6 +23,7 @@ const NavBar = () => {
           < CreateListingModal />
         }
         <NavBarIcons user={user} />
+        {/* <MyListings /> */}
       </div>
     </nav>
   );

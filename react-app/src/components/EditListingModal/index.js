@@ -7,7 +7,7 @@ const EditListingModal = () => {
 
   return (
     <div>
-      <button onClick={() => setShowModal(true)} >
+      <button id="edit-listing-button" onClick={() => setShowModal(true)} >
         Edit Listing
       </button>
       {

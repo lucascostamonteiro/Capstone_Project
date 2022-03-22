@@ -1,7 +1,9 @@
 /* TODO Add site wide styles */
 
 #edit-review-button,
-#delete-review-button {
+#delete-review-button,
+#delete-listing-button,
+#edit-listing-button {
   padding: 4px 6px;
   border-radius: 4px;
   background-color: white;
@@ -10,7 +12,9 @@
 }
 
 #edit-review-button:hover,
-#delete-review-button:hover {
+#delete-review-button:hover,
+#delete-listing-button:hover,
+#edit-listing-button:hover {
   background-color: black;
   color: white;
 }

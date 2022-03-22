@@ -45,13 +45,13 @@ const ListingDetails = () => {
       <div>
         <div className="listing-div-title">
           <div className="listing-title">{listing?.title}</div>
+          <div className="listing-location">{listing?.city}, {listing?.state}</div>
           <div className="average-rating-title">
             {listingReviews.length > 0 ?
               <div> {averageRating} <span><i class="fa-solid fa-star"></i> </span></div> :
               <div>No Reviews yet</div>
             }
           </div>
-          <div className="listing-location">{listing?.city}, {listing?.state}</div>
           <div className="editing-buttons">
             {sessionUser?.id === listing?.user_id && (
               <>
