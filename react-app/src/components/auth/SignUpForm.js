@@ -3,15 +3,16 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import Demo from './Demo';
+import './auth.css'
 
-const SignUpForm = ({ setPage }) => {
-  const [errors, setErrors] = useState([]);
+const SignUpForm = () => {
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.session.user);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
-  const user = useSelector(state => state.session.user);
-  const dispatch = useDispatch();
+  const [errors, setErrors] = useState([]);
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -59,12 +60,6 @@ const SignUpForm = ({ setPage }) => {
       <div id="sub-auth-div">
         <div id="signup-titles">
           <h2 className='form-title'>Signup</h2>
-        </div>
-        <div>
-          <button
-            id="auth-login-button"
-            onClick={() => setPage(1)}
-          >Login</button>
         </div>
       </div>
       <div>

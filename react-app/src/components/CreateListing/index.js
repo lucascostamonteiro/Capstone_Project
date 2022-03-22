@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { createListing } from '../../store/listing';
 import './CreateListing.css'
 
@@ -22,8 +22,12 @@ const CreateListing = ({ setShowModal }) => {
   const [errors, setErrors] = useState([]);
 
 
+  useEffect(() => {
+    if (url.length > 0 && url.match(/http[s]?\:\/\/.*\.(png|jpg|jpeg|gif)$/)) setUrl('Please provide a valid image URL.')
+    // else setUrl ('')
+  }, [url])
 
-  if (!sessionUser) return <Redirect to="/" />;
+  // if (!sessionUser) return <Redirect to="/" />;
 
 
   const handleSubmit = async (e) => {
@@ -52,6 +56,7 @@ const CreateListing = ({ setShowModal }) => {
       setShowModal(false)
     }
   };
+
 
 
   return (

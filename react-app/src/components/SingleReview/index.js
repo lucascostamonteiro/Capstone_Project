@@ -1,9 +1,9 @@
-import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import dayjs from 'dayjs'
 import EditReviewModal from '../EditReviewModal'
 import { deleteReview } from '../../store/review'
+import './SingleReview.css'
 
 
 const SingleReview = () => {
@@ -12,8 +12,8 @@ const SingleReview = () => {
   const sessionUser = useSelector(state => state.session.user);
   const reviewObj = useSelector(state => state.reviews);
   const reviews = Object.values(reviewObj);
-  const listingReview = reviews.filter(({ listing_id }) => listing_id === +id);
-  console.log('REVIEW', listingReview.id);
+  const listingReviews = reviews.filter(({ listing_id }) => listing_id === +id);
+  // console.log('REVIEW', listingReviews.id);
 
 
   const handleDelete = async (review, e) => {
@@ -23,29 +23,32 @@ const SingleReview = () => {
 
 
   return (
-    <div>
-      {listingReview.map(review => (
-        <div key={review.id}>
-          <div>{review.user.username}</div>
-          <div>{dayjs(review.createdAt).format("MMMM YYYY")}</div>
-          <div>{review.rating}</div>
-          <div>
-            {[...Array(review.rating)].map((star, idx) => (
-              <i className="fa-solid fa-star" key={idx}></i>
-            ))}
+    <div className='single-div-main'>
+      {listingReviews.map(review => (
+        <div className='single-review' key={review.id}>
+          <div className='review-user-div'>
+            <div className='review-username'><span><i className="fa-solid fa-circle-user"></i> </span> {review.user.username}</div>
+            <div className='rating-date-div'>
+              <div className='star-rating'>
+                {[...Array(review.rating)].map((star, i) => (
+                  <i className="fa-solid fa-star" key={i}></i>
+                ))}
+              </div>
+              <div className='review-date'>{dayjs(review.createdAt).format("MMMM YYYY")}</div>
+            </div>
           </div>
-          <div>{review.content}</div>
-          <div>
+          <div className='review-content'>{review.content}</div>
+          <div className='review-buttons'>
             {sessionUser?.id === review?.user?.id &&
               <>
                 <EditReviewModal review={review} />
-                <button onClick={(e) => handleDelete(review, e)}>Delete</button>
+                <button id="delete-review-button" className="delete-button" onClick={(e) => handleDelete(review, e)}>Delete</button>
               </>
             }
           </div>
-        </div>
+        </div >
       ))}
-    </div>
+    </div >
   )
 }
 

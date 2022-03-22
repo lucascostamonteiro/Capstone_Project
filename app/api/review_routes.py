@@ -77,7 +77,6 @@ def edit_review(id):
 @login_required
 def delete_review(id):
   deleted_review = Review.query.get(id)
-  print('*******BACKEND', deleted_review)
   db.session.delete(deleted_review)
   db.session.commit()
 
