@@ -39,8 +39,9 @@
 
 .user-buttons:hover,
 .demo-button:hover {
-  background-color: rgb(64, 125, 204);
+  background-color:   rgb(53, 41, 224);
   color: white;
+  cursor: pointer;
 }
 
 .input-containers {

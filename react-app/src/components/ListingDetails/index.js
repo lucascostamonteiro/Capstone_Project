@@ -28,10 +28,9 @@ const ListingDetails = () => {
   const averageRating = ratings.reduce((a, b) => a + b, 0) / listingReviews.length;
 
 
-  // TODO BROKEN IMAGE
-  // const handleImgError = (e) => {
-  //   e.target.src
-  // }
+  const handleImgError = (e) => {
+    e.target.src = '../../../../static/not-image.png';
+  }
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -68,7 +67,7 @@ const ListingDetails = () => {
           </div>
         </div>
         <div className="detail-image-div">
-          <img crossOrigin="anonymous" key={listing?.id} src={listing?.url} />
+          <img crossOrigin="anonymous" key={listing?.id} src={listing?.url} onError={handleImgError} />
         </div>
         <div className="reviews-info-div">
           <div className="listing-info">

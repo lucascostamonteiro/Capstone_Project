@@ -30,8 +30,9 @@
 }
 
 .button-review:hover {
-  background-color: rgb(64, 125, 204);
+  background-color:   rgb(53, 41, 224);
   color: white;
+  cursor: pointer;
 }
 
 .share-review-title {

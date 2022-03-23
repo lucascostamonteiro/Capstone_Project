@@ -12,10 +12,10 @@ function Listings() {
 
   // console.log('ALL', allListings)
 
-  // TODO BROKEN IMAGE
-  // const handleImgError = (e) => {
-  //   e.target.src
-  // }
+
+  const handleImgError = (e) => {
+    e.target.src = '../../../../static/not-image.png';
+  }
 
   useEffect(() => {
     dispatch(getListings())
@@ -30,7 +30,7 @@ function Listings() {
         <div className="main-listings-div">
           {/* <div className="main-listings-image-div"> */}
           <Link className="link-image" key={listing?.id} to={`/listings/${listing?.id}`}>
-            <img className="image-listings" crossOrigin="anonymous" key={listing?.id} src={listing?.url} />
+            <img className="image-listings" crossOrigin="anonymous" key={listing?.id} src={listing?.url} onError={handleImgError} />
           </Link>
           {/* </div> */}
           <div className="main-listings-info">

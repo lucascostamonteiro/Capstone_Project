@@ -29,8 +29,9 @@ div#root > *:first-child {
 #delete-review-button:hover,
 #delete-listing-button:hover,
 #edit-listing-button:hover {
-  background-color: rgb(64, 125, 204);
+  background-color:   rgb(53, 41, 224);
   color: white;
+  cursor: pointer;
 }
 
 #create-review-button {
@@ -67,8 +68,9 @@ div#root > *:first-child {
 
 #signup-modal-main-page:hover,
 #login-modal-main-page:hover {
-  background-color: rgb(64, 125, 204);
+  background-color:   rgb(53, 41, 224);
   color: white;
+  cursor: pointer;
 }
 
 input {
@@ -115,6 +117,7 @@ input {
 .logout-button:hover {
   text-decoration: underline;
   font-size: 16.5px;
+  cursor: pointer;
 }
 
 .username-dropdown {
