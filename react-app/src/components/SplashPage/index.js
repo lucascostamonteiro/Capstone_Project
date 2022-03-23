@@ -1,6 +1,7 @@
 import { useHistory } from 'react-router-dom';
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import './SplashPage.css'
+import Footer from '../Footer';
 
 
 const SplashPage = () => {
@@ -43,6 +44,7 @@ const SplashPage = () => {
           <button className="discover-button" onClick={handleRedirect}>Discover Brazil</button>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }
