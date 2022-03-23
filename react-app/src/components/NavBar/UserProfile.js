@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from "react-router-dom";
-import * as sessionActions from '../../store/session';
+import { Link } from "react-router-dom";
 import LogoutButton from '../auth/LogoutButton';
 
 
@@ -27,10 +26,6 @@ function UserProfile() {
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
-  const logout = (e) => {
-    e.preventDefault();
-    dispatch(sessionActions.logout());
-  };
 
   return (
     <>
@@ -39,15 +34,13 @@ function UserProfile() {
         <i className="fas fa-user-circle"></i>
       </button>
       {showMenu && (
-        <div className="dropdown-list">
-          <p className="username-dropdown">Hello, {sessionUser?.username}</p>
-            <NavLink className="user-listings" to={`/mylistings/${sessionUser?.id}`}>
-              <p className="user-listings-text">
-                My Listings
-              </p>
-            </NavLink>
+        <ul className="dropdown-list">
+          <li className="username-dropdown">Hello, {sessionUser?.username}</li>
+          <Link className="user-listings" to={`/mylistings/${sessionUser?.id}`}>
+            <li className="user-listings-text">My Listings</li>
+          </Link>
           <LogoutButton />
-        </div>
+        </ul>
       )}
     </>
   );
