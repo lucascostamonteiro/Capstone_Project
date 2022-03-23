@@ -9,7 +9,7 @@ function NavBarIcons({ user }) {
     <>
       <ul id='NavBarIcons'>
         {!user && (
-          <div id='NotLoggedNavButtons'>
+          <div id='logged-out-user-navbar'>
             <span>
               <LoginFormModal />
             </span>

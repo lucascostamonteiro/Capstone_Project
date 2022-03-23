@@ -16,9 +16,9 @@ def validate_state(form, field):
 
 def validate_url(form, field):
     url = field.data
-    image_url = re.search(r'\.(jpg|jpeg|png|gif)$', url.lower())
+    image_url = re.search(r'\.(png|jpg|jpeg|gif)$', url.lower())
     if not image_url:
-        raise ValidationError('Please provide a valid image URL (must end in .jpg, .jpeg, .gif, or .png).')
+        raise ValidationError('Please provide a valid image URL (must end with .png, .jpg, .jpeg, or .gif).')
 
 
 

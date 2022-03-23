@@ -1,4 +1,4 @@
-.main-create-listing {
+.main-edit-listing {
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -26,11 +26,11 @@
   min-width: 130px;
 }
 
-.main-create-listing > label {
+.main-edit-listing > label {
   padding: 10px 0px;
 }
 
-.submit-listing-button {
+.edit-listing-button {
   margin: 20px 0px;
   padding: 6px 8px;
   border-radius: 4px;
@@ -40,7 +40,7 @@
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-.submit-listing-button:hover {
+.edit-listing-button:hover {
   background-color: rgb(64, 125, 204);
   color: white;
 }

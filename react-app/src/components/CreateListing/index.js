@@ -22,10 +22,10 @@ const CreateListing = ({ setShowModal }) => {
   const [errors, setErrors] = useState([]);
 
 
-  useEffect(() => {
-    if (url.length > 0 && url.match(/http[s]?\:\/\/.*\.(png|jpg|jpeg|gif)$/)) setUrl('Please provide a valid image URL.')
-    // else setUrl ('')
-  }, [url])
+  // useEffect(() => {
+  //   if (url.length > 0 && url.match(/http[s]?\:\/\/.*\.(png|jpg|jpeg|gif)$/)) setUrl('Please provide a valid image URL (must end with .png, .jpg, .jpeg, or .gif).')
+  //   // else setUrl ('')
+  // }, [url])
 
   // if (!sessionUser) return <Redirect to="/" />;
 
@@ -71,7 +71,6 @@ const CreateListing = ({ setShowModal }) => {
         type='text'
         onChange={(e) => setTitle(e.target.value)}
         value={title}
-        placeholder='Title'
         name='title'
         required
       />
@@ -80,7 +79,6 @@ const CreateListing = ({ setShowModal }) => {
         className='desc-textarea'
         onChange={(e) => setDescription(e.target.value)}
         value={description}
-        placeholder='Provide a description'
         name='description'
         required
       />
@@ -89,7 +87,6 @@ const CreateListing = ({ setShowModal }) => {
         type='number'
         onChange={(e) => setPrice(e.target.value)}
         value={price}
-        placeholder='Price'
         name='price'
         required
       />
@@ -98,7 +95,6 @@ const CreateListing = ({ setShowModal }) => {
         type='number'
         onChange={(e) => setGuest(e.target.value)}
         value={guest}
-        placeholder='Guest'
         name='guest'
         required
       />
@@ -107,7 +103,6 @@ const CreateListing = ({ setShowModal }) => {
         type='number'
         onChange={(e) => setBedroom(e.target.value)}
         value={bedroom}
-        placeholder='Bedroom'
         name='bedroom'
         required
       />
@@ -116,7 +111,6 @@ const CreateListing = ({ setShowModal }) => {
         type='number'
         onChange={(e) => setBathroom(e.target.value)}
         value={bathroom}
-        placeholder='Bathroom'
         name='bathroom'
         required
       />
@@ -125,7 +119,6 @@ const CreateListing = ({ setShowModal }) => {
         type='text'
         onChange={(e) => setAddress(e.target.value)}
         value={address}
-        placeholder='Address'
         name='address'
         required
       />
@@ -134,7 +127,6 @@ const CreateListing = ({ setShowModal }) => {
         type='text'
         onChange={(e) => setCity(e.target.value)}
         value={city}
-        placeholder='City'
         name='city'
         required
       />
@@ -143,7 +135,6 @@ const CreateListing = ({ setShowModal }) => {
         type='text'
         onChange={(e) => setState(e.target.value)}
         value={state}
-        placeholder='State'
         name='state'
         required
       />
@@ -152,11 +143,12 @@ const CreateListing = ({ setShowModal }) => {
         type="url"
         name="url"
         onChange={(e) => setUrl(e.target.value)}
-        placeholder='URL'
         value={url}
         required
       />
-      <button onClick={handleSubmit}>
+      <button
+        className='submit-listing-button'
+        onClick={handleSubmit}>
         Submit Listing
       </button>
     </form>

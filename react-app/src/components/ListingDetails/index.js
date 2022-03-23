@@ -55,7 +55,7 @@ const ListingDetails = () => {
           <div className="average-rating-title">
             {listingReviews.length > 0 ?
               <div> {averageRating.toFixed(2)} <span><i class="fa-solid fa-star"></i> </span></div> :
-              <div>No Reviews yet</div>
+              <div>No reviews yet</div>
             }
           </div>
           <div className="editing-buttons">

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory, useParams } from 'react-router-dom';
 import { editListing } from '../../store/listing';
+import './EditListing.css'
 
 
 const EditListing = ({ setShowModal }) => {
@@ -60,7 +61,7 @@ const EditListing = ({ setShowModal }) => {
 
 
   return (
-    <form className='main-create-listing'>
+    <form className='main-edit-listing'>
       <div className="errors-list">
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
@@ -77,6 +78,7 @@ const EditListing = ({ setShowModal }) => {
       />
       <label htmlFor="description">Description</label>
       <textarea
+        className='desc-textarea'
         onChange={(e) => setDescription(e.target.value)}
         value={description}
         placeholder='Provide a description'
@@ -155,7 +157,9 @@ const EditListing = ({ setShowModal }) => {
         value={url}
         required
       />
-      <button onClick={handleSubmit}>
+      <button
+        className='edit-listing-button'
+        onClick={handleSubmit}>
         Edit Listing
       </button>
     </form>
