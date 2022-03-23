@@ -81,6 +81,8 @@
 .listing-info {
   width: 55%;
   margin-right: 45px;
+  /* padding-right: 30px;
+  border-right: 1px solid lightgray; */
   /* background-color: blue; */
 }
 
