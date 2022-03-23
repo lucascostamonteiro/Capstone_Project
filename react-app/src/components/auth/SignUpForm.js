@@ -49,15 +49,14 @@ const SignUpForm = () => {
     return <Redirect to='/' />;
   }
 
-
   return (
-    < form className="main-auth-user-container" onSubmit={onSignUp}>
-      <div className='errors-div'>
+    < form className="main-user-signup" onSubmit={onSignUp}>
+      <div className='errors-div-signup'>
         {errors.map((error, i) => (
           <div className='single-error-div' key={i}>{error}</div>
         ))}
       </div>
-      <div id="sub-auth-div">
+      <div>
         <div id="signup-titles">
           <h2 className='form-title'>Signup</h2>
         </div>
@@ -65,7 +64,7 @@ const SignUpForm = () => {
       <div>
         <label id='username-label'>Username</label>
         <input
-          className='auth-form-input'
+          className='form-input-user'
           type='text'
           name='username'
           onChange={updateUsername}
@@ -76,7 +75,7 @@ const SignUpForm = () => {
       <div>
         <label className='email-label'>Email</label>
         <input
-          className='auth-form-input'
+          className='form-input-user'
           type='text'
           name='email'
           onChange={updateEmail}
@@ -87,7 +86,7 @@ const SignUpForm = () => {
       <div>
         <label>Password</label>
         <input
-          className='auth-form-input'
+          className='form-input-user'
           type='password'
           name='password'
           onChange={updatePassword}
@@ -98,7 +97,7 @@ const SignUpForm = () => {
       <div>
         <label>Repeat Password</label>
         <input
-          className='auth-form-input'
+          className='form-input-user'
           id='repeat-password-input'
           type='password'
           name='repeat_password'
@@ -108,7 +107,7 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div className='auth-user-div'>
-        <button className='auth-user-buttons' type='submit'>Sign Up</button>
+        <button className='user-buttons' type='submit'>Sign Up</button>
         <Demo />
       </div>
     </form>

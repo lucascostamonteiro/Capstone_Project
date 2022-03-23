@@ -77,6 +77,7 @@ const CreateListing = ({ setShowModal }) => {
       />
       <label htmlFor="description">Description</label>
       <textarea
+        className='desc-textarea'
         onChange={(e) => setDescription(e.target.value)}
         value={description}
         placeholder='Provide a description'

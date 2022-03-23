@@ -35,10 +35,10 @@ const LoginForm = () => {
   return (
     <>
 
-      <form className='main-auth-user-container' onSubmit={onLogin}>
-        <div className='errors-div'>
-          {errors.map((error, ind) => (
-            <div className='single-error-div' key={ind}>{error}</div>
+      <form className='main-user-login' onSubmit={onLogin}>
+        <div className='errors-div-login'>
+          {errors.map((error, i) => (
+            <div className='single-error-div' key={i}>{error}</div>
           ))}
         </div>
         <div id="sub-auth-div">
@@ -46,30 +46,32 @@ const LoginForm = () => {
           <div >
           </div>
         </div>
-        <div className='auth-input-containers'>
-          <div className='auth-email-container'>
+        <div className='input-containers'>
+          <div className='email-container'>
             <label className='email-label' htmlFor='email'>Email </label>
             <input
-              className='auth-form-input'
+              className='form-input-user'
               name='email'
               type='text'
               value={email}
               onChange={updateEmail}
+              required={true}
             />
           </div>
           <div>
             <label htmlFor='password'>Password </label>
             <input
-              className='auth-form-input'
+              className='form-input-user'
               name='password'
               type='password'
               value={password}
               onChange={updatePassword}
+              required={true}
             />
           </div>
         </div>
-        <div className='auth-user-div'>
-          <button className='auth-user-buttons' type='submit'>Login</button>
+        <div className='user-div'>
+          <button className='user-buttons' type='submit'>Login</button>
           <Demo />
         </div>
       </form >

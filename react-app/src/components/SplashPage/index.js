@@ -10,39 +10,26 @@ const SplashPage = () => {
     history.push('/listings')
   }
 
-  const images = [
-    "../../../../static/carnaval.jpg",
-    "../../../../static/morrodesp.jpg",
-    "../../../../static/iguacu.jpg"
-  ]
+  // const images = [
+  //   "../../../../static/carnaval.jpg",
+  //   "../../../../static/morrodesp.jpg",
+  //   "../../../../static/iguacu.jpg"
+  // ]
 
-  // let i = 0;
+
+  // const [index, setIndex] = useState(0);
+  // const changeImage = images[index];
 
   // useEffect(() => {
-  //   function changeImage() {
-  //     document.imageHome.src = images[i];
-  //     if (i < images.length - 1) i++;
-  //     else i = 0
+  //   const interval = setInterval(() => {
+  //     if (index === 2) setIndex(0);
+  //     else setIndex(index + 1);
 
-  //     setTimeout(changeImage(), 1000);
-  //   }
+  //   }, 4000);
 
-  // })
+  //   return () => clearInterval(interval);
 
-
-  const [index, setIndex] = useState(0);
-  const changeImage = images[index];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (index === 2) setIndex(0);
-      else setIndex(index + 1);
-
-    }, 4000);
-
-    return () => clearInterval(interval);
-
-  }, [index]);
+  // }, [index]);
 
 
   return (
