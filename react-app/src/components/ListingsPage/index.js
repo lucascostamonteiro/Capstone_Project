@@ -10,7 +10,7 @@ function Listings() {
   const allListingsObj = useSelector(state => state.listings)
   const allListings = Object.values(allListingsObj)
 
-  console.log('ALL', allListings)
+  // console.log('ALL', allListings)
 
   // TODO BROKEN IMAGE
   // const handleImgError = (e) => {
@@ -23,6 +23,9 @@ function Listings() {
 
   return (
     <>
+      <div>
+        <h3 className="listings-page-title">Available Listings</h3>
+      </div>
       {allListings?.map(listing => (
         <div className="main-listings-div">
           {/* <div className="main-listings-image-div"> */}

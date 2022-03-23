@@ -1,4 +1,4 @@
-import { useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import EditListingModal from "../EditListingModal";
 import CreateReviewModal from "../ReviewModal";
@@ -41,8 +41,13 @@ const ListingDetails = () => {
 
 
   return (
-    <div className="listing-details-page">
-      <div>
+    <>
+      <span className="return-link">
+        <Link className="return-link-text" to={'/listings/'}>
+          <span className="return-link-text"><i className="fa-solid fa-arrow-left"></i> Return to all listings</span>
+        </Link>
+      </span>
+      <div className="listing-details-page">
         <div className="listing-div-title">
           <div className="listing-title">{listing?.title}</div>
           <div className="listing-location">{listing?.city}, {listing?.state}</div>
@@ -107,7 +112,7 @@ const ListingDetails = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
