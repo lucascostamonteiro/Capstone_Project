@@ -1,4 +1,4 @@
-import { useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import EditListingModal from "../EditListingModal";
 import CreateReviewModal from "../ReviewModal";
@@ -28,10 +28,9 @@ const ListingDetails = () => {
   const averageRating = ratings.reduce((a, b) => a + b, 0) / listingReviews.length;
 
 
-  // TODO BROKEN IMAGE
-  // const handleImgError = (e) => {
-  //   e.target.src
-  // }
+  const handleImgError = (e) => {
+    e.target.src = '../../../../static/not-image.png';
+  }
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -41,15 +40,21 @@ const ListingDetails = () => {
 
 
   return (
-    <div className="listing-details-page">
-      <div>
+    <>
+      <span className="return-link">
+        <Link className="return-link-text" to={'/listings/'}>
+          <span className="return-link-text"><i className="fa-solid fa-arrow-left"></i> Return to all listings</span>
+        </Link>
+      </span>
+      <div className="listing-details-page">
         <div className="listing-div-title">
           <div className="listing-title">{listing?.title}</div>
+          <div className="listing-address">{listing?.address}</div>
           <div className="listing-location">{listing?.city}, {listing?.state}</div>
           <div className="average-rating-title">
             {listingReviews.length > 0 ?
-              <div> {averageRating} <span><i class="fa-solid fa-star"></i> </span></div> :
-              <div>No Reviews yet</div>
+              <div> {averageRating.toFixed(2)} <span><i class="fa-solid fa-star"></i> </span></div> :
+              <div>No reviews yet</div>
             }
           </div>
           <div className="editing-buttons">
@@ -62,7 +67,7 @@ const ListingDetails = () => {
           </div>
         </div>
         <div className="detail-image-div">
-          <img crossOrigin="anonymous" key={listing?.id} src={listing?.url} />
+          <img crossOrigin="anonymous" key={listing?.id} src={listing?.url} onError={handleImgError} />
         </div>
         <div className="reviews-info-div">
           <div className="listing-info">
@@ -107,7 +112,7 @@ const ListingDetails = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

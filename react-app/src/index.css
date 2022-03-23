@@ -1,11 +1,25 @@
 /* TODO Add site wide styles */
 
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,500;1,100&display=swap");
+html {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+div#root > *:first-child {
+  margin: -20px -20px 0px -20px;
+}
+
 #edit-review-button,
 #delete-review-button,
 #delete-listing-button,
 #edit-listing-button {
   padding: 4px 6px;
   border-radius: 4px;
+  border: 1px solid #ccc;
   background-color: white;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -15,21 +29,124 @@
 #delete-review-button:hover,
 #delete-listing-button:hover,
 #edit-listing-button:hover {
-  background-color: black;
+  background-color:   rgb(53, 41, 224);
   color: white;
+  cursor: pointer;
 }
 
 #create-review-button {
   border-radius: 6px;
-  padding: 4px 6px;
-  background-color: white;
-  border: 2px solid black;
-  color: black;
+  padding: 10px 5px;
+  background-color: rgb(64, 125, 204);
+  border: 1px solid #ccc;
+  color: white;
+  font-weight: bold;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 #create-review-button:hover {
-  background-color: black;
+  font-weight: bold;
+  background-color: white;
+  color: rgb(64, 125, 204);
+  border: 1px solid black;
+}
+
+#signup-modal-main-page,
+#login-modal-main-page {
+  padding: 7px 10px;
+  border-radius: 3px;
+  border: 1px solid beige;
+  background-color: white;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+#login-modal-main-page {
+  margin-right: 20px;
+}
+
+#signup-modal-main-page:hover,
+#login-modal-main-page:hover {
+  background-color:   rgb(53, 41, 224);
   color: white;
+  cursor: pointer;
+}
+
+input {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.profile-menu {
+  padding: 7px;
+  border-radius: 3px;
+  border: 1px solid beige;
+  background-color: white;
+}
+
+.fa-bars {
+  margin-right: 5px;
+}
+
+.fa-user-circle {
+  /* font-weight: lighter; */
+  font-size: 17px;
+}
+
+.dropdown-list {
+  list-style: none;
+  position: absolute;
+  background-color: white;
+  margin: 11px 0 0 0px;
+  border-radius: 10px;
+  border: #d3d3d3;
+  width: 90px;
+  padding: 4px 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.user-listings-text,
+.user-listings {
+  text-decoration: none;
+  color: black;
+  margin: 5px 0px 10px 0px;
+}
+
+.user-listings:hover,
+.logout-button:hover {
+  text-decoration: underline;
+  font-size: 16.5px;
+  cursor: pointer;
+}
+
+.username-dropdown {
+  text-transform: capitalize;
+}
+
+.logout-button {
+  background-color: white;
+  border: none;
+  font-size: 16px;
+  padding-bottom: 5px;
+}
+
+.user-listings-text,
+.user-listings,
+.username-dropdown,
+.logout-button {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.no-listings-title {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 25px;
+}
+
+.no-listings-title-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

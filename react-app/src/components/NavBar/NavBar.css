@@ -1,0 +1,32 @@
+#nav-main {
+  background-color: rgb(53, 41, 224);
+}
+
+#navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  width: 90%;
+  margin-left: 40px;
+  padding: 20px 0px;
+}
+
+.title-text {
+  font: 140px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  text-decoration: none;
+  color: white;
+}
+
+.navbar-title > a {
+  text-decoration: none;
+}
+
+.left-nav-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

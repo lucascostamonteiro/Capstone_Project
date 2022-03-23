@@ -3,29 +3,34 @@ import { useSelector } from 'react-redux';
 import NavBarIcons from './NavBarIcons';
 import CreateListingModal from "../CreateListingModal";
 // import MyListings from '../MyListings';
+import './NavBar.css'
 
 
 const NavBar = () => {
-  const user = useSelector((state) => state.session?.user);
+  const user = useSelector(state => state.session?.user);
 
   return (
-    <nav>
-      <div id='navbarComponents'>
-        <NavLink to='/' exact={true} activeClassName='active'>
-          Getaway
-          {/* <img
+    <nav id='nav-main'>
+      <div id='navbar'>
+        <div className='navbar-title'>
+          <NavLink to='/' exact={true} activeClassName='active'>
+            <h3 className='title-text'>Getaway</h3>
+            {/* <img
             id='logo'
             src=''
             alt='logo'
           ></img> */}
-        </NavLink>
-        {user &&
-          < CreateListingModal />
-        }
-        <NavBarIcons user={user} />
-        {/* <MyListings /> */}
+          </NavLink>
+        </div>
+        <div className='left-nav-div'>
+          {user &&
+            <CreateListingModal />
+          }
+          <NavBarIcons user={user} />
+          {/* <MyListings /> */}
+        </div>
       </div>
-    </nav>
+    </nav >
   );
 };
 

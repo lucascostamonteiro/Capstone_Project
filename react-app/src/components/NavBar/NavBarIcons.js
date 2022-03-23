@@ -9,13 +9,13 @@ function NavBarIcons({ user }) {
     <>
       <ul id='NavBarIcons'>
         {!user && (
-          <div id='NotLoggedNavButtons'>
-            <li>
+          <div id='logged-out-user-navbar'>
+            <span>
               <LoginFormModal />
-            </li>
-            <li>
+            </span>
+            <span>
               <SignupFormModal />
-            </li>
+            </span>
           </div>
         )}
         {user &&

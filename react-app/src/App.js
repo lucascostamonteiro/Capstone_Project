@@ -5,14 +5,15 @@ import { useDispatch } from 'react-redux';
 // import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar/'
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
 import User from './components/User';
 import Listings from './components/ListingsPage';
 import SplashPage from './components/SplashPage';
 import ListingDetails from './components/ListingDetails';
+import MyListings from './components/MyListings';
 import { authenticate } from './store/session';
 import { getListings } from './store/listing';
 import { getReviews } from './store/review';
+import './index.css'
 
 
 function App() {
@@ -59,6 +60,9 @@ function App() {
         </Route>
         <Route path='/listings/:id'>
           <ListingDetails />
+        </Route>
+        <Route path='/mylistings/:userId' exact={true}>
+          <MyListings />
         </Route>
       </Switch>
     </BrowserRouter>
