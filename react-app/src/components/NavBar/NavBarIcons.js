@@ -10,12 +10,12 @@ function NavBarIcons({ user }) {
       <ul id='NavBarIcons'>
         {!user && (
           <div id='NotLoggedNavButtons'>
-            <li>
+            <span>
               <LoginFormModal />
-            </li>
-            <li>
+            </span>
+            <span>
               <SignupFormModal />
-            </li>
+            </span>
           </div>
         )}
         {user &&

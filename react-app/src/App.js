@@ -13,6 +13,7 @@ import ListingDetails from './components/ListingDetails';
 import { authenticate } from './store/session';
 import { getListings } from './store/listing';
 import { getReviews } from './store/review';
+import './index.css'
 
 
 function App() {

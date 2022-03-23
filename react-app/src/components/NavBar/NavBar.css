@@ -1,0 +1,29 @@
+#nav-main {
+  background-color: lightskyblue;
+}
+
+#navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  width: 90%;
+  margin-left: 40px;
+  padding: 20px 0px;
+}
+
+.title-text {
+  text-decoration: none;
+  color: black;
+}
+
+.navbar-title > a {
+  text-decoration: none;
+}
+
+.left-nav-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

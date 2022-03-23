@@ -8,7 +8,7 @@ import './ListingsPage.css'
 function Listings() {
   const dispatch = useDispatch();
   const allListingsObj = useSelector(state => state.listings)
-  const allListings = Object.values(allListingsObj)
+  const allListings = Object.values(allListingsObj).reverse();
 
   // console.log('ALL', allListings)
 

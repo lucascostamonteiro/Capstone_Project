@@ -23,7 +23,7 @@ function CreateReviewForm({ setShowModal }) {
       rating,
       content
     }
-    console.log('NEWR', newReview)
+    // console.log('NEWR', newReview)
     const data = await dispatch(createReview(newReview));
     if (data.errors) setErrors(data.errors)
     else if (data) setShowModal(false)
@@ -35,9 +35,9 @@ function CreateReviewForm({ setShowModal }) {
         className="review-form"
         onSubmit={handleSubmit}>
         <div className="create-review-div">
-          <h2> Share a review </h2>
+          <h2 className="share-review-title"> Share a review </h2>
         </div>
-        <div>
+        <div className="errors-div">
           <ul>
             {errors.map((error, i) => (
               <li key={i}>{error}</li>
@@ -45,7 +45,7 @@ function CreateReviewForm({ setShowModal }) {
           </ul>
         </div>
         <div id="rating-div">
-          <div id='starRating'>
+          <div id='star-rating'>
             {[...Array(5)].map((star, i) => {
               const ratingVal = i + 1;
               return (
@@ -75,13 +75,14 @@ function CreateReviewForm({ setShowModal }) {
         <div>
           <label>
             <textarea
+              className="review-content-box"
               value={content}
               onChange={(e) => setContent(e.target.value)}
               // required
             />
           </label>
         </div>
-        <button type="submit">Submit Review</button>
+        <button className="button-review" type="submit">Submit Review</button>
       </form>
     </>
   );
