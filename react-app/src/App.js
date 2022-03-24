@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import NavBar from './components/NavBar/'
-import ProtectedRoute from './components/auth/ProtectedRoute';
-import User from './components/User';
+// import ProtectedRoute from './components/auth/ProtectedRoute';
+// import User from './components/User';
 import Listings from './components/ListingsPage';
 import SplashPage from './components/SplashPage';
 import ListingDetails from './components/ListingDetails';
 import MyListings from './components/MyListings';
+import NotFoundPage from './components/NotFoundPage';
 import { authenticate } from './store/session';
 import { getListings } from './store/listing';
 import { getReviews } from './store/review';
@@ -38,29 +39,17 @@ function App() {
         <Route path='/' exact={true}>
           <SplashPage />
         </Route>
-        {/* <Route path='/login' exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
-        </Route> */}
-        {/* <ProtectedRoute path='/users' exact={true} >
-          <UsersList />
-        </ProtectedRoute> */}
-        {/* <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
-        </ProtectedRoute> */}
-        {/* <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
-        </ProtectedRoute> */}
         <Route path='/listings' exact={true}>
           <Listings />
         </Route>
-        <Route path='/listings/:id'>
+        <Route path='/listings/:id' exact={true}>
           <ListingDetails />
         </Route>
         <Route path='/mylistings/:userId' exact={true}>
           <MyListings />
+        </Route>
+        <Route path="*">
+          <NotFoundPage />
         </Route>
       </Switch>
     </BrowserRouter>

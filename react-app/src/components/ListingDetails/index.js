@@ -22,7 +22,7 @@ const ListingDetails = () => {
   const reviews = Object.values(reviewsObj);
 
   const listingReviews = reviews.filter(({ listing_id }) => listing_id === +id);
-  const userListings = allListings.filter(singleListing => singleListing?.user_id === sessionUser?.id)
+
 
   // console.log('++++LISTING++++', userListings)
   // console.log('****', sessionUser)
@@ -46,6 +46,9 @@ const ListingDetails = () => {
     return history.push('/listings')
   }
 
+  if (allListingsObj[id] === undefined) {
+    history.push('/page-not-found')
+  }
 
   return (
     <>
