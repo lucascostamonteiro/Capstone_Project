@@ -63,6 +63,7 @@
 
 .main-listings-title {
   font-weight: bold;
+  word-break: break-all;
 }
 
 .listing-price {
