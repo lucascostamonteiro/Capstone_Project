@@ -24,7 +24,7 @@ const ListingDetails = () => {
   const listingReviews = reviews.filter(({ listing_id }) => listing_id === +id);
 
 
-  // console.log('++++LISTING++++', userListings)
+  console.log('++++LISTING++++', allListings)
   // console.log('****', sessionUser)
 
   // Average Rating
@@ -83,9 +83,7 @@ const ListingDetails = () => {
         <div className="reviews-info-div">
           <div className="listing-info">
             <div className="listing-description">{listing?.description}</div>
-            {listing?.user_id === sessionUser?.id &&
-              <div className="host-name">Hosted by: <span>{sessionUser?.username} </span></div>
-            }
+            <div className="host-name">Hosted by: <span>{listing?.username} </span></div>
             <div className="listing-price">${listing?.price} / night</div>
             <div className="listing-bathroom">
               {listing?.guest === 1 ?

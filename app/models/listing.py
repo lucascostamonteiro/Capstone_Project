@@ -40,5 +40,6 @@ class Listing(db.Model):
             'city': self.city,
             'state': self.state,
             'url': self.url,
+            'username': self.user.username
             # 'image': [{'id':url.id,"image":url.url} for url in self.image],
         }
