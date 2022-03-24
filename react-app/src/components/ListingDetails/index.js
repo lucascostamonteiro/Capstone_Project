@@ -11,13 +11,21 @@ const ListingDetails = () => {
   const { id } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
+
   const sessionUser = useSelector(state => state.session.user);
   const listing = useSelector(state => state.listings[id]);
+
+  const allListingsObj = useSelector(state => state.listings);
+  const allListings = Object.values(allListingsObj);
+
   const reviewsObj = useSelector(state => state?.reviews);
   const reviews = Object.values(reviewsObj);
-  const listingReviews = reviews.filter(({ listing_id }) => listing_id === +id);
 
-  // console.log('++++LISTING++++', listingReviews)
+  const listingReviews = reviews.filter(({ listing_id }) => listing_id === +id);
+  const userListings = allListings.filter(singleListing => singleListing?.user_id === sessionUser?.id)
+
+  // console.log('++++LISTING++++', userListings)
+  // console.log('****', sessionUser)
 
   // Average Rating
   const ratings = [];
@@ -72,6 +80,9 @@ const ListingDetails = () => {
         <div className="reviews-info-div">
           <div className="listing-info">
             <div className="listing-description">{listing?.description}</div>
+            {listing?.user_id === sessionUser?.id &&
+              <div className="host-name">Hosted by: <span>{sessionUser?.username} </span></div>
+            }
             <div className="listing-price">${listing?.price} / night</div>
             <div className="listing-bathroom">
               {listing?.guest === 1 ?
