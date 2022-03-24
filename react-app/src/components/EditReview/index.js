@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editReview } from "../../store/review";
 import { FaStar } from "react-icons/fa";
+import './EditReview.css'
 
 
-function EditReviewForm({review, setShowModal }) {
+function EditReviewForm({ review, setShowModal }) {
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const [rating, setRating] = useState(review.rating)
@@ -44,7 +45,7 @@ function EditReviewForm({review, setShowModal }) {
           </ul>
         </div>
         <div id="rating-div">
-          <div id='starRating'>
+          <div id='star-rating'>
             {[...Array(5)].map((star, i) => {
               const ratingVal = i + 1;
               return (
@@ -56,7 +57,7 @@ function EditReviewForm({review, setShowModal }) {
                     onClick={() => setRating(ratingVal)}
                   />
                   <FaStar
-                    className='ratingStars'
+                    className='rating-stars'
                     size={40}
                     onMouseEnter={() => setHover(ratingVal)}
                     onMouseLeave={() => setHover(null)}
@@ -74,13 +75,16 @@ function EditReviewForm({review, setShowModal }) {
         <div>
           <label>
             <textarea
+              className="review-content-box"
               value={content}
               onChange={(e) => setContent(e.target.value)}
               required
             />
           </label>
         </div>
-        <button type="submit">Submit Review</button>
+        <button
+          className="button-review"
+          type="submit">Submit Review</button>
       </form>
     </>
   );
