@@ -68,6 +68,8 @@
 .detail-image-div > img {
   border-radius: 10px;
   object-fit: cover;
+  width: 900px;
+  height: auto;
   max-height: 120vh;
   max-width: 120vw;
 }
