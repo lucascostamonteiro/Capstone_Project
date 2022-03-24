@@ -6,16 +6,18 @@ import { logout } from '../../store/session';
 const LogoutButton = () => {
   const history = useHistory();
   const dispatch = useDispatch()
-  const onLogout = async (e) => {
-    e.preventDefault();
+  const onLogout = async () => {
+    // e.preventDefault();
     await dispatch(logout());
     history.push('/');
   };
 
   return (
-    <li
-      className='logout-button'
-      onClick={onLogout}>Logout</li>
+    <>
+      <li
+        className='logout-button'
+        onClick={onLogout}>Logout</li>
+    </>
   )
 };
 
