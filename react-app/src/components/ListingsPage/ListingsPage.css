@@ -72,7 +72,7 @@
 .main-listings-title {
   font-weight: bold;
   flex-wrap: wrap;
-  word-break: break-all;
+  word-break: break-word;
 }
 
 .listing-price {
