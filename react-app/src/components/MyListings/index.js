@@ -8,10 +8,14 @@ const MyListings = () => {
   const sessionUser = useSelector(state => state.session.user);
   const listingsObj = useSelector(state => state.listings);
   const listings = Object.values(listingsObj);
-  const userListings = listings.filter(singleListing => singleListing?.user_id === sessionUser?.id);
+  const userListings = listings.filter(singleListing => singleListing?.user_id === sessionUser?.id).reverse();
 
   // console.log('USER', listings)
   // console.log('++++', userListings)
+
+  const handleImgError = (e) => {
+    e.target.src = '../../../../static/not-image.png';
+  }
 
   return (
     <>
@@ -32,7 +36,7 @@ const MyListings = () => {
             <div className="main-listings-div">
               {/* <div className="main-listings-image-div"> */}
               <Link className="link-image" key={listing?.id} to={`/listings/${listing?.id}`}>
-                <img className="image-listings" crossOrigin="anonymous" key={listing?.id} src={listing?.url} />
+                <img className="image-listings" crossOrigin="anonymous" key={listing?.id} src={listing?.url} onError={handleImgError} />
               </Link>
               {/* </div> */}
               <div className="main-listings-info">
