@@ -29,7 +29,7 @@ div#root > *:first-child {
 #delete-review-button:hover,
 #delete-listing-button:hover,
 #edit-listing-button:hover {
-  background-color:   rgb(53, 41, 224);
+  background-color: rgb(53, 41, 224);
   color: white;
   cursor: pointer;
 }
@@ -68,7 +68,7 @@ div#root > *:first-child {
 
 #signup-modal-main-page:hover,
 #login-modal-main-page:hover {
-  background-color:   rgb(53, 41, 224);
+  background-color: rgb(53, 41, 224);
   color: white;
   cursor: pointer;
 }
@@ -103,6 +103,7 @@ input {
   border: #d3d3d3;
   width: 90px;
   padding: 13px 10px;
+  /* word-break: break-word; */
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
@@ -122,6 +123,13 @@ input {
 
 .username-dropdown {
   text-transform: capitalize;
+  word-break: break-word;
+}
+
+.username-span {
+  text-transform: capitalize;
+  word-break: break-word;
+  font-weight: bold;
 }
 
 .logout-button {

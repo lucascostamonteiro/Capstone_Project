@@ -3,6 +3,7 @@
   flex-direction: column;
   background-color: white;
   /* width: 100%; */
+  height: auto;
   min-width: 344px;
   min-height: 101px;
   min-height: 506px;
@@ -16,6 +17,7 @@
 .main-user-login {
   display: flex;
   flex-direction: column;
+  height: auto;
   width: fit-content;
   background-color: white;
   min-height: 100px;
