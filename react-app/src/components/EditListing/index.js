@@ -63,7 +63,7 @@ const EditListing = ({ setShowModal }) => {
   return (
     <form className='main-edit-listing'>
       <div className="errors-list">
-        <ul>
+        <ul className='single-error'>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
       </div>
@@ -72,7 +72,6 @@ const EditListing = ({ setShowModal }) => {
         type='text'
         onChange={(e) => setTitle(e.target.value)}
         value={title}
-        placeholder='Title'
         name='title'
         required
       />
@@ -81,52 +80,60 @@ const EditListing = ({ setShowModal }) => {
         className='desc-textarea'
         onChange={(e) => setDescription(e.target.value)}
         value={description}
-        placeholder='Provide a description'
         name='description'
         required
       />
-      <label htmlFor="price">Price</label>
-      <input
-        type='number'
-        onChange={(e) => setPrice(e.target.value)}
-        value={price}
-        placeholder='Price'
-        name='price'
-        required
-      />
-      <label htmlFor="guest">Guest(s)</label>
-      <input
-        type='number'
-        onChange={(e) => setGuest(e.target.value)}
-        value={guest}
-        placeholder='Guest'
-        name='guest'
-        required
-      />
-      <label htmlFor="bedroom">Bedroom(s)</label>
-      <input
-        type='number'
-        onChange={(e) => setBedroom(e.target.value)}
-        value={bedroom}
-        placeholder='Bedroom'
-        name='bedroom'
-        required
-      />
-      <label htmlFor="bathroom">Bathroom(s)</label>
-      <input
-        type='number'
-        onChange={(e) => setBathroom(e.target.value)}
-        value={bathroom}
-        placeholder='Bathroom'
-        name='bathroom'
-        required
-      />
+      <div className='number-inputs'>
+        <div className='price-div'>
+          <label htmlFor="price">Price</label>
+          <input
+            className='price-input'
+            type='number'
+            onChange={(e) => setPrice(e.target.value)}
+            value={price}
+            name='price'
+            required
+          />
+        </div>
+        <div className='guest-div'>
+          <label htmlFor="guest">Guest(s)</label>
+          <input
+            className='guest-input'
+            type='number'
+            onChange={(e) => setGuest(e.target.value)}
+            value={guest}
+            name='guest'
+            required
+          />
+        </div>
+      </div>
+      <div className='bathroom-bedroom-input'>
+        <div className='bedroom-div'>
+          <label htmlFor="bedroom">Bedroom(s)</label>
+          <input
+            type='number'
+            onChange={(e) => setBedroom(e.target.value)}
+            value={bedroom}
+            name='bedroom'
+            required
+          />
+        </div>
+        <div className='bathroom-div'>
+          <label htmlFor="bathroom">Bathroom(s)</label>
+          <input
+            type='number'
+            onChange={(e) => setBathroom(e.target.value)}
+            value={bathroom}
+            name='bathroom'
+            required
+          />
+        </div>
+      </div>
       <label htmlFor="address">Address</label>
       <input
         type='text'
         onChange={(e) => setAddress(e.target.value)}
         value={address}
-        placeholder='Address'
         name='address'
         required
       />
@@ -135,7 +142,6 @@ const EditListing = ({ setShowModal }) => {
         type='text'
         onChange={(e) => setCity(e.target.value)}
         value={city}
-        placeholder='City'
         name='city'
         required
       />
@@ -144,7 +150,6 @@ const EditListing = ({ setShowModal }) => {
         type='text'
         onChange={(e) => setState(e.target.value)}
         value={state}
-        placeholder='State'
         name='state'
         required
       />
@@ -153,15 +158,16 @@ const EditListing = ({ setShowModal }) => {
         type="url"
         name="url"
         onChange={(e) => setUrl(e.target.value)}
-        placeholder='URL'
         value={url}
         required
       />
-      <button
-        className='edit-listing-button'
-        onClick={handleSubmit}>
-        Edit Listing
-      </button>
+      <div className='button-div'>
+        <button
+          className='edit-listing-button'
+          onClick={handleSubmit}>
+          Edit Listing
+        </button>
+      </div>
     </form>
   )
 };

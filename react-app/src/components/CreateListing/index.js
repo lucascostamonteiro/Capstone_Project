@@ -22,18 +22,9 @@ const CreateListing = ({ setShowModal }) => {
   const [errors, setErrors] = useState([]);
 
 
-  // useEffect(() => {
-  //   if (url.length > 0 && url.match(/http[s]?\:\/\/.*\.(png|jpg|jpeg|gif)$/)) setUrl('Please provide a valid image URL (must end with .png, .jpg, .jpeg, or .gif).')
-  //   // else setUrl ('')
-  // }, [url])
-
-  // if (!sessionUser) return <Redirect to="/" />;
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const userId = sessionUser.id;
-    // console.log('USER', userId)
     const newListing = {
       user_id: sessionUser.id,
       title,
@@ -82,38 +73,52 @@ const CreateListing = ({ setShowModal }) => {
         name='description'
         required
       />
-      <label htmlFor="price">Price</label>
-      <input
-        type='number'
-        onChange={(e) => setPrice(e.target.value)}
-        value={price}
-        name='price'
-        required
-      />
-      <label htmlFor="guest">Guest(s)</label>
-      <input
-        type='number'
-        onChange={(e) => setGuest(e.target.value)}
-        value={guest}
-        name='guest'
-        required
-      />
-      <label htmlFor="bedroom">Bedroom(s)</label>
-      <input
-        type='number'
-        onChange={(e) => setBedroom(e.target.value)}
-        value={bedroom}
-        name='bedroom'
-        required
-      />
-      <label htmlFor="bathroom">Bathroom(s)</label>
-      <input
-        type='number'
-        onChange={(e) => setBathroom(e.target.value)}
-        value={bathroom}
-        name='bathroom'
-        required
-      />
+      <div className='number-inputs'>
+        <div className='price-div'>
+          <label htmlFor="price">Price</label>
+          <input
+            className='price-input'
+            type='number'
+            onChange={(e) => setPrice(e.target.value)}
+            value={price}
+            name='price'
+            required
+          />
+        </div>
+        <div className='guest-div'>
+          <label htmlFor="guest">Guest(s)</label>
+          <input
+            className='guest-input'
+            type='number'
+            onChange={(e) => setGuest(e.target.value)}
+            value={guest}
+            name='guest'
+            required
+          />
+        </div>
+      </div>
+      <div className='bathroom-bedroom-input'>
+        <div className='bedroom-div'>
+          <label htmlFor="bedroom">Bedroom(s)</label>
+          <input
+            type='number'
+            onChange={(e) => setBedroom(e.target.value)}
+            value={bedroom}
+            name='bedroom'
+            required
+          />
+        </div>
+        <div className='bathroom-div'>
+          <label htmlFor="bathroom">Bathroom(s)</label>
+          <input
+            type='number'
+            onChange={(e) => setBathroom(e.target.value)}
+            value={bathroom}
+            name='bathroom'
+            required
+          />
+        </div>
+      </div>
       <label htmlFor="address">Address</label>
       <input
         type='text'
@@ -146,11 +151,13 @@ const CreateListing = ({ setShowModal }) => {
         value={url}
         required
       />
-      <button
-        className='submit-listing-button'
-        onClick={handleSubmit}>
-        Submit Listing
-      </button>
+      <div className='button-div'>
+        <button
+          className='submit-listing-button'
+          onClick={handleSubmit}>
+          Submit Listing
+        </button>
+      </div>
     </form>
   )
 };
