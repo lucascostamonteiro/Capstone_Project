@@ -62,7 +62,7 @@ const CreateListing = ({ setShowModal }) => {
   return (
     <form className='main-create-listing'>
       <div className="errors-list">
-        <ul>
+        <ul className='single-error'>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
       </div>

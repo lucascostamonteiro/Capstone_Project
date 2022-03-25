@@ -16,7 +16,7 @@ def validate_state(form, field):
 
 def validate_url(form, field):
     url = field.data
-    image_url = re.search('r\.(png|jpg|jpeg|gif)$', url.lower())
+    image_url = re.search(r'\.(png|jpg|jpeg|gif)$', url.lower())
     # image_url = re.search(r'\b.(png|jpg|jpeg|gif)\b', url.lower()) # contain the extension anywhere in the url
 
     if not image_url:
@@ -28,7 +28,7 @@ class ListingForm(FlaskForm):
     user_id = IntegerField("user_id")
     title = StringField('title', validators=[DataRequired('Please provide a title.'), Length(min=1, max=50, message='Title must be between 1-50 characters')])
     description = TextAreaField('description', validators=[DataRequired('Please provide a description.'), Length(min=1, max=255, message='Description must be between 1-255 characters')])
-    price = IntegerField('Price', validators=[DataRequired('Please provide a price.'), NumberRange(min=1 , max=5000, message="Price must be between $1 - $5,000")])
+    price = IntegerField('Price', validators=[DataRequired('Please provide a price (must not include decimals).'), NumberRange(min=1 , max=5000, message="Price must be between $1 - $5000 (must not include decimals).")])
     guest = IntegerField('price', validators=[DataRequired('Please provide number of guests.'), NumberRange(min=1, max=20, message='Number of guests must be between 1 - 20')])
     bedroom = IntegerField('bedroom', validators=[DataRequired('Please provide number of bedroom.'), NumberRange(min=1, max=10, message='Number of bedrooms must be between 1 - 10')])
     bathroom = IntegerField('bathroom', validators=[DataRequired('Please provide number of bathroom.'), NumberRange(min=1, max=10, message='Number of bathrooms must be between 1 - 10')])
