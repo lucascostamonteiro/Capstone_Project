@@ -4,25 +4,25 @@
   flex-direction: column;
   background-color: white;
   width: 340px;
-  height: fit-content;
-  max-height: 530px;
-  min-height: 100px;
+  height: auto;
+  max-height: 60%;
+  /* min-height: 100px; */
   max-width: 700px;
-  padding: 10px 10px 10px 30px;
+  padding: 10px 30px 10px 30px;
   justify-content: center;
-  align-items: center;
+  /* align-items: flex-start; */
   border-radius: 5px;
-  overflow-y: auto;
-  position: relative;
+  /* overflow-y: auto; */
+  /* position: relative; */
 }
 
-.errors-list {
-  /* display: grid;
+/* .errors-list { */
+/* display: grid;
   grid-template-columns: repeat(3, 1fr); */
-  padding-top: 420px;
-  height: fit-content;
+/* padding-top: 420px; */
+/* height: fit-content;
   width: 100%;
-}
+} */
 
 .single-error {
   color: red;
@@ -34,8 +34,55 @@
   min-width: 130px;
 }
 
+.number-inputs {
+  display: flex;
+  flex-direction: row;
+  padding-top: 12px;
+}
+
+.price-div > label {
+  padding-right: 48px;
+}
+
+.guest-div > label,
+.bedroom-div > label,
+.bathroom-div > label {
+  padding-right: 5px;
+}
+
+.price-div > input,
+.guest-div > input,
+.bedroom-div > input,
+.bathroom-div > input {
+  width: 43px;
+}
+
+.number-inputs > div > input,
+.bathroom-bedroom-input > div > input {
+  width: 30px;
+}
+
+.bathroom-bedroom-input {
+  display: flex;
+  flex-direction: row;
+  padding-top: 12px;
+}
+
 .main-create-listing > label {
   padding: 10px 0px;
+}
+
+.guest-div {
+  padding-left: 77px;
+}
+
+.bathroom-div {
+  padding-left: 50px;
+}
+
+.button-div {
+  display: flex;
+  justify-content: center;
 }
 
 .submit-listing-button {
@@ -53,3 +100,9 @@
   color: white;
   cursor: pointer;
 }
+
+/* @media screen and (min-height: 1300px) {
+  .main-create-listing {
+    overflow-y: scroll;
+  }
+} */

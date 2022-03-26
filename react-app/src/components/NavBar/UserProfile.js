@@ -34,7 +34,7 @@ function UserProfile() {
       </button>
       {showMenu && (
         <ul className="dropdown-list">
-          <li className="username-dropdown">Hello, {sessionUser?.username}</li>
+          <li className="username-dropdown">Hello, <span className="username-span">{sessionUser?.username}</span></li>
           <Link className="user-listings" to={`/mylistings/${sessionUser?.id}`}>
             <li className="user-listings-text">My Listings</li>
           </Link>

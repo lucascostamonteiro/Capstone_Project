@@ -24,7 +24,7 @@ const ListingDetails = () => {
   const listingReviews = reviews.filter(({ listing_id }) => listing_id === +id);
 
 
-  console.log('++++LISTING++++', allListings)
+  // console.log('++++LISTING++++', allListings)
   // console.log('****', sessionUser)
 
   // Average Rating
@@ -46,9 +46,7 @@ const ListingDetails = () => {
     return history.push('/listings')
   }
 
-  if (allListingsObj[id] === undefined) {
-    history.push('/page-not-found')
-  }
+  if (allListingsObj[id] === undefined) history.push('/page-not-found');
 
   return (
     <>

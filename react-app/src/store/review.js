@@ -38,7 +38,7 @@ export const getReviews = () => async dispatch => {
 
 
 export const createReview = (review) => async (dispatch) => {
-  console.log('CREATE', review)
+  // console.log('CREATE', review)
   const res = await fetch('/api/reviews/', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -55,7 +55,7 @@ export const createReview = (review) => async (dispatch) => {
 };
 
 export const editReview = (review) => async (dispatch) => {
-  console.log('ID', review)
+  // console.log('ID', review)
   const res = await fetch(`/api/reviews/${review.id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
@@ -72,7 +72,7 @@ export const editReview = (review) => async (dispatch) => {
 };
 
 export const deleteReview = (review) => async (dispatch) => {
-  console.log('ID', review.id)
+  // console.log('ID', review.id)
   const res = await fetch(`/api/reviews/${review.id}`, {
     method: 'DELETE',
   });

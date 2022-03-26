@@ -36,10 +36,10 @@ const LoginForm = () => {
     <>
 
       <form className='main-user-login' onSubmit={onLogin}>
-        <div className='errors-div-login'>
-          {errors.map((error, i) => (
-            <div className='single-error-div' key={i}>{error}</div>
-          ))}
+        <div className="errors-list-login ">
+          <ul className='single-error'>
+            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+          </ul>
         </div>
         <div id="sub-auth-div">
           <h2 className='form-title'>Login</h2>

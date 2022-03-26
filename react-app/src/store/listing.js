@@ -72,7 +72,7 @@ export const editListing = (listing) => async (dispatch) => {
 };
 
 export const deleteListing = (listing) => async (dispatch) => {
-	console.log('LISTING', listing)
+	// console.log('LISTING', listing)
 	const res = await fetch(`/api/listings/${listing.id}`, {
 		method: 'DELETE',
 	});

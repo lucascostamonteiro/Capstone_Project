@@ -51,10 +51,10 @@ const SignUpForm = () => {
 
   return (
     < form className="main-user-signup" onSubmit={onSignUp}>
-      <div className='errors-div-signup'>
-        {errors.map((error, i) => (
-          <div className='single-error-div' key={i}>{error}</div>
-        ))}
+      <div className="errors-list-signup ">
+        <ul className='single-error'>
+          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        </ul>
       </div>
       <div>
         <div id="signup-titles">
