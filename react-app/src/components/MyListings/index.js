@@ -12,10 +12,6 @@ const MyListings = () => {
   const listings = Object.values(listingsObj);
   const userListings = listings.filter(singleListing => singleListing?.user_id === sessionUser?.id).reverse();
 
-  console.log('USER', sessionUser)
-  console.log('++++', listingsObj)
-  console.log('***', userListings)
-
   const handleImgError = (e) => {
     e.target.src = '../../../../static/not-image.png';
   }
