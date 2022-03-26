@@ -1,21 +1,29 @@
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom';
+import { Link, Redirect, useHistory, useParams } from 'react-router-dom';
 import './MyListings.css'
 
 
 
 const MyListings = () => {
+  const { id } = useParams();
+  const history = useHistory();
   const sessionUser = useSelector(state => state.session.user);
   const listingsObj = useSelector(state => state.listings);
   const listings = Object.values(listingsObj);
   const userListings = listings.filter(singleListing => singleListing?.user_id === sessionUser?.id).reverse();
 
-  // console.log('USER', listings)
-  // console.log('++++', userListings)
+  console.log('USER', sessionUser)
+  console.log('++++', listingsObj)
+  console.log('***', userListings)
 
   const handleImgError = (e) => {
     e.target.src = '../../../../static/not-image.png';
   }
+
+  if (!sessionUser) return Redirect('/');
+
+  if (sessionUser?.id !== +id) history.push('/page-not-found');
+
 
   return (
     <>
