@@ -129,6 +129,7 @@ const CreateListing = ({ setShowModal }) => {
       />
       <label htmlFor="city">City</label>
       <input
+        className='city-listing'
         type='text'
         onChange={(e) => setCity(e.target.value)}
         value={city}
@@ -139,7 +140,7 @@ const CreateListing = ({ setShowModal }) => {
       <select onChange={(e) => setState(e.target.value)} required >
         <option disabled selected value> </option>
         {states.map(state => (
-          <option value={state}>{state}</option>
+          <option value={state} >{state}</option>
         ))}
       </select>
       <label htmlFor="url">URL</label>

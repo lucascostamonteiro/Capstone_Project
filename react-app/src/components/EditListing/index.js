@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory, useParams } from 'react-router-dom';
 import { editListing } from '../../store/listing';
+import { states } from '../../utils';
 import './EditListing.css'
 
 
@@ -139,20 +140,20 @@ const EditListing = ({ setShowModal }) => {
       />
       <label htmlFor="city">City</label>
       <input
+        className='city-listing'
         type='text'
         onChange={(e) => setCity(e.target.value)}
         value={city}
         name='city'
         required
       />
-      <label htmlFor="State">State</label>
-      <input
-        type='text'
-        onChange={(e) => setState(e.target.value)}
-        value={state}
-        name='state'
-        required
-      />
+      <label htmlFor="state">State</label>
+      <select onChange={(e) => setState(e.target.value)} value={state} required >
+        <option disabled selected value> </option>
+        {states.map(state => (
+          <option value={state} >{state}</option>
+        ))}
+      </select>
       <label htmlFor="url">URL</label>
       <input
         type="url"

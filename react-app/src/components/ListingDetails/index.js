@@ -59,7 +59,7 @@ const ListingDetails = () => {
         <div className="listing-div-title">
           <div className="listing-title">{listing?.title}</div>
           <div className="listing-address">{listing?.address}</div>
-          <div className="listing-location">{listing?.city}, {listing?.state}</div>
+          <div className="listing-location"><span className="city-listing">{listing?.city},</span> {listing?.state}</div>
           <div className="average-rating-title">
             {listingReviews.length > 0 ?
               <div> {averageRating.toFixed(2)} <span><i class="fa-solid fa-star"></i> </span></div> :

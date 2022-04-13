@@ -159,3 +159,7 @@
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   text-transform: capitalize;
 }
+
+.city-listing {
+  text-transform: capitalize;
+}
