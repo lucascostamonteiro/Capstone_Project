@@ -4,6 +4,7 @@ import EditListingModal from "../EditListingModal";
 import CreateReviewModal from "../ReviewModal";
 import { deleteListing } from "../../store/listing";
 import SingleReview from "../SingleReview";
+import BookingModal from "../BookingsModal";
 import './ListingDetails.css'
 
 
@@ -74,6 +75,9 @@ const ListingDetails = () => {
               </>
             )}
           </div>
+        </div>
+        <div>
+          <BookingModal />
         </div>
         <div className="detail-image-div">
           <img crossOrigin="anonymous" key={listing?.id} src={listing?.url} onError={handleImgError} alt={'listing detail'} />

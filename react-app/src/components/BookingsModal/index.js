@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
-// import BookingForm from '';
+import BookingForm from '../BookingForm';
 
 
 function BookingModal() {
