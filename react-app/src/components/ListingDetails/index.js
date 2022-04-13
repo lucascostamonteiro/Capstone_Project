@@ -16,7 +16,7 @@ const ListingDetails = () => {
   const listing = useSelector(state => state.listings[id]);
 
   const allListingsObj = useSelector(state => state.listings);
-  const allListings = Object.values(allListingsObj);
+  // const allListings = Object.values(allListingsObj);
 
   const reviewsObj = useSelector(state => state?.reviews);
   const reviews = Object.values(reviewsObj);
@@ -76,7 +76,7 @@ const ListingDetails = () => {
           </div>
         </div>
         <div className="detail-image-div">
-          <img crossOrigin="anonymous" key={listing?.id} src={listing?.url} onError={handleImgError} />
+          <img crossOrigin="anonymous" key={listing?.id} src={listing?.url} onError={handleImgError} alt={'listing detail'} />
         </div>
         <div className="reviews-info-div">
           <div className="listing-info">

@@ -40,7 +40,7 @@ const MyListings = () => {
             <div className="main-listings-div">
               {/* <div className="main-listings-image-div"> */}
               <Link className="link-image" key={listing?.id} to={`/listings/${listing?.id}`}>
-                <img className="image-listings" crossOrigin="anonymous" key={listing?.id} src={listing?.url} onError={handleImgError} />
+                <img className="image-listings" crossOrigin="anonymous" key={listing?.id} src={listing?.url} onError={handleImgError} alt={""}/>
               </Link>
               {/* </div> */}
               <div className="main-listings-info">

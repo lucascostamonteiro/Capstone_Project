@@ -23,7 +23,7 @@ function CreateReviewForm({ setShowModal }) {
       rating,
       content
     }
-    // console.log('NEWR', newReview)
+
     const data = await dispatch(createReview(newReview));
     if (data.errors) setErrors(data.errors)
     else if (data) setShowModal(false)

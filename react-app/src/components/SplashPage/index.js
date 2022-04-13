@@ -36,7 +36,7 @@ const SplashPage = () => {
   return (
     <div>
       <div className='main-home-div'>
-        <img className="image-home" src="../../../../static/morrodesp.jpg" alt="Brasil Image" />
+        <img className="image-home" src="../../../../static/morrodesp.jpg" alt="Brasil" />
         {/* <img name="imageHome" className="image-home" src={changeImage} alt="Brasil image" /> */}
         <div className='rectangle-text'></div>
         <div className='home-header'>
