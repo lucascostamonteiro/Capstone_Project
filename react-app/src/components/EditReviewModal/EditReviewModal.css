@@ -12,4 +12,6 @@
   background-color: white;
   color: rgb(53, 41, 224);
   cursor: pointer;
+  border-color: #ccc;
+  font-weight: bold;
 }
