@@ -30,6 +30,7 @@ const BookingForm = () => {
 
   return (
     <form className="booking-form">
+      <h3>Book Your Stay</h3>
       <DateRangePicker
         startDate={startDate} // momentPropTypes.momentObj or null,
         startDateId="startDate" // PropTypes.string.isRequired,
@@ -49,9 +50,11 @@ const BookingForm = () => {
           value={guests}
         />
       </label>
-      <button className='booking-button' type='submit'>
-        Submit Booking
-      </button>
+      <div className="booking-button-div">
+        <button className='booking-button' type='submit'>
+          Submit Booking
+        </button>
+      </div>
     </form>
 
 

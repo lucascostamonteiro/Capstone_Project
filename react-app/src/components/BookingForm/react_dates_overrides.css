@@ -1,27 +1,69 @@
-// NOTE: the order of these styles DO matter
+/* NOTE: the order of these styles DO matter */
 
-// Will edit everything selected including everything between a range of dates
+/* Will edit everything selected including everything between a range of dates */
 .CalendarDay__selected_span {
-  background: #82e0aa; //background
-  color: white; //text
-  border: 1px solid $light-red; //default styles include a border
+  background: #ccc;
+  color: rgb(53, 41, 224);
+  border: 1px solid lightgray;
 }
 
-// Will edit selected date or the endpoints of a range of dates
+/* Will edit selected date or the endpoints of a range of dates */
 .CalendarDay__selected {
-  background: $dark-red;
+  background: rgb(53, 41, 224);
   color: white;
+  border: 1px solid black;
 }
-
-// Will edit when hovered over. _span style also has this property
+/* Will edit when hovered over. _span style also has this property */
 .CalendarDay__selected:hover {
-  background: orange;
+  background: rgb(53, 41, 224);
   color: white;
+  border: 1px solid black;
 }
 
-// Will edit when the second date (end date) in a range of dates
-// is not yet selected. Edits the dates between your mouse and said date
+/* Will edit when the second date (end date) in a range of dates
+is not yet selected. Edits the dates between your mouse and said date */
 .CalendarDay__hovered_span:hover,
 .CalendarDay__hovered_span {
-  background: brown;
+  background: blue;
+}
+
+.DateInput_input__focused {
+  outline: 0;
+  background: #fff;
+  border: 0;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 2px solid rgb(53, 41, 224);
+  border-left: 0;
+}
+
+.DateInput_input {
+  font-weight: 200;
+  font-size: 19px;
+  line-height: 24px;
+  color: #484848;
+  background-color: #fff;
+  width: 100%;
+  padding: 11px 11px 9px;
+  /* border: 0; */
+  /* border-top: 0;
+  border-right: 0; */
+  border-bottom: 2px solid transparent;
+  /* border-left: 0;
+  border-radius: 0; */
+}
+
+input #endDate {
+  border-right: 1px solid #ccc;
+}
+
+.DateRangePickerInput__withBorder {
+  border-radius: 2px;
+  border: 2px solid #ccc;
+}
+
+.DateRangePickerInput_arrow {
+  display: inline-block;
+  vertical-align: middle;
+  color: #484848;
 }
