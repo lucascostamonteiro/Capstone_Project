@@ -53,6 +53,22 @@ export const getUserBookings = (userId) => async dispatch => {
   }
 }
 
+export const createBooking = (booking) => async dispatch => {
+  const res = await fetch('/api/bookings/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(booking),
+  });
+  if (res.ok) {
+    const newBooking = await res.json();
+    dispatch(create(newBooking));
+    return newBooking;
+  } else {
+    const errors = await res.json();
+    return errors;
+  }
+}
+
 
 export const editedBooking = (booking) => async dispatch => {
   const res = await fetch(`/api/bookings/${booking.id}`, {
