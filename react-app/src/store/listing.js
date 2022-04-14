@@ -37,7 +37,6 @@ export const getListings = () => async dispatch => {
 
 
 export const createListing = (listing) => async (dispatch) => {
-	// console.log('LISTING', listing)
 	const res = await fetch('/api/listings/', {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
@@ -45,7 +44,6 @@ export const createListing = (listing) => async (dispatch) => {
 	});
 	if (res.ok) {
 		const newListing = await res.json();
-		// console.log('NEW', newListing)
 		dispatch(create(newListing));
 		return newListing;
 	} else {

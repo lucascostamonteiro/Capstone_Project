@@ -28,15 +28,17 @@ const BookingForm = () => {
     setFocusedInput(focusedInput)
   }
 
+  // const handleSubmit = ()=>{}
+
+
   return (
     <form className="booking-form">
-      <h3>Book Your Stay</h3>
+      <h3>Booking Details</h3>
       <DateRangePicker
         startDate={startDate} // momentPropTypes.momentObj or null,
         startDateId="startDate" // PropTypes.string.isRequired,
         endDate={endDate} // momentPropTypes.momentObj or null,
         endDateId="endDate" // PropTypes.string.isRequired,
-        // onDatesChange={({ startDate, endDate }) => setDatesSelected({ startDate, endDate })} // PropTypes.func.isRequired,
         onDatesChange={dateRange} // PropTypes.func.isRequired,
         focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
         onFocusChange={datesOnFocusHandler} // PropTypes.func.isRequired,
@@ -57,42 +59,6 @@ const BookingForm = () => {
       </div>
     </form>
 
-
-
-
-    // Form
-    // <form className='booking-form'>
-    //   <label >
-    //     Check-in
-    //     <input
-    //       className='check-in-form'
-    //       type='datetime-local'
-    //       onChange={(e) => setCheckIn(e.target.value)}
-    //       value={checkIn}
-    //     />
-    //   </label>
-    //   <label className='check-out-form'>
-    //     Check-out
-    //     <input
-    //       className='booking-form'
-    //       type='datetime-local'
-    //       onChange={(e) => setCheckOut(e.target.value)}
-    //       value={checkOut}
-    //     />
-    //   </label>
-    //   <label className='guest-form'>
-    //     Guests
-    //     <input
-    //       className='booking-form'
-    //       type='number'
-    //       onChange={(e) => setGuests(e.target.value)}
-    //       value={guests}
-    //     />
-    //   </label>
-    //   <button id='booking-button' type='submit'>
-    //     Book
-    //   </button>
-    // </form >
   );
 }
 
