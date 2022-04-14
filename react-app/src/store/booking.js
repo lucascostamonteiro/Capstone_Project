@@ -9,10 +9,10 @@ const load = (bookings) => ({
   bookings,
 });
 
-const loadUserBookings = (bookings) => {
+const loadUserBookings = (bookings) => ({
   type: LOAD_USER_BOOKINGS,
-    bookings
-}
+  bookings
+})
 
 const create = (newBooking) => ({
   type: CREATE_BOOKING,
@@ -54,7 +54,7 @@ export const getUserBookings = (userId) => async dispatch => {
 }
 
 
-export const editedBooking = (booking) => {
+export const editedBooking = (booking) => async dispatch => {
   const res = await fetch(`/api/bookings/${booking.id}`, {
     method: "PUT",
     headers: { 'Content-Type': 'application/json' },
