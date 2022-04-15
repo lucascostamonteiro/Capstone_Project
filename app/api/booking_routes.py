@@ -31,6 +31,7 @@ def get_listings():
 def create_booking(id):
     form = BookingForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    data = form.data
     if form.validate_on_submit():
         new_booking = Booking(
           user_id=data['user_id'],
