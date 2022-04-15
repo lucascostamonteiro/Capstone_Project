@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
-import 'react-dates/lib/css/_datepicker.css';
 import * as moment from 'moment';
-import './BookingForm.css'
-import './react_dates_overrides.css'
+import './BookingForm.css';
+import 'react-dates/lib/css/_datepicker.css';
+import './react_dates_overrides.css';
 
 const BookingForm = () => {
-
 
   // const now = moment();
   const tomorrow = moment().add(1, 'days');
@@ -28,7 +27,12 @@ const BookingForm = () => {
     setFocusedInput(focusedInput)
   }
 
+
+// TODO handle submit function
   // const handleSubmit = ()=>{}
+
+// TODO logic for the number of guests allowed at the listing selected
+
 
 
   return (
@@ -58,8 +62,14 @@ const BookingForm = () => {
         </button>
       </div>
     </form>
-
   );
 }
 
 export default BookingForm;
+
+
+{/* <select defaultValue={guests} onChange={(e) => setGuests(e.target.value)}>
+  {[...Array(spot.guest).keys()].map((number, i) => (
+    <option key={i}>{number + 1}</option>
+  ))}
+</select> */}

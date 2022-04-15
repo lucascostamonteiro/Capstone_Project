@@ -140,7 +140,7 @@ const CreateListing = ({ setShowModal }) => {
       <select onChange={(e) => setState(e.target.value)} required >
         <option disabled selected value> </option>
         {states.map(state => (
-          <option value={state} >{state}</option>
+          <option value={state}>{state}</option>
         ))}
       </select>
       <label htmlFor="url">URL</label>
