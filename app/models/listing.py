@@ -1,6 +1,5 @@
 from app.models.db import db
 from datetime import datetime
-import json
 
 
 class Listing(db.Model):
@@ -22,8 +21,9 @@ class Listing(db.Model):
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now(), onupdate=datetime.now())
 
     user = db.relationship("User", back_populates='listing')
-    # image = db.relationship('Image', back_populates='listing', cascade="all, delete")
     reviews = db.relationship("Review", back_populates='listing', cascade="all, delete")
+    bookings = db.relationship("Booking", back_populates='listing', cascade="all, delete")
+    # image = db.relationship('Image', back_populates='listing', cascade="all, delete")
     # amendities = db.relationship('Amendity', back_populates='listing', cascade="all, delete")
 
     def to_dict(self):

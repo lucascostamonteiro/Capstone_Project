@@ -4,7 +4,7 @@ from app.forms.listing_form import ListingForm
 from app.models import db, Listing
 
 
-listings_routes = Blueprint('listings_routes',__name__)
+listings_routes = Blueprint('listings_routes', __name__)
 
 
 def validation_errors_to_error_messages(validation_errors):

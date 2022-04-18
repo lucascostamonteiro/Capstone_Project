@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required
-from app.models import db, Booking
 from app.forms.booking_form import BookingForm
+from app.models import db, Booking
 
 
 bookings_routes = Blueprint('bookings_routes', __name__)
@@ -73,5 +73,5 @@ def delete_booking(id):
     deleted_booking = Booking.query.get(id)
     db.session.delete(deleted_booking)
     db.session.commit()
-    
+
     return deleted_booking.to_dict()
