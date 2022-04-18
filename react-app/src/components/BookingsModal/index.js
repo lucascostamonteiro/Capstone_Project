@@ -12,7 +12,7 @@ function BookingModal() {
         onClick={() => setShowModal(true)}>Create New Booking</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <BookingForm />
+          <BookingForm setShowModal={setShowModal} />
         </Modal>
       )}
     </>

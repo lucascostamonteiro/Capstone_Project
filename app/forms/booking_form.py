@@ -4,6 +4,11 @@ from wtforms.validators import DataRequired, ValidationError
 from datetime import date
 
 # TODO dates validation
+def dates_validation(form, field):
+  listing_id = field.data
+  booking = form.data
+  print('***BOOKING', booking)
+  print('###LISTING', listing_id)
 
 
 class BookingForm(FlaskForm):

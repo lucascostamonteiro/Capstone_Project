@@ -8,6 +8,7 @@ import Listings from './components/ListingsPage';
 import SplashPage from './components/SplashPage';
 import ListingDetails from './components/ListingDetails';
 import MyListings from './components/MyListings';
+import MyBookings from './components/MyBookings';
 import NotFoundPage from './components/NotFoundPage';
 import { authenticate } from './store/session';
 import { getListings } from './store/listing';
@@ -47,6 +48,9 @@ function App() {
         </Route>
         <Route path='/mylistings/:id' exact={true}>
           <MyListings />
+        </Route>
+        <Route path='/mybookings/:id' exact={true}>
+          <MyBookings />
         </Route>
         <Route path="*">
           <NotFoundPage />

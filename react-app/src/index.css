@@ -104,20 +104,23 @@ input {
   margin: 11px 0 0 0px;
   border-radius: 10px;
   border: #d3d3d3;
-  width: 90px;
+  width: 95px;
   padding: 13px 10px;
   /* word-break: break-word; */
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .user-listings-text,
-.user-listings {
+.user-bookings-text,
+.user-listings,
+.user-bookings {
   text-decoration: none;
   color: black;
   margin: 7px 0px 5px 0px;
 }
 
 .user-listings:hover,
+.user-bookings:hover,
 .logout-button:hover {
   text-decoration: underline;
   font-size: 16.5px;

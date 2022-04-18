@@ -1,12 +1,25 @@
 import React, { useState } from "react";
-import 'react-dates/initialize';
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
 import { DateRangePicker } from 'react-dates';
+import 'react-dates/initialize';
 import * as moment from 'moment';
-import './BookingForm.css';
+import { createBooking } from "../../store/booking";
+
 import 'react-dates/lib/css/_datepicker.css';
 import './react_dates_overrides.css';
+import './BookingForm.css';
 
-const BookingForm = () => {
+const BookingForm = ({ setShowModal }) => {
+
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const { id } = useParams();
+  const sessionUser = useSelector(state => state.session.user);
+  const listing = useSelector(state => state.listings[id]);
+  console.log('USER', sessionUser)
+  console.log('Listings', listing)
+
 
   // const now = moment();
   const tomorrow = moment().add(1, 'days');
@@ -28,15 +41,36 @@ const BookingForm = () => {
   }
 
 
-// TODO handle submit function
-  // const handleSubmit = ()=>{}
+  // TODO handle submit function
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const newBooking = {
+      user_id: sessionUser.id,
+      listing_id: id,
+      start_date: startDate.format('YYYY-MM-DD'),
+      end_date: endDate.format('YYYY-MM-DD'),
+      guests: parseInt(guests)
+    }
+    const data = await dispatch(createBooking(newBooking))
+    if (data.errors) {
+      setErrors(data.errors)
+    } else if (data) {
+      history.push(`/mybookings/`)
+      setShowModal(false)
+    }
+  }
 
-// TODO logic for the number of guests allowed at the listing selected
+  // TODO logic for the number of guests allowed at the listing selected
 
 
 
   return (
-    <form className="booking-form">
+    <form className="booking-form" onSubmit={handleSubmit}>
+      <div className="errors-list">
+        <ul className='single-error'>
+          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        </ul>
+      </div>
       <h3>Booking Details</h3>
       <DateRangePicker
         startDate={startDate} // momentPropTypes.momentObj or null,
@@ -49,12 +83,11 @@ const BookingForm = () => {
       />
       <label className='guest-form'>
         Guests
-        <input
-          className='guest-input'
-          type='number'
-          onChange={(e) => setGuests(e.target.value)}
-          value={guests}
-        />
+        <select className="guest-input" defaultValue={guests} onChange={(e) => setGuests(e.target.value)}>
+          {[...Array(listing.guest).keys()].map((number, i) => (
+            <option className="guest-option" key={i}>{number + 1}</option>
+          ))}
+        </select>
       </label>
       <div className="booking-button-div">
         <button className='booking-button' type='submit'>
@@ -66,10 +99,3 @@ const BookingForm = () => {
 }
 
 export default BookingForm;
-
-
-{/* <select defaultValue={guests} onChange={(e) => setGuests(e.target.value)}>
-  {[...Array(listing.guest).keys()].map((number, i) => (
-    <option key={i}>{number + 1}</option>
-  ))}
-</select> */}
