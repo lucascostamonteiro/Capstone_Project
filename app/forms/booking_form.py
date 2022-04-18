@@ -1,8 +1,9 @@
 from flask_wtf import FlaskForm
 from wtforms import DateField, IntegerField
 from wtforms.validators import DataRequired, ValidationError
-from app.models import Booking
 from datetime import date
+
+# TODO dates validation
 
 
 class BookingForm(FlaskForm):

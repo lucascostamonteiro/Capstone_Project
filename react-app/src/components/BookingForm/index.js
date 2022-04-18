@@ -69,7 +69,7 @@ export default BookingForm;
 
 
 {/* <select defaultValue={guests} onChange={(e) => setGuests(e.target.value)}>
-  {[...Array(spot.guest).keys()].map((number, i) => (
+  {[...Array(listing.guest).keys()].map((number, i) => (
     <option key={i}>{number + 1}</option>
   ))}
 </select> */}
