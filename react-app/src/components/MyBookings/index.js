@@ -8,10 +8,10 @@ const MyBookings = () => {
   const { id } = useParams();
   const history = useHistory();
   const sessionUser = useSelector(state => state.session.user);
-  const bookingsObj = useSelector(state => state.listings);
+  const bookingsObj = useSelector(state => state.bookings);
   const bookings = Object.values(bookingsObj);
   // const userListings = listings.filter(singleListing => singleListing?.user_id === sessionUser?.id).reverse();
-  console.log('&&& bookings $$$', bookings)
+  // console.log('&&& bookings $$$', bookings)
 
   if (!sessionUser) return Redirect('/');
 

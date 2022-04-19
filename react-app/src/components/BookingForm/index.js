@@ -27,7 +27,7 @@ const BookingForm = ({ setShowModal }) => {
 
   const [startDate, setStartDate] = useState(tomorrow);
   const [endDate, setEndDate] = useState(dayAfterTomorrow);
-  const [guests, setGuests] = useState(1);
+  const [guest, setGuest] = useState();
   const [errors, setErrors] = useState([]);
   const [focusedInput, setFocusedInput] = useState(null);
 
@@ -49,19 +49,17 @@ const BookingForm = ({ setShowModal }) => {
       listing_id: id,
       start_date: startDate.format('YYYY-MM-DD'),
       end_date: endDate.format('YYYY-MM-DD'),
-      guests: parseInt(guests)
+      guest: parseInt(guest)
     }
+    // console.log('NEW', newBooking)
     const data = await dispatch(createBooking(newBooking))
     if (data.errors) {
       setErrors(data.errors)
     } else if (data) {
-      history.push(`/mybookings/`)
+      history.push(`/mybookings/${sessionUser.id}`)
       setShowModal(false)
     }
   }
-
-  // TODO logic for the number of guests allowed at the listing selected
-
 
 
   return (
@@ -83,7 +81,7 @@ const BookingForm = ({ setShowModal }) => {
       />
       <label className='guest-form'>
         Guests
-        <select className="guest-input" defaultValue={guests} onChange={(e) => setGuests(e.target.value)}>
+        <select className="guest-input" defaultValue={guest} onChange={(e) => setGuest(e.target.value)}>
           {[...Array(listing.guest).keys()].map((number, i) => (
             <option className="guest-option" key={i}>{number + 1}</option>
           ))}

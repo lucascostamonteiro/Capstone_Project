@@ -22,7 +22,7 @@ class Booking(db.Model):
       'id': self.id,
       'user_id':self.user_id,
       'listing_id':self.listing_id,
-      'guest': self.guest,
       'start_date':self.start_date,
       'end_date':self.end_date,
+      'guest': self.guest,
     }

@@ -12,8 +12,8 @@ def dates_validation(form, field):
 
 
 class BookingForm(FlaskForm):
-  user_id = IntegerField("user_id")
+  user_id = IntegerField("User_id")
   listing_id = IntegerField('Listing Id')
   start_date = DateField('Start Date', validators=[DataRequired('Please provide a start date')])
   end_date = DateField('End Date', validators=[DataRequired('Please provide a end date')])
-  guests = IntegerField('Guests', validators=[DataRequired('Please provide the number of guests')])
+  guest = IntegerField('Guests', validators=[DataRequired('Please provide the number of guests')])

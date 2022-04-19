@@ -34,16 +34,17 @@ def create_booking(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     data = form.data
     if form.validate_on_submit():
-        new_booking = Booking(
+        booking = Booking(
           user_id=data['user_id'],
           listing_id=data['listing_id'],
           start_date=data['start_date'],
-          end_date=data['end_date']
+          end_date=data['end_date'],
+          guest=data['guest']
         )
 
-        db.session.add(new_booking)
+        db.session.add(booking)
         db.session.commit()
-        return new_booking.to_dict()
+        return booking.to_dict()
     return {"errors": validation_errors_to_error_messages(form.errors)}, 401
 
 # EDIT
@@ -59,7 +60,8 @@ def edit_booking(id):
         booking.user_id=data['user_id'],
         booking.listing_id=data['listing_id'],
         booking.start_date=data['start_date'],
-        booking.end_date=data['end_date']
+        booking.end_date=data['end_date'],
+        booking.guest=data['guest']
 
         db.session.commit()
         return booking.to_dict()
