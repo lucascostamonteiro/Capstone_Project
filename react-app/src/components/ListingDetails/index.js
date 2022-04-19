@@ -15,8 +15,8 @@ const ListingDetails = () => {
 
   const sessionUser = useSelector(state => state.session.user);
   const listing = useSelector(state => state.listings[id]);
-  console.log('LISTING', listing);
-  console.log('USER', sessionUser);
+  // console.log('LISTING', listing);
+  // console.log('USER', sessionUser);
 
   const allListingsObj = useSelector(state => state.listings);
 
@@ -75,7 +75,7 @@ const ListingDetails = () => {
           </div>
         </div>
         <div className="booking-modal">
-          {sessionUser?.id !== listing.user_id && <BookingModal />}
+          {sessionUser?.id !== listing?.user_id && <BookingModal />}
         </div>
         <div className="detail-image-div">
           <img crossOrigin="anonymous" key={listing?.id} src={listing?.url} onError={handleImgError} alt={'listing detail'} />

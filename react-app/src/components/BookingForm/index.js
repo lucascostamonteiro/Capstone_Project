@@ -27,7 +27,7 @@ const BookingForm = ({ setShowModal }) => {
 
   const [startDate, setStartDate] = useState(tomorrow);
   const [endDate, setEndDate] = useState(dayAfterTomorrow);
-  const [guest, setGuest] = useState();
+  const [guest, setGuest] = useState(1);
   const [errors, setErrors] = useState([]);
   const [focusedInput, setFocusedInput] = useState(null);
 

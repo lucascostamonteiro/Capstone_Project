@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import NavBar from './components/NavBar/'
 // import ProtectedRoute from './components/auth/ProtectedRoute';
 // import User from './components/User';
@@ -13,8 +13,8 @@ import NotFoundPage from './components/NotFoundPage';
 import { authenticate } from './store/session';
 import { getListings } from './store/listing';
 import { getReviews } from './store/review';
-import './index.css'
 import { getUserBookings } from './store/booking';
+import './index.css'
 
 
 function App() {
@@ -26,10 +26,14 @@ function App() {
       await dispatch(authenticate());
       await dispatch(getListings());
       await dispatch(getReviews());
-      await dispatch(getUserBookings(sessionUser?.id));
       setLoaded(true);
     })();
   }, [dispatch]);
+
+  useEffect(() => {(async () => {
+      if (sessionUser) await dispatch(getUserBookings(sessionUser?.id));
+    })();
+  }, [dispatch, sessionUser])
 
   if (!loaded) return null;
 

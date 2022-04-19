@@ -18,6 +18,7 @@ const MyBookings = () => {
   if (!sessionUser) return Redirect('/');
 
   if (sessionUser?.id !== +id) history.push('/page-not-found');
+  
 
   return (
     <>
@@ -29,7 +30,7 @@ const MyBookings = () => {
       <div>
         <h3 className="bookings-page-title">My Bookings</h3>
       </div>
-      {!bookings.length ?
+      {!bookings.length && sessionUser?.id === +id ?
         <div>
           <h4>You don't have any bookings yet</h4>
         </div> :
