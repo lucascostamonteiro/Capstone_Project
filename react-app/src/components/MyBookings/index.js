@@ -3,15 +3,17 @@ import { Link, Redirect, useHistory, useParams } from 'react-router-dom';
 import './MyBookings.css'
 
 
-
 const MyBookings = () => {
   const { id } = useParams();
   const history = useHistory();
   const sessionUser = useSelector(state => state.session.user);
   const bookingsObj = useSelector(state => state.bookings);
   const bookings = Object.values(bookingsObj);
+  const listings = useSelector(state => state.listings);
+  console.log('+++Booking', bookings)
+  console.log('+++listings', listings)
   // const userListings = listings.filter(singleListing => singleListing?.user_id === sessionUser?.id).reverse();
-  // console.log('&&& bookings $$$', bookings)
+
 
   if (!sessionUser) return Redirect('/');
 
@@ -27,17 +29,21 @@ const MyBookings = () => {
       <div>
         <h3 className="bookings-page-title">My Bookings</h3>
       </div>
-      {/* {!bookings.length ?
+      {!bookings.length ?
         <div>
           <h4>You don't have any bookings yet</h4>
         </div> :
         <div>
-          {bookings?.map(booking => (
-
+          {bookings?.map((booking, idx) => (
+            <div key={idx}>
+              {/* {booking.startDate}
+              {booking.endDate} */}
+              {booking.guest}
+            </div>
           ))}
-      </div>
+        </div>
 
-      } */}
+      }
 
     </>
   )

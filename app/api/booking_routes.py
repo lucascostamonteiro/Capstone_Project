@@ -25,6 +25,11 @@ def get_listings():
     bookings = Booking.query.all()
     return {"all_bookings":[booking.to_dict() for booking in bookings]}
 
+# GET USER BOOKINGS
+@bookings_routes.route('/mybookings/<int:id>')
+def user_bookings(id):
+    bookings = Booking.query.filter(Booking.user_id == id)
+    return {"user_bookings":[booking.to_dict() for booking in bookings]}
 
 # POST
 @bookings_routes.route('/listings/<int:id>', methods=["POST"])

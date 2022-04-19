@@ -4,7 +4,7 @@ import EditListingModal from "../EditListingModal";
 import CreateReviewModal from "../ReviewModal";
 import { deleteListing } from "../../store/listing";
 import SingleReview from "../SingleReview";
-import BookingModal from "../BookingsModal";
+import BookingModal from "../BookingModal";
 import './ListingDetails.css'
 
 
@@ -15,18 +15,16 @@ const ListingDetails = () => {
 
   const sessionUser = useSelector(state => state.session.user);
   const listing = useSelector(state => state.listings[id]);
+  console.log('LISTING', listing);
+  console.log('USER', sessionUser);
 
   const allListingsObj = useSelector(state => state.listings);
-  // const allListings = Object.values(allListingsObj);
 
   const reviewsObj = useSelector(state => state?.reviews);
   const reviews = Object.values(reviewsObj);
 
   const listingReviews = reviews.filter(({ listing_id }) => listing_id === +id);
 
-
-  // console.log('++++LISTING++++', allListings)
-  // console.log('****', sessionUser)
 
   // Average Rating
   const ratings = [];
@@ -63,7 +61,7 @@ const ListingDetails = () => {
           <div className="listing-location"><span className="city-listing">{listing?.city},</span> {listing?.state}</div>
           <div className="average-rating-title">
             {listingReviews.length > 0 ?
-              <div> {averageRating.toFixed(2)} <span><i class="fa-solid fa-star"></i> </span></div> :
+              <div> {averageRating.toFixed(2)} <span><i className="fa-solid fa-star"></i> </span></div> :
               <div>No reviews yet</div>
             }
           </div>
@@ -76,8 +74,8 @@ const ListingDetails = () => {
             )}
           </div>
         </div>
-        <div>
-          <BookingModal />
+        <div className="booking-modal">
+          {sessionUser?.id !== listing.user_id && <BookingModal />}
         </div>
         <div className="detail-image-div">
           <img crossOrigin="anonymous" key={listing?.id} src={listing?.url} onError={handleImgError} alt={'listing detail'} />
@@ -112,7 +110,7 @@ const ListingDetails = () => {
               <div className="average-rating-div">
                 {listingReviews.length > 0 ?
                   <div> {averageRating.toFixed(2)}
-                    <span><i class="fa-solid fa-star"></i></span>
+                    <span><i className="fa-solid fa-star"></i></span>
                     <span> · {listingReviews.length} Reviews </span>
                   </div> :
                   <div>No Reviews yet</div>

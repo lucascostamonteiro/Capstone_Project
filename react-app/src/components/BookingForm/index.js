@@ -17,8 +17,8 @@ const BookingForm = ({ setShowModal }) => {
   const { id } = useParams();
   const sessionUser = useSelector(state => state.session.user);
   const listing = useSelector(state => state.listings[id]);
-  console.log('USER', sessionUser)
-  console.log('Listings', listing)
+  // console.log('USER', sessionUser)
+  // console.log('Listings', listing)
 
 
   // const now = moment();
@@ -41,7 +41,6 @@ const BookingForm = ({ setShowModal }) => {
   }
 
 
-  // TODO handle submit function
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newBooking = {
