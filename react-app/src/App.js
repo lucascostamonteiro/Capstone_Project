@@ -14,24 +14,25 @@ import { authenticate } from './store/session';
 import { getListings } from './store/listing';
 import { getReviews } from './store/review';
 import './index.css'
+import { getUserBookings } from './store/booking';
 
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+  const sessionUser = useSelector(state => state.session.user);
 
-  useEffect(() => {
-    (async () => {
+  useEffect(() => {(async () => {
       await dispatch(authenticate());
       await dispatch(getListings());
       await dispatch(getReviews());
+      await dispatch(getUserBookings(sessionUser?.id));
       setLoaded(true);
     })();
   }, [dispatch]);
 
-  if (!loaded) {
-    return null;
-  }
+  if (!loaded) return null;
+
 
   return (
     <BrowserRouter>
