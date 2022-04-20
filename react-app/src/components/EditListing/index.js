@@ -32,8 +32,6 @@ const EditListing = ({ setShowModal }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const userId = sessionUser.id;
-    // console.log('USER', userId)
     const editedListing = {
       id,
       user_id: sessionUser.id,

@@ -53,7 +53,7 @@ def create_booking(id):
     return {"errors": validation_errors_to_error_messages(form.errors)}, 401
 
 # EDIT
-@bookings_routes.route('/<int:id>', methods=['PUT'])
+@bookings_routes.route('/listings/<int:id>', methods=['PUT'])
 @login_required
 def edit_booking(id):
     form = BookingForm()

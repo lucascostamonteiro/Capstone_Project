@@ -1,34 +1,28 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { Redirect, useHistory, useParams } from "react-router-dom";
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/initialize';
 import * as moment from 'moment';
-import { editBooking} from "../../store/booking";
+import { editBooking } from "../../store/booking";
 
 
 import 'react-dates/lib/css/_datepicker.css';
 import './react_dates_overrides.css';
 import './EditBookingForm.css';
 
-const EditBookingForm = ({ setShowModal }) => {
+const EditBookingForm = ({ setShowModal, booking }) => {
 
   const dispatch = useDispatch();
   const history = useHistory();
   const { id } = useParams();
+
   const sessionUser = useSelector(state => state.session.user);
   const listing = useSelector(state => state.listings[id]);
-  // console.log('USER', sessionUser)
-  console.log('Listings', listing)
 
-
-  // const now = moment();
-  // const tomorrow = moment().add(1, 'days');
-  // const dayAfterTomorrow = moment().add(2, 'days');
-
-  const [startDate, setStartDate] = useState();
-  const [endDate, setEndDate] = useState();
-  const [guest, setGuest] = useState();
+  const [startDate, setStartDate] = useState(moment(booking?.start_date));
+  const [endDate, setEndDate] = useState(moment(booking?.end_date));
+  const [guest, setGuest] = useState(booking?.guest);
   const [errors, setErrors] = useState([]);
   const [focusedInput, setFocusedInput] = useState(null);
 
@@ -41,17 +35,19 @@ const EditBookingForm = ({ setShowModal }) => {
     setFocusedInput(focusedInput)
   }
 
+  if (!sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const editedBooking = {
+      id: booking.id,
       user_id: sessionUser.id,
       listing_id: listing.id,
       start_date: startDate.format('YYYY-MM-DD'),
       end_date: endDate.format('YYYY-MM-DD'),
       guest: parseInt(guest)
     }
-    // console.log('NEW', editedBooking)
+    console.log('EDITED', editedBooking)
     const data = await dispatch(editBooking(editedBooking))
     if (data.errors) {
       setErrors(data.errors)

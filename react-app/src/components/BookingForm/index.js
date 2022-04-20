@@ -15,13 +15,10 @@ const BookingForm = ({ setShowModal }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { id } = useParams();
+
   const sessionUser = useSelector(state => state.session.user);
   const listing = useSelector(state => state.listings[id]);
-  // console.log('USER', sessionUser)
-  console.log('Listings', listing)
 
-
-  // const now = moment();
   const tomorrow = moment().add(1, 'days');
   const dayAfterTomorrow = moment().add(2, 'days');
 
@@ -50,7 +47,6 @@ const BookingForm = ({ setShowModal }) => {
       end_date: endDate.format('YYYY-MM-DD'),
       guest: parseInt(guest)
     }
-    // console.log('NEW', newBooking)
     const data = await dispatch(createBooking(newBooking))
     if (data.errors) {
       setErrors(data.errors)

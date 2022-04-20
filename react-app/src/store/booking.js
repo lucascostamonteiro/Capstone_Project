@@ -19,9 +19,9 @@ const create = (newBooking) => ({
   newBooking,
 });
 
-const edit = (booking) => ({
+const edit = (editedBooking) => ({
   type: EDIT_BOOKING,
-  editedBooking: booking,
+  editedBooking,
 });
 
 const remove = (booking) => ({
@@ -54,7 +54,7 @@ export const getUserBookings = (userId) => async dispatch => {
 }
 
 export const createBooking = (booking) => async dispatch => {
-  const res = await fetch(`/api/bookings/listings/${booking.listing_id}`, {
+  const res = await fetch(`/api/bookings/listings/${booking?.listing_id}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(booking),
@@ -71,14 +71,15 @@ export const createBooking = (booking) => async dispatch => {
 
 
 export const editBooking = (booking) => async dispatch => {
-  const res = await fetch(`/api/bookings/${booking.id}`, {
+  const res = await fetch(`/api/bookings/listings/${booking?.listing_id}`, {
     method: "PUT",
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(booking),
   });
-  // console.log('^^^ BOOKING', booking)
+  // console.log('^^^EDITED BOOKING', booking)
   if (res.ok) {
     const editedBooking = await res.json();
+    console.log('^^^EDITED BOOKING', editedBooking)
     dispatch(edit(editedBooking));
     return editedBooking;
   } else {
@@ -89,7 +90,7 @@ export const editBooking = (booking) => async dispatch => {
 
 
 export const deleteBooking = (booking) => async dispatch => {
-  const res = await fetch(`/api/bookings/${booking.id}`, {
+  const res = await fetch(`/api/bookings/${booking?.listing_id}`, {
     method: "DELETE",
   });
   if (res.ok) {
