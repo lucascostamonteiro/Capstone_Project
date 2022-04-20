@@ -14,13 +14,9 @@ const EditBookingForm = ({ setShowModal, booking }) => {
 
   const dispatch = useDispatch();
   const history = useHistory();
-  // TODO can't use useParams() here
-  const { id } = useParams();
 
   const sessionUser = useSelector(state => state.session.user);
-  // TODO this is the problem listing_id is always 4
-  const listing = useSelector(state => state.listings[id]);
-  console.log('LSTING', listing);
+  const listing = useSelector(state => state.listings[booking?.listing_id]);
 
   const [startDate, setStartDate] = useState(moment(booking?.start_date));
   const [endDate, setEndDate] = useState(moment(booking?.end_date));
@@ -44,12 +40,12 @@ const EditBookingForm = ({ setShowModal, booking }) => {
     const editedBooking = {
       id: booking.id,
       user_id: sessionUser.id,
-      listing_id: listing.id,
+      listing_id: booking.listing_id,
       start_date: startDate.format('YYYY-MM-DD'),
       end_date: endDate.format('YYYY-MM-DD'),
       guest: parseInt(guest)
     }
-    // console.log('EDITED', editedBooking)
+    console.log('EDITED', editedBooking)
     const data = await dispatch(editBooking(editedBooking))
     if (data.errors) {
       setErrors(data.errors)

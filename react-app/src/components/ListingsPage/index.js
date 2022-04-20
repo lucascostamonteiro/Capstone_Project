@@ -1,12 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
-// import { getListings } from "../../store/listing"
 import './ListingsPage.css'
 
 
 function Listings() {
-  // const dispatch = useDispatch();
   const allListingsObj = useSelector(state => state.listings)
   const allListings = Object.values(allListingsObj).reverse();
 
@@ -14,10 +12,6 @@ function Listings() {
   const handleImgError = (e) => {
     e.target.src = '../../../../static/not-image.png';
   }
-
-  // useEffect(() => {
-  //   dispatch(getListings())
-  // }, [dispatch])
 
   return (
     <>

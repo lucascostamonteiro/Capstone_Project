@@ -69,7 +69,6 @@ export const editReview = (review) => async (dispatch) => {
 };
 
 export const deleteReview = (review) => async (dispatch) => {
-  // console.log('ID', review.id)
   const res = await fetch(`/api/reviews/${review.id}`, {
     method: 'DELETE',
   });

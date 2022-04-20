@@ -76,10 +76,8 @@ export const editBooking = (booking) => async dispatch => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(booking),
   });
-  // console.log('^^^EDITED BOOKING', booking)
   if (res.ok) {
     const editedBooking = await res.json();
-    // console.log('^^^EDITED BOOKING', editedBooking)
     dispatch(edit(editedBooking));
     return editedBooking;
   } else {
@@ -133,7 +131,8 @@ const bookingsReducer = (state = initialState, action) => {
     }
     case DELETE_BOOKING: {
       const newState = { ...state };
-      delete newState[action.booking.id];
+      console.log('REDUCER', action.deletedBooking)
+      delete newState[action.deletedBooking.id];
       return newState;
     }
     default:
