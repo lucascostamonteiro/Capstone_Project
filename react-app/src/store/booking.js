@@ -88,7 +88,6 @@ export const editBooking = (booking) => async dispatch => {
 
 
 export const deleteBooking = (booking) => async dispatch => {
-  console.log('ID', booking)
   const res = await fetch(`/api/bookings/listings/${booking.id}`, {
     method: "DELETE",
   });
@@ -131,7 +130,6 @@ const bookingsReducer = (state = initialState, action) => {
     }
     case DELETE_BOOKING: {
       const newState = { ...state };
-      console.log('REDUCER', action.deletedBooking)
       delete newState[action.deletedBooking.id];
       return newState;
     }

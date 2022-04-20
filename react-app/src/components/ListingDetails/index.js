@@ -4,7 +4,7 @@ import EditListingModal from "../EditListingModal";
 import CreateReviewModal from "../ReviewModal";
 import { deleteListing } from "../../store/listing";
 import SingleReview from "../SingleReview";
-import BookingModal from "../BookingModal";
+import CreateBookingModal from "../CreateBookingModal";
 import './ListingDetails.css'
 
 
@@ -73,7 +73,7 @@ const ListingDetails = () => {
           </div>
         </div>
         <div className="booking-modal">
-          {sessionUser?.id !== listing?.user_id && <BookingModal />}
+          {sessionUser?.id !== listing?.user_id && <CreateBookingModal />}
         </div>
         <div className="detail-image-div">
           <img crossOrigin="anonymous" key={listing?.id} src={listing?.url} onError={handleImgError} alt={'listing detail'} />

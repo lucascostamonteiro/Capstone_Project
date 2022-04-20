@@ -18,10 +18,10 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
-# GET
+# GET ALL BOOKINGS
 @bookings_routes.route('/')
 @login_required
-def get_listings():
+def get_bookings():
     bookings = Booking.query.all()
     return {"all_bookings":[booking.to_dict() for booking in bookings]}
 

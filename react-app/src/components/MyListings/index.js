@@ -33,7 +33,7 @@ const MyListings = () => {
       </div>
       {!userListings.length ?
         <div className='no-listings-title-div'>
-          <h4 className='no-listings-title'>You don't have any listing yet</h4>
+          <h4 className='no-listings-title'>You don't have any listings yet</h4>
         </div> :
         <div>
           {userListings?.map(listing => (

@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { Modal } from '../../context/Modal';
 import EditBookingForm from '../EditBookingForm';
 
 
 function EditBookingModal({ booking }) {
   const [showModal, setShowModal] = useState(false);
-  const sessionUser = useSelector(state => state.session.user);
 
   return (
     <>

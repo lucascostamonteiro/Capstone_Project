@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useHistory, useParams } from "react-router-dom";
+import { Redirect, useHistory} from "react-router-dom";
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/initialize';
 import * as moment from 'moment';
@@ -45,7 +45,6 @@ const EditBookingForm = ({ setShowModal, booking }) => {
       end_date: endDate.format('YYYY-MM-DD'),
       guest: parseInt(guest)
     }
-    console.log('EDITED', editedBooking)
     const data = await dispatch(editBooking(editedBooking))
     if (data.errors) {
       setErrors(data.errors)

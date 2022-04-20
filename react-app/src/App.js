@@ -13,7 +13,7 @@ import NotFoundPage from './components/NotFoundPage';
 import { authenticate } from './store/session';
 import { getListings } from './store/listing';
 import { getReviews } from './store/review';
-import { getUserBookings } from './store/booking';
+import { getBookings, getUserBookings } from './store/booking';
 import './index.css'
 
 
@@ -22,15 +22,18 @@ function App() {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
 
-  useEffect(() => {(async () => {
+  useEffect(() => {
+    (async () => {
       await dispatch(authenticate());
       await dispatch(getListings());
       await dispatch(getReviews());
+      await dispatch(getBookings());
       setLoaded(true);
     })();
   }, [dispatch]);
 
-  useEffect(() => {(async () => {
+  useEffect(() => {
+    (async () => {
       if (sessionUser) await dispatch(getUserBookings(sessionUser?.id));
     })();
   }, [dispatch, sessionUser])

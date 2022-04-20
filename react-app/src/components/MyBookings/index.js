@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, Redirect, useHistory, useParams } from 'react-router-dom';
 import * as moment from 'moment';
 import EditBookingModal from '../EditBookingModal';
-import './MyBookings.css'
 import { deleteBooking } from '../../store/booking';
+import './MyBookings.css'
 
 
 const MyBookings = () => {
@@ -15,9 +15,8 @@ const MyBookings = () => {
   const bookings = Object.values(bookingsObj).reverse();
   const listingsObj = useSelector(state => state.listings);
   const listings = Object.values(listingsObj);
+  const userBookings = bookings.filter(singleBooking => singleBooking?.user_id === sessionUser?.id).reverse();
 
-  // console.log('+++BOOKINGS', bookings)
-  // console.log('+++LISTINGS', listings)
 
   const handleImgError = (e) => {
     e.target.src = '../../../../static/not-image.png';
@@ -43,12 +42,12 @@ const MyBookings = () => {
       <div>
         <h3 className="bookings-page-title">My Bookings</h3>
       </div>
-      {!bookings.length && sessionUser?.id === +id ?
+      {!userBookings.length && sessionUser?.id === +id ?
         <div className='no-bookings-title-div'>
           <h4 className='no-bookings-title'>You don't have any bookings yet</h4>
         </div> :
         <div>
-          {bookings?.map(booking => (
+          {userBookings?.map(booking => (
             <div key={booking.id} className='main-booking-div'>
               <Link className="link-image" to={`/listings/${listings[booking.listing_id]}`}>
                 <img
