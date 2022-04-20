@@ -15,8 +15,6 @@ const ListingDetails = () => {
 
   const sessionUser = useSelector(state => state.session.user);
   const listing = useSelector(state => state.listings[id]);
-  // console.log('LISTING', listing);
-  // console.log('USER', sessionUser);
 
   const allListingsObj = useSelector(state => state.listings);
 

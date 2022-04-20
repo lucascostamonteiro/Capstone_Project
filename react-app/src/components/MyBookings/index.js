@@ -1,23 +1,31 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, Redirect, useHistory, useParams } from 'react-router-dom';
 import * as moment from 'moment';
 import EditBookingModal from '../EditBookingModal';
 import './MyBookings.css'
+import { deleteBooking } from '../../store/booking';
 
 
 const MyBookings = () => {
   const { id } = useParams();
   const history = useHistory();
+  const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   const bookingsObj = useSelector(state => state.bookings);
   const bookings = Object.values(bookingsObj).reverse();
   const listingsObj = useSelector(state => state.listings);
   const listings = Object.values(listingsObj);
-  // console.log('+++Booking', bookings)
-  // console.log('+++listings', listings)
+
+  // console.log('+++BOOKINGS', bookings)
+  // console.log('+++LISTINGS', listings)
 
   const handleImgError = (e) => {
     e.target.src = '../../../../static/not-image.png';
+  }
+
+  const handleDelete = async (e, booking) => {
+    e.preventDefault();
+    await dispatch(deleteBooking(booking))
   }
 
   if (!sessionUser) return Redirect('/');
@@ -40,13 +48,14 @@ const MyBookings = () => {
           <h4>You don't have any bookings yet</h4>
         </div> :
         <div>
-          {bookings?.map((booking, idx) => (
-            <div key={idx} className='main-booking-div'>
-              <Link className="link-image" to={`/listings/${booking?.listing_id - 1}`}>
+          {bookings?.map(booking => (
+            <div key={booking.id} className='main-booking-div'>
+              <Link className="link-image" to={`/listings/${listings[booking.listing_id]}`}>
                 <img
                   className='image-listings'
+                  crossOrigin="anonymous"
                   src={listings[booking?.listing_id - 1]?.url}
-                  alt={listings[booking?.listing_id - 1]?.title}
+                  alt={""}
                   onError={handleImgError}
                 />
               </Link>
@@ -58,7 +67,8 @@ const MyBookings = () => {
                 <span className="main-listings-date"> <strong> End Date: </strong> {moment(booking?.end_date).format('LL')}</span>
                 <span className="main-listings-guest"> <strong>Guests: </strong> {booking?.guest}</span>
                 {/* <span> <strong> Total: </strong> {moment(booking?.end_date).diff(moment(booking?.start_date, 'days')) * booking?.price}</span> */}
-                <span><EditBookingModal booking={booking} /> </span>
+                <span><EditBookingModal booking={booking} /></span>
+                <span> <button id='delete-booking-button' onClick={(e) => handleDelete(e, booking)}>Delete</button></span>
               </div>
             </div>
           ))}

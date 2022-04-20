@@ -71,7 +71,7 @@ export const createBooking = (booking) => async dispatch => {
 
 
 export const editBooking = (booking) => async dispatch => {
-  const res = await fetch(`/api/bookings/listings/${booking?.listing_id}`, {
+  const res = await fetch(`/api/bookings/listings/${booking.id}`, {
     method: "PUT",
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(booking),
@@ -79,7 +79,7 @@ export const editBooking = (booking) => async dispatch => {
   // console.log('^^^EDITED BOOKING', booking)
   if (res.ok) {
     const editedBooking = await res.json();
-    console.log('^^^EDITED BOOKING', editedBooking)
+    // console.log('^^^EDITED BOOKING', editedBooking)
     dispatch(edit(editedBooking));
     return editedBooking;
   } else {
@@ -90,7 +90,8 @@ export const editBooking = (booking) => async dispatch => {
 
 
 export const deleteBooking = (booking) => async dispatch => {
-  const res = await fetch(`/api/bookings/${booking?.listing_id}`, {
+  console.log('ID', booking)
+  const res = await fetch(`/api/bookings/listings/${booking.id}`, {
     method: "DELETE",
   });
   if (res.ok) {
@@ -132,7 +133,7 @@ const bookingsReducer = (state = initialState, action) => {
     }
     case DELETE_BOOKING: {
       const newState = { ...state };
-      delete newState[action.booking];
+      delete newState[action.booking.id];
       return newState;
     }
     default:

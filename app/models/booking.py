@@ -25,4 +25,5 @@ class Booking(db.Model):
       'start_date':self.start_date,
       'end_date':self.end_date,
       'guest': self.guest,
+      "listing": self.listing.to_dict()
     }

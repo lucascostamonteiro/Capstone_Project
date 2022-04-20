@@ -74,7 +74,7 @@ def edit_booking(id):
 
 
 # DELETE
-@bookings_routes.route('/<int:id>', methods=['DELETE'])
+@bookings_routes.route('/listings/<int:id>', methods=['DELETE'])
 @login_required
 def delete_booking(id):
     deleted_booking = Booking.query.get(id)
