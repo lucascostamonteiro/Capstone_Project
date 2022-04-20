@@ -1,5 +1,7 @@
 import { useSelector } from 'react-redux'
 import { Link, Redirect, useHistory, useParams } from 'react-router-dom';
+import * as moment from 'moment';
+import EditBookingModal from '../EditBookingModal';
 import './MyBookings.css'
 
 
@@ -8,17 +10,20 @@ const MyBookings = () => {
   const history = useHistory();
   const sessionUser = useSelector(state => state.session.user);
   const bookingsObj = useSelector(state => state.bookings);
-  const bookings = Object.values(bookingsObj);
-  const listings = useSelector(state => state.listings);
-  console.log('+++Booking', bookings)
-  console.log('+++listings', listings)
-  // const userListings = listings.filter(singleListing => singleListing?.user_id === sessionUser?.id).reverse();
+  const bookings = Object.values(bookingsObj).reverse();
+  const listingsObj = useSelector(state => state.listings);
+  const listings = Object.values(listingsObj);
+  // console.log('+++Booking', bookings)
+  // console.log('+++listings', listings)
 
+  const handleImgError = (e) => {
+    e.target.src = '../../../../static/not-image.png';
+  }
 
   if (!sessionUser) return Redirect('/');
 
   if (sessionUser?.id !== +id) history.push('/page-not-found');
-  
+
 
   return (
     <>
@@ -36,16 +41,29 @@ const MyBookings = () => {
         </div> :
         <div>
           {bookings?.map((booking, idx) => (
-            <div key={idx}>
-              {/* {booking.startDate}
-              {booking.endDate} */}
-              {booking.guest}
+            <div key={idx} className='main-booking-div'>
+              <Link className="link-image" to={`/listings/${booking?.listing_id - 1}`}>
+                <img
+                  className='image-listings'
+                  src={listings[booking?.listing_id - 1]?.url}
+                  alt={listings[booking?.listing_id - 1]?.title}
+                  onError={handleImgError}
+                />
+              </Link>
+              <div className='bookings-info'>
+                <span className="main-listings-title"> {listings[booking?.listing_id - 1]?.title}</span>
+                <span className="main-listings-location"> {listings[booking?.listing_id - 1]?.address}</span>
+                <span className="main-listings-location"> {listings[booking?.listing_id - 1]?.city}, {listings[booking?.listing_id - 1]?.state}</span>
+                <span className="main-listings-date"> <strong> Start Date: </strong> {moment(booking?.start_date).format('LL')}</span>
+                <span className="main-listings-date"> <strong> End Date: </strong> {moment(booking?.end_date).format('LL')}</span>
+                <span className="main-listings-guest"> <strong>Guests: </strong> {booking?.guest}</span>
+                {/* <span> <strong> Total: </strong> {moment(booking?.end_date).diff(moment(booking?.start_date, 'days')) * booking?.price}</span> */}
+                <span><EditBookingModal booking={booking} /> </span>
+              </div>
             </div>
           ))}
         </div>
-
       }
-
     </>
   )
 }

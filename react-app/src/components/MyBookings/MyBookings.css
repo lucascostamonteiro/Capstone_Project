@@ -1,0 +1,14 @@
+.main-booking-div {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  border-bottom: 2px solid lightgray;
+  margin-left: 60px;
+  margin-bottom: 25px;
+}
+
+.bookings-info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+}

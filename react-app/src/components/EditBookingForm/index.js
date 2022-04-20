@@ -4,13 +4,14 @@ import { useHistory, useParams } from "react-router-dom";
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/initialize';
 import * as moment from 'moment';
-import { createBooking } from "../../store/booking";
+import { editBooking} from "../../store/booking";
+
 
 import 'react-dates/lib/css/_datepicker.css';
 import './react_dates_overrides.css';
-import './BookingForm.css';
+import './EditBookingForm.css';
 
-const BookingForm = ({ setShowModal }) => {
+const EditBookingForm = ({ setShowModal }) => {
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -22,12 +23,12 @@ const BookingForm = ({ setShowModal }) => {
 
 
   // const now = moment();
-  const tomorrow = moment().add(1, 'days');
-  const dayAfterTomorrow = moment().add(2, 'days');
+  // const tomorrow = moment().add(1, 'days');
+  // const dayAfterTomorrow = moment().add(2, 'days');
 
-  const [startDate, setStartDate] = useState(tomorrow);
-  const [endDate, setEndDate] = useState(dayAfterTomorrow);
-  const [guest, setGuest] = useState(1);
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
+  const [guest, setGuest] = useState();
   const [errors, setErrors] = useState([]);
   const [focusedInput, setFocusedInput] = useState(null);
 
@@ -43,19 +44,19 @@ const BookingForm = ({ setShowModal }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newBooking = {
+    const editedBooking = {
       user_id: sessionUser.id,
       listing_id: listing.id,
       start_date: startDate.format('YYYY-MM-DD'),
       end_date: endDate.format('YYYY-MM-DD'),
       guest: parseInt(guest)
     }
-    // console.log('NEW', newBooking)
-    const data = await dispatch(createBooking(newBooking))
+    // console.log('NEW', editedBooking)
+    const data = await dispatch(editBooking(editedBooking))
     if (data.errors) {
       setErrors(data.errors)
     } else if (data) {
-      history.push(`/mybookings/${sessionUser.id}`)
+      history.push(`/mybookings/${sessionUser?.id}`)
       setShowModal(false)
     }
   }
@@ -95,4 +96,4 @@ const BookingForm = ({ setShowModal }) => {
   );
 }
 
-export default BookingForm;
+export default EditBookingForm;

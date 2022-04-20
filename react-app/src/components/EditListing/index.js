@@ -49,8 +49,6 @@ const EditListing = ({ setShowModal }) => {
       url
     };
 
-    // console.log('DATA', editedListing)
-
     const data = await dispatch(editListing(editedListing))
     if (data.errors) {
       setErrors(data.errors)
@@ -62,7 +60,7 @@ const EditListing = ({ setShowModal }) => {
 
 
   return (
-    <form className='main-edit-listing'>
+    <form className='main-edit-listing' onSubmit={handleSubmit}>
       <div className="errors-list">
         <ul className='single-error'>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
@@ -165,7 +163,7 @@ const EditListing = ({ setShowModal }) => {
       <div className='button-div'>
         <button
           className='edit-listing-button'
-          onClick={handleSubmit}>
+          >
           Edit Listing
         </button>
       </div>

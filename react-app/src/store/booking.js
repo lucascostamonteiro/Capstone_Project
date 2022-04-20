@@ -70,7 +70,7 @@ export const createBooking = (booking) => async dispatch => {
 }
 
 
-export const editedBooking = (booking) => async dispatch => {
+export const editBooking = (booking) => async dispatch => {
   const res = await fetch(`/api/bookings/${booking.id}`, {
     method: "PUT",
     headers: { 'Content-Type': 'application/json' },
@@ -88,7 +88,7 @@ export const editedBooking = (booking) => async dispatch => {
 }
 
 
-export const deletedBooking = (booking) => async dispatch => {
+export const deleteBooking = (booking) => async dispatch => {
   const res = await fetch(`/api/bookings/${booking.id}`, {
     method: "DELETE",
   });
