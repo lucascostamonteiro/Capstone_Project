@@ -48,8 +48,8 @@ const ListingDetails = () => {
   return (
     <>
       <span className="return-link">
-        <Link className="return-link-text" to={'/listings/'}>
-          <span className="return-link-text"><i className="fa-solid fa-arrow-left"></i> Return to all listings</span>
+        <Link className="return-link" to={'/listings/'}>
+          <span className="return-link"><i className="fa-solid fa-arrow-left"></i> Return to all listings</span>
         </Link>
       </span>
       <div className="listing-details-page">

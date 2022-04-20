@@ -3,17 +3,18 @@
   flex-direction: column;
 }
 
-.return-link-text {
+.return-link {
   text-decoration: none;
   font-weight: 400;
+  font-size: 20px;
   color: black;
 }
 
-.return-link-text:hover {
+.return-link:hover {
   text-decoration: underline;
-  font-size: 17px;
-  font-weight: lighter;
+    font-size: 21px;
 }
+
 
 .editing-buttons {
   display: flex;

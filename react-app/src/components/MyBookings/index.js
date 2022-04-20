@@ -36,16 +36,16 @@ const MyBookings = () => {
   return (
     <>
       <span className="return-link">
-        <Link className="return-link-text" to={'/listings/'}>
-          <span className="return-link-text"><i className="fa-solid fa-arrow-left"></i> Return to all listings</span>
+        <Link className="return-link" to={'/listings/'}>
+          <span className="return-link"><i className="fa-solid fa-arrow-left"></i> Return to all listings</span>
         </Link>
       </span>
       <div>
         <h3 className="bookings-page-title">My Bookings</h3>
       </div>
       {!bookings.length && sessionUser?.id === +id ?
-        <div>
-          <h4>You don't have any bookings yet</h4>
+        <div className='no-bookings-title-div'>
+          <h4 className='no-bookings-title'>You don't have any bookings yet</h4>
         </div> :
         <div>
           {bookings?.map(booking => (
