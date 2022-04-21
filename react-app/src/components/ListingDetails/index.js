@@ -53,27 +53,29 @@ const ListingDetails = () => {
         </Link>
       </span>
       <div className="listing-details-page">
-        <div className="listing-div-title">
-          <div className="listing-title">{listing?.title}</div>
-          <div className="listing-address">{listing?.address}</div>
-          <div className="listing-location"><span className="city-listing">{listing?.city},</span> {listing?.state}</div>
-          <div className="average-rating-title">
-            {listingReviews.length > 0 ?
-              <div> {averageRating.toFixed(2)} <span><i className="fa-solid fa-star"></i> </span></div> :
-              <div>No reviews yet</div>
-            }
+        <div className="main-listing-div-title">
+          <div className="listing-div-title">
+            <div className="listing-title">{listing?.title}</div>
+            <div className="listing-address">{listing?.address}</div>
+            <div className="listing-location"><span className="city-listing">{listing?.city},</span> {listing?.state}</div>
+            <div className="average-rating-title">
+              {listingReviews.length > 0 ?
+                <div> {averageRating.toFixed(2)} <span><i className="fa-solid fa-star"></i> </span></div> :
+                <div>No reviews yet</div>
+              }
+            </div>
+            <div className="editing-buttons">
+              {sessionUser?.id === listing?.user_id && (
+                <>
+                  <EditListingModal />
+                  <button id='delete-listing-button' onClick={handleDelete}>Delete</button>
+                </>
+              )}
+            </div>
           </div>
-          <div className="editing-buttons">
-            {sessionUser?.id === listing?.user_id && (
-              <>
-                <EditListingModal />
-                <button id='delete-listing-button' onClick={handleDelete}>Delete</button>
-              </>
-            )}
+          <div className="booking-modal">
+            {sessionUser?.id !== listing?.user_id && <CreateBookingModal />}
           </div>
-        </div>
-        <div className="booking-modal">
-          {sessionUser?.id !== listing?.user_id && <CreateBookingModal />}
         </div>
         <div className="detail-image-div">
           <img crossOrigin="anonymous" key={listing?.id} src={listing?.url} onError={handleImgError} alt={'listing detail'} />

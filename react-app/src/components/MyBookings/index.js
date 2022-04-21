@@ -66,8 +66,10 @@ const MyBookings = () => {
                 <span className="main-listings-date"> <strong> End Date: </strong> {moment(booking?.end_date).format('LL')}</span>
                 <span className="main-listings-guest"> <strong>Guests: </strong> {booking?.guest}</span>
                 {/* <span> <strong> Total: </strong> {moment(booking?.end_date).diff(moment(booking?.start_date, 'days')) * booking?.price}</span> */}
-                <span><EditBookingModal booking={booking} /></span>
-                <span> <button id='delete-booking-button' onClick={(e) => handleDelete(e, booking)}>Delete</button></span>
+                <div className='editing-buttons-div'>
+                  <span><EditBookingModal booking={booking} /></span>
+                  <span> <button id='delete-booking-button' onClick={(e) => handleDelete(e, booking)}>Delete</button></span>
+                </div>
               </div>
             </div>
           ))}

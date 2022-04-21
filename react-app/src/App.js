@@ -30,7 +30,7 @@ function App() {
       await dispatch(getBookings());
       setLoaded(true);
     })();
-  }, [dispatch]);
+  }, [dispatch, setLoaded]);
 
   useEffect(() => {
     (async () => {

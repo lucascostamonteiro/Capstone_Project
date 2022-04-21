@@ -11,7 +11,7 @@ function CreateBookingModal() {
 
   return (
     <>
-      <button id='booking-button'
+      <button id='new-booking-button'
         onClick={() => setShowModal(true)}>Create New Booking</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>

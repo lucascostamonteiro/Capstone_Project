@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { DateRangePicker } from 'react-dates';
-import 'react-dates/initialize';
-import * as moment from 'moment';
 import { createBooking } from "../../store/booking";
-
+import 'react-dates/initialize';
+import * as Moment from 'moment';
+import { extendMoment } from "moment-range";
 import 'react-dates/lib/css/_datepicker.css';
 import './react_dates_overrides.css';
 import './BookingForm.css';
@@ -18,8 +18,13 @@ const CreateBookingForm = ({ setShowModal }) => {
 
   const sessionUser = useSelector(state => state.session.user);
   const listing = useSelector(state => state.listings[id]);
-  const bookings = useSelector(state => state?.bookings);
+  const bookingsObj = useSelector(state => state?.bookings);
+  const bookings = Object.values(bookingsObj).reverse();
   console.log('BOOKINGS', bookings)
+
+  const moment = extendMoment(Moment);
+
+  // console.log('MOMENT', moment());
 
   const tomorrow = moment().add(1, 'days');
   const dayAfterTomorrow = moment().add(2, 'days');
@@ -39,14 +44,19 @@ const CreateBookingForm = ({ setShowModal }) => {
     setFocusedInput(focusedInput)
   }
 
-  const isBlocked = date => {
-    let blocked;
-    let bookedRanges = [];
-    bookings?.map(booking => bookedRanges = [...bookedRanges, moment.range(booking?.start_date, booking?.end_date)]);
-    console.log('BLOCKED', bookedRanges);
-    blocked = bookedRanges.find(range => range.contains(date));
-    return blocked;
-  };
+  // const isBlocked = date => {
+  //   // console.log('DATE', date);
+  //   let blocked;
+  //   let bookedRanges = [];
+  //   bookings?.map(booking => {
+  //     // bookedRanges = [...bookedRanges, moment.range(booking?.start_date, booking?.end_date)]
+  //     return console.log('+++', moment.range(booking?.start_date, booking?.end_date));
+  //   });
+  //   // console.log('BOOKED RANGES', bookedRanges);
+  //   blocked = bookedRanges.find(range => range.contains(date));
+  //   // console.log('BLOCKED', blocked);
+  //   return blocked;
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -83,7 +93,7 @@ const CreateBookingForm = ({ setShowModal }) => {
         onDatesChange={dateRange} // PropTypes.func.isRequired,
         focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
         onFocusChange={datesOnFocusHandler} // PropTypes.func.isRequired,
-        isDayBlocked={isBlocked} //PropTypes.func,
+        // isDayBlocked={isBlocked} //PropTypes.func,
       />
       <label className='guest-form'>
         Guests
