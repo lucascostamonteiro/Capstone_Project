@@ -44,19 +44,18 @@ const CreateBookingForm = ({ setShowModal }) => {
     setFocusedInput(focusedInput)
   }
 
-  // const isBlocked = date => {
-  //   // console.log('DATE', date);
-  //   let blocked;
-  //   let bookedRanges = [];
-  //   bookings?.map(booking => {
-  //     // bookedRanges = [...bookedRanges, moment.range(booking?.start_date, booking?.end_date)]
-  //     return console.log('+++', moment.range(booking?.start_date, booking?.end_date));
-  //   });
-  //   // console.log('BOOKED RANGES', bookedRanges);
-  //   blocked = bookedRanges.find(range => range.contains(date));
-  //   // console.log('BLOCKED', blocked);
-  //   return blocked;
-  // };
+  const isBlocked = date => {
+    // console.log('DATE', date);
+    let blocked;
+    let bookedRanges = [];
+    bookings?.map(booking => {
+      // console.log('+++', moment.range(booking?.start_date, booking?.end_date));
+      return bookedRanges = [...bookedRanges, moment.range(booking?.start_date, booking?.end_date)]
+    });
+    console.log('BOOKED RANGES', bookedRanges);
+    blocked = bookedRanges.find(range => range.contains(date));
+    return blocked;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -93,7 +92,7 @@ const CreateBookingForm = ({ setShowModal }) => {
         onDatesChange={dateRange} // PropTypes.func.isRequired,
         focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
         onFocusChange={datesOnFocusHandler} // PropTypes.func.isRequired,
-        // isDayBlocked={isBlocked} //PropTypes.func,
+        isDayBlocked={isBlocked} //PropTypes.func,
       />
       <label className='guest-form'>
         Guests
