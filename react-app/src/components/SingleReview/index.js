@@ -13,10 +13,9 @@ const SingleReview = () => {
   const reviewObj = useSelector(state => state.reviews);
   const reviews = Object.values(reviewObj);
   const listingReviews = reviews.filter(({ listing_id }) => listing_id === +id);
-  // console.log('REVIEW', listingReviews.id);
 
 
-  const handleDelete = async (review, e) => {
+  const handleDelete = async (e, review) => {
     e.preventDefault();
     await dispatch(deleteReview(review))
   }
@@ -42,7 +41,7 @@ const SingleReview = () => {
             {sessionUser?.id === review?.user?.id &&
               <>
                 <EditReviewModal review={review} />
-                <button id="delete-review-button" className="delete-button" onClick={(e) => handleDelete(review, e)}>Delete</button>
+                <button id="delete-review-button" className="delete-button" onClick={(e) => handleDelete(e, review)}>Delete</button>
               </>
             }
           </div>

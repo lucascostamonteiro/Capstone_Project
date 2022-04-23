@@ -38,6 +38,9 @@ function UserProfile() {
           <Link className="user-listings" to={`/mylistings/${sessionUser?.id}`}>
             <li className="user-listings-text">My Listings</li>
           </Link>
+          <Link className="user-bookings" to={`/mybookings/${sessionUser?.id}`}>
+            <li className="user-bookings-text">My Bookings</li>
+          </Link>
           <LogoutButton />
         </ul>
       )}

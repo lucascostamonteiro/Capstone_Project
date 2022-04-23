@@ -1,38 +1,28 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
-import { getListings } from "../../store/listing"
 import './ListingsPage.css'
 
 
 function Listings() {
-  const dispatch = useDispatch();
   const allListingsObj = useSelector(state => state.listings)
   const allListings = Object.values(allListingsObj).reverse();
-
-  // console.log('ALL', allListings)
 
 
   const handleImgError = (e) => {
     e.target.src = '../../../../static/not-image.png';
   }
 
-  useEffect(() => {
-    dispatch(getListings())
-  }, [])
-
   return (
     <>
       <div>
         <h3 className="listings-page-title">Available Listings</h3>
       </div>
-      {allListings?.map(listing => (
-        <div className="main-listings-div">
-          {/* <div className="main-listings-image-div"> */}
+      {allListings?.map((listing, idx) => (
+        <div key={idx} className="main-listings-div">
           <Link className="link-image" key={listing?.id} to={`/listings/${listing?.id}`}>
-            <img className="image-listings" crossOrigin="anonymous" key={listing?.id} src={listing?.url} onError={handleImgError} />
+            <img className="image-listings" crossOrigin="anonymous" key={listing?.id} src={listing?.url} onError={handleImgError} alt={""} />
           </Link>
-          {/* </div> */}
           <div className="main-listings-info">
             <Link className="links-info" key={listing?.id} to={`/listings/${listing?.id}`}>
               <div className="main-listings-title">{listing?.title}</div>

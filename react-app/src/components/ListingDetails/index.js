@@ -4,6 +4,7 @@ import EditListingModal from "../EditListingModal";
 import CreateReviewModal from "../ReviewModal";
 import { deleteListing } from "../../store/listing";
 import SingleReview from "../SingleReview";
+import CreateBookingModal from "../CreateBookingModal";
 import './ListingDetails.css'
 
 
@@ -16,16 +17,12 @@ const ListingDetails = () => {
   const listing = useSelector(state => state.listings[id]);
 
   const allListingsObj = useSelector(state => state.listings);
-  const allListings = Object.values(allListingsObj);
 
   const reviewsObj = useSelector(state => state?.reviews);
   const reviews = Object.values(reviewsObj);
 
   const listingReviews = reviews.filter(({ listing_id }) => listing_id === +id);
 
-
-  // console.log('++++LISTING++++', allListings)
-  // console.log('****', sessionUser)
 
   // Average Rating
   const ratings = [];
@@ -51,32 +48,37 @@ const ListingDetails = () => {
   return (
     <>
       <span className="return-link">
-        <Link className="return-link-text" to={'/listings/'}>
-          <span className="return-link-text"><i className="fa-solid fa-arrow-left"></i> Return to all listings</span>
+        <Link className="return-link" to={'/listings/'}>
+          <span className="return-link"><i className="fa-solid fa-arrow-left"></i> Return to all listings</span>
         </Link>
       </span>
       <div className="listing-details-page">
-        <div className="listing-div-title">
-          <div className="listing-title">{listing?.title}</div>
-          <div className="listing-address">{listing?.address}</div>
-          <div className="listing-location">{listing?.city}, {listing?.state}</div>
-          <div className="average-rating-title">
-            {listingReviews.length > 0 ?
-              <div> {averageRating.toFixed(2)} <span><i class="fa-solid fa-star"></i> </span></div> :
-              <div>No reviews yet</div>
-            }
+        <div className="main-listing-div-title">
+          <div className="listing-div-title">
+            <div className="listing-title">{listing?.title}</div>
+            <div className="listing-address">{listing?.address}</div>
+            <div className="listing-location"><span className="city-listing">{listing?.city},</span> {listing?.state}</div>
+            <div className="average-rating-title">
+              {listingReviews.length > 0 ?
+                <div> {averageRating.toFixed(2)} <span><i className="fa-solid fa-star"></i> </span></div> :
+                <div>No reviews yet</div>
+              }
+            </div>
+            <div className="editing-buttons">
+              {sessionUser?.id === listing?.user_id && (
+                <>
+                  <EditListingModal />
+                  <button id='delete-listing-button' onClick={handleDelete}>Delete</button>
+                </>
+              )}
+            </div>
           </div>
-          <div className="editing-buttons">
-            {sessionUser?.id === listing?.user_id && (
-              <>
-                <EditListingModal />
-                <button id='delete-listing-button' onClick={handleDelete}>Delete</button>
-              </>
-            )}
+          <div className="booking-modal">
+            {sessionUser?.id !== listing?.user_id && <CreateBookingModal />}
           </div>
         </div>
         <div className="detail-image-div">
-          <img crossOrigin="anonymous" key={listing?.id} src={listing?.url} onError={handleImgError} />
+          <img crossOrigin="anonymous" key={listing?.id} src={listing?.url} onError={handleImgError} alt={'listing detail'} />
         </div>
         <div className="reviews-info-div">
           <div className="listing-info">
@@ -108,7 +110,7 @@ const ListingDetails = () => {
               <div className="average-rating-div">
                 {listingReviews.length > 0 ?
                   <div> {averageRating.toFixed(2)}
-                    <span><i class="fa-solid fa-star"></i></span>
+                    <span><i className="fa-solid fa-star"></i></span>
                     <span> · {listingReviews.length} Reviews </span>
                   </div> :
                   <div>No Reviews yet</div>

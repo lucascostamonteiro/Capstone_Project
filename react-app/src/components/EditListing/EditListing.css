@@ -105,8 +105,6 @@
   justify-content: center;
 }
 
-/* @media screen and (min-height: 1300px) {
-  .main-create-listing {
-    overflow-y: scroll;
-  }
-} */
+.city-listing{
+  text-transform: capitalize;
+}

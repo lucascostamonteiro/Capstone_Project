@@ -4,7 +4,7 @@ from app.forms.listing_form import ListingForm
 from app.models import db, Listing
 
 
-listings_routes = Blueprint('listings_routes',__name__)
+listings_routes = Blueprint('listings_routes', __name__)
 
 
 def validation_errors_to_error_messages(validation_errors):
@@ -23,7 +23,6 @@ def validation_errors_to_error_messages(validation_errors):
 def get_listings():
     listings = Listing.query.all()
     return {"all_listings":[listing.to_dict() for listing in listings]}
-
 
 
 # POST
@@ -66,7 +65,7 @@ def edit_listing(id):
   if form.validate_on_submit():
     listing = Listing.query.get(id)
 
-    listing.user_id=data['user_id']
+    listing.user_id=data['user_id'],
     listing.title=data['title'],
     listing.description=data['description'],
     listing.price=data['price'],

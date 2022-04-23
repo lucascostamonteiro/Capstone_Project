@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory, useParams } from 'react-router-dom';
 import { editListing } from '../../store/listing';
+import { states } from '../../utils';
 import './EditListing.css'
 
 
@@ -31,8 +32,6 @@ const EditListing = ({ setShowModal }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const userId = sessionUser.id;
-    // console.log('USER', userId)
     const editedListing = {
       id,
       user_id: sessionUser.id,
@@ -48,8 +47,6 @@ const EditListing = ({ setShowModal }) => {
       url
     };
 
-    // console.log('DATA', editedListing)
-
     const data = await dispatch(editListing(editedListing))
     if (data.errors) {
       setErrors(data.errors)
@@ -61,7 +58,7 @@ const EditListing = ({ setShowModal }) => {
 
 
   return (
-    <form className='main-edit-listing'>
+    <form className='main-edit-listing' onSubmit={handleSubmit}>
       <div className="errors-list">
         <ul className='single-error'>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
@@ -139,20 +136,20 @@ const EditListing = ({ setShowModal }) => {
       />
       <label htmlFor="city">City</label>
       <input
+        className='city-listing'
         type='text'
         onChange={(e) => setCity(e.target.value)}
         value={city}
         name='city'
         required
       />
-      <label htmlFor="State">State</label>
-      <input
-        type='text'
-        onChange={(e) => setState(e.target.value)}
-        value={state}
-        name='state'
-        required
-      />
+      <label htmlFor="state">State</label>
+      <select onChange={(e) => setState(e.target.value)} value={state} required >
+        <option disabled selected value> </option>
+        {states.map(state => (
+          <option value={state} >{state}</option>
+        ))}
+      </select>
       <label htmlFor="url">URL</label>
       <input
         type="url"
@@ -164,7 +161,7 @@ const EditListing = ({ setShowModal }) => {
       <div className='button-div'>
         <button
           className='edit-listing-button'
-          onClick={handleSubmit}>
+          >
           Edit Listing
         </button>
       </div>

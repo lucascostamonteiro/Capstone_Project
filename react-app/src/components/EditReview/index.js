@@ -13,7 +13,6 @@ function EditReviewForm({ review, setShowModal }) {
   const [content, setContent] = useState(review.content);
   const [errors, setErrors] = useState([]);
 
-  // console.log('+++', review)
 
   const handleSubmit = async (e) => {
     e.preventDefault();

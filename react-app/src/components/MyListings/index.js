@@ -24,8 +24,8 @@ const MyListings = () => {
   return (
     <>
       <span className="return-link">
-        <Link className="return-link-text" to={'/listings/'}>
-          <span className="return-link-text"><i className="fa-solid fa-arrow-left"></i> Return to all listings</span>
+        <Link className="return-link" to={'/listings/'}>
+          <span className="return-link"><i className="fa-solid fa-arrow-left"></i> Return to all listings</span>
         </Link>
       </span>
       <div>
@@ -33,16 +33,14 @@ const MyListings = () => {
       </div>
       {!userListings.length ?
         <div className='no-listings-title-div'>
-          <h4 className='no-listings-title'>You don't have any listing yet</h4>
+          <h4 className='no-listings-title'>You don't have any listings yet</h4>
         </div> :
         <div>
           {userListings?.map(listing => (
             <div className="main-listings-div">
-              {/* <div className="main-listings-image-div"> */}
               <Link className="link-image" key={listing?.id} to={`/listings/${listing?.id}`}>
-                <img className="image-listings" crossOrigin="anonymous" key={listing?.id} src={listing?.url} onError={handleImgError} />
+                <img className="image-listings" crossOrigin="anonymous" key={listing?.id} src={listing?.url} onError={handleImgError} alt={""}/>
               </Link>
-              {/* </div> */}
               <div className="main-listings-info">
                 <Link className="links-info" key={listing?.id} to={`/listings/${listing?.id}`}>
                   <div className="main-listings-title">{listing?.title}</div>

@@ -1,12 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { createListing } from '../../store/listing';
+import { states } from '../../utils';
 import './CreateListing.css'
 
 const CreateListing = ({ setShowModal }) => {
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
+  const sessionUser = useSelector(state => state.session.user);
   const history = useHistory();
 
   const [title, setTitle] = useState('');
@@ -20,7 +21,6 @@ const CreateListing = ({ setShowModal }) => {
   const [state, setState] = useState('');
   const [url, setUrl] = useState('');
   const [errors, setErrors] = useState([]);
-
 
 
   const handleSubmit = async (e) => {
@@ -129,20 +129,20 @@ const CreateListing = ({ setShowModal }) => {
       />
       <label htmlFor="city">City</label>
       <input
+        className='city-listing'
         type='text'
         onChange={(e) => setCity(e.target.value)}
         value={city}
         name='city'
         required
       />
-      <label htmlFor="State">State</label>
-      <input
-        type='text'
-        onChange={(e) => setState(e.target.value)}
-        value={state}
-        name='state'
-        required
-      />
+      <label htmlFor="state">State</label>
+      <select onChange={(e) => setState(e.target.value)} required >
+        <option disabled selected value> </option>
+        {states.map(state => (
+          <option value={state}>{state}</option>
+        ))}
+      </select>
       <label htmlFor="url">URL</label>
       <input
         type="url"

@@ -29,7 +29,6 @@ export const getReviews = () => async dispatch => {
   if (res.ok) {
     const reviews = await res.json()
     dispatch(load(reviews))
-    // console.log('***REVIEWS', reviews)
   } else {
     const errors = await res.json();
     return errors;
@@ -38,7 +37,6 @@ export const getReviews = () => async dispatch => {
 
 
 export const createReview = (review) => async (dispatch) => {
-  // console.log('CREATE', review)
   const res = await fetch('/api/reviews/', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -55,7 +53,6 @@ export const createReview = (review) => async (dispatch) => {
 };
 
 export const editReview = (review) => async (dispatch) => {
-  // console.log('ID', review)
   const res = await fetch(`/api/reviews/${review.id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
@@ -72,7 +69,6 @@ export const editReview = (review) => async (dispatch) => {
 };
 
 export const deleteReview = (review) => async (dispatch) => {
-  // console.log('ID', review.id)
   const res = await fetch(`/api/reviews/${review.id}`, {
     method: 'DELETE',
   });
@@ -95,7 +91,6 @@ const reviewsReducer = (state = initialState, action) => {
       newState = { ...state };
       action.reviews.all_reviews.forEach((review) => {
         newState[review.id] = review;
-        // console.log('REVIEWS REDUCER', action.reviews.all_reviews)
       });
       return newState;
     }

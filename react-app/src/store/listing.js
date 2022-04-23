@@ -36,8 +36,7 @@ export const getListings = () => async dispatch => {
 }
 
 
-export const createListing = (listing) => async (dispatch) => {
-	// console.log('LISTING', listing)
+export const createListing = (listing) => async dispatch => {
 	const res = await fetch('/api/listings/', {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
@@ -45,7 +44,6 @@ export const createListing = (listing) => async (dispatch) => {
 	});
 	if (res.ok) {
 		const newListing = await res.json();
-		// console.log('NEW', newListing)
 		dispatch(create(newListing));
 		return newListing;
 	} else {
@@ -54,7 +52,7 @@ export const createListing = (listing) => async (dispatch) => {
 	}
 };
 
-export const editListing = (listing) => async (dispatch) => {
+export const editListing = (listing) => async dispatch => {
 	const res = await fetch(`/api/listings/${listing.id}`, {
 		method: 'PUT',
 		headers: { 'Content-Type': 'application/json' },
@@ -63,7 +61,6 @@ export const editListing = (listing) => async (dispatch) => {
 	if (res.ok) {
 		const editedListing = await res.json();
 		dispatch(edit(editedListing));
-		// console.log('EDIT', editedListing);
 		return editedListing;
 	} else {
 		const errors = await res.json();
@@ -71,8 +68,7 @@ export const editListing = (listing) => async (dispatch) => {
 	}
 };
 
-export const deleteListing = (listing) => async (dispatch) => {
-	// console.log('LISTING', listing)
+export const deleteListing = (listing) => async dispatch => {
 	const res = await fetch(`/api/listings/${listing.id}`, {
 		method: 'DELETE',
 	});
