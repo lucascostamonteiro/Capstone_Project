@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useHistory} from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/initialize';
 import * as moment from 'moment';
@@ -41,8 +41,8 @@ const EditBookingForm = ({ setShowModal, booking }) => {
       id: booking.id,
       user_id: sessionUser.id,
       listing_id: booking.listing_id,
-      start_date: startDate.format('YYYY-MM-DD'),
-      end_date: endDate.format('YYYY-MM-DD'),
+      start_date: startDate.utcOffset(7).format('YYYY-MM-DD'),
+      end_date: endDate.utcOffset(7).format('YYYY-MM-DD'),
       guest: parseInt(guest)
     }
     const data = await dispatch(editBooking(editedBooking))
@@ -82,7 +82,7 @@ const EditBookingForm = ({ setShowModal, booking }) => {
       </label>
       <div className="booking-button-div">
         <button className='booking-button' type='submit'>
-          Submit Booking
+          Edit Booking
         </button>
       </div>
     </form>
