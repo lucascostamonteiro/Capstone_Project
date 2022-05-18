@@ -5,35 +5,33 @@ import CreateListing from "../CreateListing"
 import './CreateListingModal.css'
 
 const CreateListingModal = () => {
-  const sessionUser = useSelector(state => state.session.user);
   const [showModal, setShowModal] = useState(false);
-  
+  // const sessionUser = useSelector(state => state.session.user);
 
 
-  console.log('USER', sessionUser);
+  // console.log('USER', sessionUser);
 
   return (
     <>
-      {!sessionUser?.host ?
+      {/* {!sessionUser?.host ?
         <div>
           <button className="host-button" >
             Become a Host
           </button>
         </div>
-        :
+        : */}
         <div>
           <button className="create-listing-button" onClick={() => setShowModal(true)} >
             Create Listing
           </button>
-          {
-            showModal && (
+          {showModal && (
               <Modal onClose={() => setShowModal(false)}>
                 <CreateListing setShowModal={setShowModal} />
               </Modal>
             )
           }
         </div >
-      }
+      {/* } */}
     </>
   )
 }
