@@ -1,0 +1,25 @@
+#searchDiv {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  flex-grow: 1;
+}
+
+#searchInput {
+  width: 100%;
+  height: 100%;
+  margin: -8px;
+}
+
+#searchInput > input {
+  border-radius: 25px;
+  width: 660px;
+  border: 2px solid beige;
+  background-color: #f4f4f4;
+  height: 31px;
+  padding-left: 18px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 15px;
+}

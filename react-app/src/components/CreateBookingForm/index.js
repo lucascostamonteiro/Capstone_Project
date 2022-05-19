@@ -18,9 +18,10 @@ const CreateBookingForm = ({ setShowModal }) => {
 
   const sessionUser = useSelector(state => state.session.user);
   const listing = useSelector(state => state.listings[id]);
+  // TODO get bookings to the selected listing -- filter method
   const bookingsObj = useSelector(state => state?.bookings);
   const bookings = Object.values(bookingsObj).reverse();
-  console.log('BOOKINGS', bookings)
+  // console.log('LISTINGS', listing)
 
   const moment = extendMoment(Moment);
 
@@ -44,26 +45,37 @@ const CreateBookingForm = ({ setShowModal }) => {
     setFocusedInput(focusedInput)
   }
 
+  console.log('BOOKINGS ***', bookings)
+
   const isBlocked = date => {
     // console.log('DATE', date);
     let blocked;
     let bookedRanges = [];
     bookings?.map(booking => {
-      // console.log('+++', moment.range(booking?.start_date, booking?.end_date));
+      console.log('BOOKING MAP', booking)
+      // console.log('+++ RANGES', moment.range(booking?.start_date, booking?.end_date));
       return bookedRanges = [...bookedRanges, moment.range(booking?.start_date, booking?.end_date)]
     });
-    console.log('BOOKED RANGES', bookedRanges);
+    // console.log('BOOKED RANGES', bookedRanges);
     blocked = bookedRanges.find(range => range.contains(date));
+    console.log('BLOCKED', blocked)
     return blocked;
   };
+
+  // TODO SIMPLIFY ABOVE FUNCTION
+  // const isDayBlockedUtil = (checkDate, bookingDateRange) => {
+  //   const range = moment.range()
+  // }
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newBooking = {
       user_id: sessionUser.id,
       listing_id: listing.id,
-      start_date: startDate.format('YYYY-MM-DD'),
-      end_date: endDate.format('YYYY-MM-DD'),
+      start_date: startDate.utcOffset(7).format('YYYY-MM-DD'),
+      end_date: endDate.utcOffset(7).format('YYYY-MM-DD'),
       guest: parseInt(guest)
     }
     const data = await dispatch(createBooking(newBooking))

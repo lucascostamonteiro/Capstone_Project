@@ -1,4 +1,5 @@
-.create-listing-button {
+.create-listing-button,
+.host-button {
   padding: 7px;
   border-radius: 3px;
   border: 1px solid beige;
@@ -7,8 +8,9 @@
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-.create-listing-button:hover {
-  background-color:   rgb(53, 41, 224);
+.create-listing-button:hover,
+.host-button:hover {
+  background-color: rgb(53, 41, 224);
   color: white;
   cursor: pointer;
 }
