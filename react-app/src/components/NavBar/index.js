@@ -4,6 +4,7 @@ import NavBarIcons from './NavBarIcons';
 import CreateListingModal from "../CreateListingModal";
 // import MyListings from '../MyListings';
 import './NavBar.css'
+import SearchBar from '../SearchPage/SearchBar';
 
 
 const NavBar = () => {
@@ -22,12 +23,16 @@ const NavBar = () => {
           ></img> */}
           </NavLink>
         </div>
+        <div className='center-nav-div'>
+          {user &&
+            <SearchBar />
+          }
+        </div>
         <div className='left-nav-div'>
           {user &&
             <CreateListingModal />
           }
           <NavBarIcons user={user} />
-          {/* <MyListings /> */}
         </div>
       </div>
     </nav >

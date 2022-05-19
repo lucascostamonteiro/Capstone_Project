@@ -118,6 +118,16 @@ input {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
+.listings-page-title,
+.bookings-page-title,
+.search-page-title {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: black;
+  font-size: 30px;
+  margin: 30px 0px 30px 60px;
+}
+
 .user-listings-text,
 .user-bookings-text,
 .user-listings,

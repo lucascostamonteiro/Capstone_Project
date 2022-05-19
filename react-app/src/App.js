@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import NavBar from './components/NavBar/'
-// import ProtectedRoute from './components/auth/ProtectedRoute';
-// import User from './components/User';
 import Listings from './components/ListingsPage';
 import SplashPage from './components/SplashPage';
 import ListingDetails from './components/ListingDetails';
@@ -14,8 +12,9 @@ import { authenticate } from './store/session';
 import { getListings } from './store/listing';
 import { getReviews } from './store/review';
 import { getBookings, getUserBookings } from './store/booking';
-import './index.css'
+import SearchPage from './components/SearchPage';
 
+import './index.css'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -59,6 +58,9 @@ function App() {
         </Route>
         <Route path='/mybookings/:id' exact={true}>
           <MyBookings />
+        </Route>
+        <Route path='/search' exact={true}>
+          <SearchPage />
         </Route>
         <Route path="*">
           <NotFoundPage />
