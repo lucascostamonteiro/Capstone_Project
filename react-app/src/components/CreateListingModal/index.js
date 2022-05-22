@@ -8,7 +8,6 @@ const CreateListingModal = () => {
   const [showModal, setShowModal] = useState(false);
   // const sessionUser = useSelector(state => state.session.user);
 
-
   // console.log('USER', sessionUser);
 
   return (
