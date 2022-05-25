@@ -49,7 +49,7 @@ const ListingDetails = () => {
     <>
       <span className="return-link">
         <Link className="return-link" to={'/listings/'}>
-          <span className="return-link"><i className="fa-solid fa-arrow-left"></i> Return to all listings</span>
+          <span className="return-link"><i className="fa-solid fa-arrow-left"></i> R neturn to all listings</span>
         </Link>
       </span>
       <div className="listing-details-page">
