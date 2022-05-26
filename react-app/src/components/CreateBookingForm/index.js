@@ -57,10 +57,6 @@ const CreateBookingForm = ({ setShowModal }) => {
     for (const key in bookings) {
       bookedRanges.push(Moment.range(bookings[key].start_date, bookings[key].end_date))
     }
-    // bookings?.map(booking => {
-    //   return bookedRanges = [...bookedRanges, moment.range(booking?.start_date, booking?.end_date)]
-    // });
-    console.log('BOOKED RANGES', bookedRanges);
     blocked = bookedRanges.find(range => range.contains(date));
     if (firstBlocked == null && date > startDate && blocked) {
       setfirstBlocked(date)
