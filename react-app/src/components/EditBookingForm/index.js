@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/initialize';
-import * as moment from 'moment';
+import * as Moment from 'moment';
 import { editBooking } from "../../store/booking";
 
 import 'react-dates/lib/css/_datepicker.css';
@@ -14,6 +14,8 @@ const EditBookingForm = ({ setShowModal, booking }) => {
 
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const moment = extendMoment(Moment);
 
   const sessionUser = useSelector(state => state.session.user);
   const listing = useSelector(state => state.listings[booking?.listing_id]);
