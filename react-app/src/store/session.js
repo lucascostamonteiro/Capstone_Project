@@ -1,7 +1,7 @@
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
-const UPDATE_USER = 'user/UPDATE_USER'
+// const UPDATE_USER = 'user/UPDATE_USER'
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -12,10 +12,10 @@ const removeUser = () => ({
   type: REMOVE_USER,
 })
 
-const updateUser = (user) => ({
-  type: UPDATE_USER,
-  user
-})
+// const updateUser = (user) => ({
+//   type: UPDATE_USER,
+//   user
+// })
 
 
 const initialState = { user: null };
