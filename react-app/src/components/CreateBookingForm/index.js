@@ -4,7 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { DateRangePicker } from 'react-dates';
 import { createBooking } from "../../store/booking";
 import 'react-dates/initialize';
-import * as Moment from 'moment';
+import * as Moment from 'moment/moment';
 import { extendMoment } from "moment-range";
 import 'react-dates/lib/css/_datepicker.css';
 import './react_dates_overrides.css';
@@ -45,7 +45,7 @@ const CreateBookingForm = ({ setShowModal }) => {
     setFocusedInput(focusedInput)
   }
 
-  console.log('BOOKINGS ***', bookings)
+  // console.log('BOOKINGS ***', bookings)
 
   const isBlocked = date => {
     if (firstBlocked !== null && startDate && date > firstBlocked) return true;

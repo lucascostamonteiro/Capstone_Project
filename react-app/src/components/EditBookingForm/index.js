@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/initialize';
-import * as moment from 'moment';
+import * as Moment from 'moment/moment';
 import { editBooking } from "../../store/booking";
-
+import { extendMoment } from "moment-range";
 import 'react-dates/lib/css/_datepicker.css';
 import './react_dates_overrides.css';
 import './EditBookingForm.css';
@@ -15,7 +15,7 @@ const EditBookingForm = ({ setShowModal, booking }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  // const moment = extendMoment(Moment);
+  const moment = extendMoment(Moment);
 
   const sessionUser = useSelector(state => state.session.user);
   const listing = useSelector(state => state.listings[booking?.listing_id]);
@@ -29,7 +29,7 @@ const EditBookingForm = ({ setShowModal, booking }) => {
   const [guest, setGuest] = useState(booking?.guest);
   const [errors, setErrors] = useState([]);
   const [focusedInput, setFocusedInput] = useState(null);
-  const [firstBlocked, setfirstBlocked] = useState(null);
+  // const [firstBlocked, setfirstBlocked] = useState(null);
 
 
   const dateRange = ({ startDate, endDate }) => {
