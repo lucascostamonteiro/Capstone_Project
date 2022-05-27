@@ -17,18 +17,17 @@ const CreateBookingForm = ({ setShowModal }) => {
   const { id } = useParams();
 
   const sessionUser = useSelector(state => state.session.user);
-  const listing = useSelector(state => state.listings[id]);
-  // TODO get bookings to the selected listing -- filter method
+  const listing = useSelector(state => state?.listings[id]);
   const bookingsObj = useSelector(state => state?.bookings);
   const bookings = Object.values(bookingsObj).reverse();
-  // console.log('LISTINGS', listing)
+  const currentBookings = bookings.filter(booking => booking?.listing_id === listing?.id);
+
+
+  // console.log('LISTINGS', currentBookings[0].end_date)
 
   const moment = extendMoment(Moment);
-
-  // console.log('MOMENT', moment());
-
-  const tomorrow = moment().add(1, 'days');
-  const dayAfterTomorrow = moment().add(2, 'days');
+  // const tomorrow = moment().add(1, 'days');
+  // const dayAfterTomorrow = moment().add(2, 'days');
 
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
@@ -49,16 +48,15 @@ const CreateBookingForm = ({ setShowModal }) => {
   console.log('BOOKINGS ***', bookings)
 
   const isBlocked = date => {
-    if (firstBlocked !== null && startDate && date > firstBlocked) {
-      return true;
-    }
+    if (firstBlocked !== null && startDate && date > firstBlocked) return true;
+
     let blocked;
     let bookedRanges = [];
-    for (const key in bookings) {
-      bookedRanges.push(Moment.range(bookings[key].start_date, bookings[key].end_date))
+    for (const key in currentBookings) {
+      bookedRanges.push(moment.range(currentBookings[key]?.start_date, moment(currentBookings[key]?.end_date).add('days', 1)))
     }
     blocked = bookedRanges.find(range => range.contains(date));
-    if (firstBlocked == null && date > startDate && blocked) {
+    if (firstBlocked === null && date > startDate && blocked) {
       setfirstBlocked(date)
     }
     return blocked;

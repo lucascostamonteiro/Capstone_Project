@@ -37,7 +37,7 @@ function Listings() {
         //     </Link>
         //   </div>
         // </div>
-        <SingleListing listing={listing} />
+        <SingleListing key={listing?.id} listing={listing} />
       ))}
     </>
   )

@@ -19,12 +19,18 @@ const EditBookingForm = ({ setShowModal, booking }) => {
 
   const sessionUser = useSelector(state => state.session.user);
   const listing = useSelector(state => state.listings[booking?.listing_id]);
+  // const listing = useSelector(state => state?.listings[id]);
+  const bookingsObj = useSelector(state => state?.bookings);
+  const bookings = Object.values(bookingsObj).reverse();
+  const currentBookings = bookings.filter(singleBooking => singleBooking?.listing_id === booking?.listing_id);
 
   const [startDate, setStartDate] = useState(moment(booking?.start_date));
   const [endDate, setEndDate] = useState(moment(booking?.end_date));
   const [guest, setGuest] = useState(booking?.guest);
   const [errors, setErrors] = useState([]);
   const [focusedInput, setFocusedInput] = useState(null);
+  const [firstBlocked, setfirstBlocked] = useState(null);
+
 
   const dateRange = ({ startDate, endDate }) => {
     setStartDate(startDate);
@@ -34,6 +40,22 @@ const EditBookingForm = ({ setShowModal, booking }) => {
   const datesOnFocusHandler = focusedInput => {
     setFocusedInput(focusedInput)
   }
+
+  const isBlocked = date => {
+    // if (firstBlocked !== null && startDate && date > firstBlocked) return true;
+
+    let blocked;
+    let bookedRanges = [];
+    for (const key in currentBookings) {
+      bookedRanges.push(moment.range(currentBookings[key]?.start_date, currentBookings[key]?.end_date))
+    }
+    blocked = bookedRanges.find(range => range.contains(date));
+    // if (firstBlocked === null && date > startDate && blocked) {
+    //   setfirstBlocked(date)
+    // }
+    return blocked;
+  };
+
 
   if (!sessionUser) return <Redirect to="/" />;
 
@@ -73,6 +95,7 @@ const EditBookingForm = ({ setShowModal, booking }) => {
         onDatesChange={dateRange} // PropTypes.func.isRequired,
         focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
         onFocusChange={datesOnFocusHandler} // PropTypes.func.isRequired,
+        isDayBlocked={isBlocked} //PropTypes.func,
       />
       <label className='guest-form'>
         Guests

@@ -49,7 +49,7 @@ const MyBookings = () => {
         <div>
           {userBookings?.map(booking => (
             <div key={booking.id} className='main-booking-div'>
-              <Link className="link-image" to={`/listings/${listings[booking.listing_id]}`}>
+              <Link className="link-image" to={`/listings/${listings[booking?.listing_id - 1]?.id}`}>
                 <img
                   className='image-listings'
                   crossOrigin="anonymous"
