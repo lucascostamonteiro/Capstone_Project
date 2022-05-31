@@ -9,9 +9,10 @@ const SearchPage = () => {
   const allListings = Object.values(allListingsObj).reverse();
   const location = useLocation();
 
-  const searchArr = allListings.filter(({ city, state }) => {
+  const searchArr = allListings.filter(({ city, state, title }) => {
     return city.toLowerCase().includes(location.state.detail.toLowerCase()) ||
-      state.toLowerCase().includes(location.state.detail.toLowerCase())
+      state.toLowerCase().includes(location.state.detail.toLowerCase()) ||
+      title.toLowerCase().includes(location.state.detail.toLowerCase())
   })
 
 
@@ -25,7 +26,7 @@ const SearchPage = () => {
       <div className='search-page-container'>
         <div><h1 className="search-page-title">Search Results for "{location.state.detail}"</h1></div>
         {searchArr?.map(listing => (
-          <SingleListing listing={listing} />
+          <SingleListing listing={listing} key={listing?.id} />
         ))}
       </div>
     </>
