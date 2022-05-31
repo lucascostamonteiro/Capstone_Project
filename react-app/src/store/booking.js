@@ -30,16 +30,16 @@ const remove = (booking) => ({
 });
 
 
-export const getBookings = () => async dispatch => {
-  const res = await fetch('/api/bookings/')
-  if (res.ok) {
-    const bookings = await res.json();
-    dispatch(load(bookings));
-  } else {
-    const errors = await res.json();
-    return errors;
-  }
-}
+// export const getBookings = () => async dispatch => {
+//   const res = await fetch('/api/bookings/')
+//   if (res.ok) {
+//     const bookings = await res.json();
+//     dispatch(load(bookings));
+//   } else {
+//     const errors = await res.json();
+//     return errors;
+//   }
+// }
 
 
 export const getUserBookings = (userId) => async dispatch => {

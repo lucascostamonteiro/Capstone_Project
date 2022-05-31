@@ -26,7 +26,7 @@ function App() {
       await dispatch(authenticate());
       await dispatch(getListings());
       await dispatch(getReviews());
-      await dispatch(getBookings());
+      // await dispatch(getBookings());
       setLoaded(true);
     })();
   }, [dispatch, setLoaded]);
