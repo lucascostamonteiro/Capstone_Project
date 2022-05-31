@@ -20,7 +20,7 @@ def validation_errors_to_error_messages(validation_errors):
 
 # GET ALL BOOKINGS
 @bookings_routes.route('/')
-@login_required
+# @login_required
 def get_bookings():
     bookings = Booking.query.all()
     return {"all_bookings":[booking.to_dict() for booking in bookings]}

@@ -8,11 +8,11 @@ import ListingDetails from './components/ListingDetails';
 import MyListings from './components/MyListings';
 import MyBookings from './components/MyBookings';
 import NotFoundPage from './components/NotFoundPage';
+import SearchPage from './components/SearchPage';
 import { authenticate } from './store/session';
 import { getListings } from './store/listing';
 import { getReviews } from './store/review';
 import { getBookings, getUserBookings } from './store/booking';
-import SearchPage from './components/SearchPage';
 
 import './index.css'
 
