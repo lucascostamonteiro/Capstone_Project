@@ -18,15 +18,3 @@ def users():
 def user(id):
     user = User.query.get(id)
     return user.to_dict()
-
-
-# @user_routes.route('/<int:id>')
-# @login_required
-# def update_user(id):
-#     user = User.query.get(id)
-
-#     user.user_id=data['user_id'],
-#     user.username=data['username'],
-#     user.email=data['email'],
-
-#     return user.to_dict()

@@ -26,7 +26,6 @@ def get_reviews():
     return {"all_reviews":[review.to_dict() for review in reviews]}
 
 
-
 # POST
 @reviews_routes.route('/', methods=["POST"])
 @login_required
