@@ -37,13 +37,16 @@
 }
 
 .price-div > label {
-  padding-right: 48px;
+  padding-right: 52px;
 }
 
-.guest-div > label,
 .bedroom-div > label,
 .bathroom-div > label {
   padding-right: 5px;
+}
+
+.guest-div > label{
+  padding-right: 7px;
 }
 
 .price-div > input,

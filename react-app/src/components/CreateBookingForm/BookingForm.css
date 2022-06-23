@@ -43,14 +43,14 @@
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-.guest-input {
+/* .guest-input {
   border-radius: 4px;
   padding: 0px 5px 0px 5px;
   width: 50px;
   height: 25px;
   margin-left: 20px;
   font-size: 15px;
-}
+} */
 
 .guest-option {
   margin-top: 5px;
