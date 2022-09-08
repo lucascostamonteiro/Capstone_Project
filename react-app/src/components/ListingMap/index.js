@@ -1,19 +1,20 @@
-import { GoogleMap, withScriptjs, withGoogleMap } from "react-google-maps";
+// import { GoogleMap, withScriptjs, withGoogleMap } from "react-google-maps";
 
-const Map = () => {
-  return <GoogleMap
-    defaultZoom={10}
-    defaultCenter={{ lat: -14.235004, lng: -51.925282 }}
-  />
-};
+// const Map = () => {
+//   return <GoogleMap
+//     defaultZoom={10}
+//     defaultCenter={{ lat: -14.235004, lng: -51.925282 }}
+//   />
+// };
 
 
-const WrappedMap = withScriptjs(withGoogleMap(Map));
+// const WrappedMap = withScriptjs(withGoogleMap(Map));
 
 
 const ListingMap = ({ listing }) => {
 
   return (
+    // TODO FIX THIS STYLE
     <div style={{ width: "100vw", height: "100vh" }}>
       <WrappedMap
         googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY

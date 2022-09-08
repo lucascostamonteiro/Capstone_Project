@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import ListingMap from "../ListingMap";
 import '../ListingsPage/ListingsPage.css';
 
 
@@ -28,9 +27,6 @@ function SingleListing({ listing }) {
             <div className="listing-price">${listing?.price} / night</div>
           </Link>
         </div>
-      </div>
-      <div>
-        <ListingMap listing={listing} />
       </div>
     </>
   )

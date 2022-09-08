@@ -1,7 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import SingleListing from "../SingleListing";
+import ListingMap from "../ListingMap";
 import './ListingsPage.css'
 
 
@@ -37,7 +38,10 @@ function Listings() {
         //     </Link>
         //   </div>
         // </div>
-        <SingleListing key={listing?.id} listing={listing} />
+        <div>
+          <SingleListing key={listing?.id} listing={listing} />
+          <ListingMap  />
+        </div>
       ))}
     </>
   )
