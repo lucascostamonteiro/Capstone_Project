@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import '../ListingsPage/ListingsPage.css'
+import ListingMap from "../ListingMap";
+import '../ListingsPage/ListingsPage.css';
 
 
-function SingleListing({listing}) {
+function SingleListing({ listing }) {
 
   const handleImgError = (e) => {
     e.target.src = '../../../../static/not-image.png';
@@ -27,6 +28,9 @@ function SingleListing({listing}) {
             <div className="listing-price">${listing?.price} / night</div>
           </Link>
         </div>
+      </div>
+      <div>
+        <ListingMap listing={listing} />
       </div>
     </>
   )
