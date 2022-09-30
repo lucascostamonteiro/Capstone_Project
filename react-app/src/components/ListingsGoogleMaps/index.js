@@ -11,7 +11,7 @@ const ListingMap = () => {
   // TODO GET ALL LISTINGS FROM STATE AND CREATE MARKERS WHEN CLICKED
 
   const { isLoaded } = useLoadScript({
-    // id: 'google-map-script',
+    id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
   });
 

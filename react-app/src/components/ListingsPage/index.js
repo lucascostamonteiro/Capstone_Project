@@ -39,13 +39,15 @@ function Listings() {
           </div>
         </div>
         ))} */}
-      {allListings?.map(listing => (
-        <div key={listing?.id}>
-          <SingleListing key={listing?.id} listing={listing} />
+      <div className="listings-map-container">
+        {allListings?.map(listing => (
+          <div className="single-listing-container" key={listing?.id}>
+            <SingleListing key={listing?.id} listing={listing} />
+          </div>
+        ))}
+        <div className="listing-google-maps">
+          <ListingsGoogleMaps />
         </div>
-      ))}
-      <div>
-        <ListingsGoogleMaps />
       </div>
     </>
   )
