@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import '../ListingsPage/ListingsPage.css'
+import '../ListingsPage/ListingsPage.css';
 
 
-function SingleListing({listing}) {
+function SingleListing({ listing }) {
 
   const handleImgError = (e) => {
     e.target.src = '../../../../static/not-image.png';
