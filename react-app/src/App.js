@@ -14,6 +14,7 @@ import { getListings } from './store/listing';
 import { getReviews } from './store/review';
 import { getBookings, getUserBookings } from './store/booking';
 
+import ListingsGoogleMaps from './components/ListingsGoogleMaps';
 
 import './index.css'
 
@@ -62,6 +63,9 @@ function App() {
         </Route>
         <Route path='/search' exact={true}>
           <SearchPage />
+        </Route>
+        <Route path='*'>
+          <ListingsGoogleMaps />
         </Route>
         <Route path="*">
           <NotFoundPage />
