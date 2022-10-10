@@ -35,11 +35,11 @@ const ListingMap = () => {
     isLoaded &&
     <div>
       <GoogleMap
-        zoom={10}
-        center={{ lat: -23, lng: -46 }}
+        zoom={5}
+        center={{ lat: -15.77972, lng: -47.92972 }}
         mapContainerClassName="map-container"
 
-        >
+      >
           // TODO LISTINGS WITH MARKERS
         {/* <Marker position={{ lat: -23, lng: -46}}/> */}
       </GoogleMap>
