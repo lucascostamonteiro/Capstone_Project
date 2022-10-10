@@ -1,5 +1,7 @@
+import { useMemo } from "react";
+import { useSelector } from "react-redux";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
-// import usePlacesAutocomplete, { getGeocode, getLatLng, } from "use-places-autocomplete";
+import { getGeocode, getLatLng, } from "use-places-autocomplete";
 
 import './ListingsGoogleMaps.css';
 
@@ -7,8 +9,10 @@ import './ListingsGoogleMaps.css';
 
 const ListingMap = () => {
 
+  const center = useMemo(() => ({ lat: -15.77972, lng: -47.92972 }), []);
+  const allListingsObj = useSelector(state => state.listings);
+  const allListings = Object.values(allListingsObj);
 
-  // TODO GET ALL LISTINGS FROM STATE AND CREATE MARKERS WHEN CLICKED
 
   const { isLoaded } = useLoadScript({
     id: 'google-map-script',
@@ -21,27 +25,29 @@ const ListingMap = () => {
     )
   };
 
-  // const geocoder = async () => {
-  //   let location = await getGeocode({ address: "490105thAveOaklandCA94603" })
-  //   let { lat, lng } = await getLatLng(location[0])
-  //   console.log(lat, lng);
+  const geoCoder = async (address, city) => {
+    let location = await getGeocode({ address: "{{address}{city}}" })
+    let { lat, lng } = await getLatLng(location[0])
+    console.log(lat, lng);
+    return { lat, lng }
+  };
 
-  //   return { lat, lng }
-  // };
+  geoCoder();
 
-  // geocoder();
 
   return (
     isLoaded &&
     <div>
       <GoogleMap
         zoom={5}
-        center={{ lat: -15.77972, lng: -47.92972 }}
+        center={center}
         mapContainerClassName="map-container"
-
       >
           // TODO LISTINGS WITH MARKERS
-        {/* <Marker position={{ lat: -23, lng: -46}}/> */}
+          {allListings.map(listing => (
+          <Marker position={{ lat: - 9.2670672, lng: - 35.373503 }} />
+          // <Marker position={{ lat: Number(listing?.lat), lng: Number(listing?.lng) }} />
+        ))}
       </GoogleMap>
     </div>
   );
