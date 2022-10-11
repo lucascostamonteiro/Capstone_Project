@@ -47,7 +47,7 @@ const ListingMap = () => {
         center={center}
         mapContainerClassName="map-container"
       >
-          // TODO LISTINGS WITH MARKERS
+          // TODO -- LISTING MARKERS
         <Marker position={{ lat: - 9.2670672, lng: - 35.373503 }} />
         <Marker position={{ lat: -2.797455, lng: -40.511633 }} />
         <Marker position={{ lat: -16.595360, lng: -39.110062 }} />
