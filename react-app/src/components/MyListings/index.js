@@ -39,7 +39,7 @@ const MyListings = () => {
           {userListings?.map(listing => (
             <div className="main-listings-div">
               <Link className="link-image" key={listing?.id} to={`/listings/${listing?.id}`}>
-                <img className="image-listings" crossOrigin="anonymous" key={listing?.id} src={listing?.url} onError={handleImgError} alt={""}/>
+                <img className="my-image-listings" crossOrigin="anonymous" key={listing?.id} src={listing?.url} onError={handleImgError} alt={""}/>
               </Link>
               <div className="main-listings-info">
                 <Link className="links-info" key={listing?.id} to={`/listings/${listing?.id}`}>

@@ -35,15 +35,15 @@
 .main-listings-image-div {
   display: flex;
   flex-direction: column;
-  width: 60%;
-  background-color: gold;
+  width: 20%;
+  /* background-color: gold; */
 }
 
 .image-listings {
   /* background-color: aquamarine; */
   border-radius: 5px;
   max-height: 500px;
-  max-width: 500px;
+  max-width: 350px;
   margin-bottom: 20px;
 }
 
@@ -85,21 +85,30 @@
   margin-top: 30px;
 }
 
-/* .listings-map-container {
-  display: grid;
-} */
+.listings-map-container {
+  position: relative;
+  width: 100%;
+}
 
 .single-listing-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  /* min-height: calc(100vh - 80px); */
+  /* background-color: red; */
+  width: 55%;
+}
+
+.main-map {
+  width: calc(100% - 840px);
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
 }
 
 .listing-google-maps {
+  height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  width: 65%;
-  position: absolute;
-  left: 500px;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 0;
 }

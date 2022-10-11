@@ -28,13 +28,14 @@
   background-color: gold;
 }
 
-.image-listings {
+.my-image-listings {
   /* background-color: aquamarine; */
   border-radius: 5px;
   max-height: 500px;
-  max-width: 500px;
+  max-width: 350px;
   margin-bottom: 20px;
 }
+
 
 .links-info {
   text-decoration: none;

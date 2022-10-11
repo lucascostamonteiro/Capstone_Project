@@ -45,8 +45,10 @@ function Listings() {
             <SingleListing key={listing?.id} listing={listing} />
           </div>
         ))}
-        <div className="listing-google-maps">
-          <ListingsGoogleMaps />
+        <div className="main-map">
+          <div className="listing-google-maps">
+            <ListingsGoogleMaps />
+          </div>
         </div>
       </div>
     </>
