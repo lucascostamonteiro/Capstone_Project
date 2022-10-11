@@ -4,6 +4,7 @@ import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import { getGeocode, getLatLng, } from "use-places-autocomplete";
 
 import './ListingsGoogleMaps.css';
+import { useState } from "react";
 
 
 
@@ -12,6 +13,9 @@ const ListingMap = () => {
   const center = useMemo(() => ({ lat: -15.77972, lng: -47.92972 }), []);
   const allListingsObj = useSelector(state => state.listings);
   const allListings = Object.values(allListingsObj);
+
+  // const locations = allListings.map(listing => (listing.address + ', ' + listing.city + ', ' + listing.state))
+
 
 
   const { isLoaded } = useLoadScript({
@@ -25,10 +29,10 @@ const ListingMap = () => {
     )
   };
 
-  const geoCoder = async (address, city) => {
-    let location = await getGeocode({ address: "{{address}{city}}" })
+  const geoCoder = async () => {
+    let location = await getGeocode({ address: 'Vila Galicia, 946 Trancoso' })
     let { lat, lng } = await getLatLng(location[0])
-    console.log(lat, lng);
+    // console.log(lat, lng);
     return { lat, lng }
   };
 
@@ -44,10 +48,9 @@ const ListingMap = () => {
         mapContainerClassName="map-container"
       >
           // TODO LISTINGS WITH MARKERS
-          {allListings.map(listing => (
-          <Marker position={{ lat: - 9.2670672, lng: - 35.373503 }} />
-          // <Marker position={{ lat: Number(listing?.lat), lng: Number(listing?.lng) }} />
-        ))}
+        <Marker position={{ lat: - 9.2670672, lng: - 35.373503 }} />
+        <Marker position={{ lat: -2.797455, lng: -40.511633 }} />
+        <Marker position={{ lat: -16.595360, lng: -39.110062 }} />
       </GoogleMap>
     </div>
   );

@@ -16,7 +16,7 @@ function SingleListing({ listing }) {
           <img className="image-listings" crossOrigin="anonymous" key={listing?.id} src={listing?.url} onError={handleImgError} alt={""} />
         </Link>
         <div className="main-listings-info">
-          <Link className="links-info" key={listing?.id} to={`/listings/${listing?.id}`}>
+          {/* <Link className="links-info" key={listing?.id} to={`/listings/${listing?.id}`}> */}
             <div className="main-listings-title">{listing?.title}</div>
             <div className="main-listings-location">{listing?.city}, {listing?.state}</div>
             <div className="listing-details">
@@ -25,7 +25,7 @@ function SingleListing({ listing }) {
               <div className="main-listings-bathroom">{listing?.bathroom === 1 ? `${listing?.bathroom} Bathroom` : `${listing?.bathroom} Bathrooms`}</div>
             </div>
             <div className="listing-price">${listing?.price} / night</div>
-          </Link>
+          {/* </Link> */}
         </div>
       </div>
     </>
