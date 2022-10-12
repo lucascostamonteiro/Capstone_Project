@@ -50,7 +50,8 @@ Getaway is built on a React frontend with a Flask backend, using PostgreSQL as a
 ### My listings page
 * User can view their listings by clicking on the top right corner menu.
 
-![image](https://user-images.githubusercontent.com/79651942/159959427-3a0c23fb-3dfa-4485-81da-d8277d43558e.png)
+![image](https://user-images.githubusercontent.com/79651942/195226215-c2e2ea26-646a-4635-9d34-780c8ce57077.png)
+
 
 ### Listings details page
 * By clicking in the image listing, a user can view details and reviews for that listing.
