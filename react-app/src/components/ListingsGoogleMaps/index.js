@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import { getGeocode, getLatLng, } from "use-places-autocomplete";
@@ -6,12 +6,14 @@ import { getGeocode, getLatLng, } from "use-places-autocomplete";
 import './ListingsGoogleMaps.css';
 
 
-
 const ListingMap = () => {
 
   const center = useMemo(() => ({ lat: -15.77972, lng: -47.92972 }), []);
+
   const allListingsObj = useSelector(state => state.listings);
   const allListings = Object.values(allListingsObj);
+
+  const [locations, setLocations] = useState([]);
 
 
   const { isLoaded } = useLoadScript({
@@ -19,21 +21,29 @@ const ListingMap = () => {
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
   });
 
+
+
+  const geoCoder = async () => {
+    let LOCATIONSARRAY = Promise.all(allListings?.map(async listing => {
+
+      let location = await getGeocode({ address: `${listing?.address}${listing?.city}${listing?.state}` });
+      let { lat, lng } = await getLatLng(location[0]);
+      return [lat, lng];
+    }));
+    setLocations(await LOCATIONSARRAY);
+
+  };
+
+  useEffect(() => {
+    if (isLoaded) geoCoder();
+  }, [isLoaded]);
+
+
   if (!isLoaded) {
     return (
       <div>Loading...</div>
     )
   };
-
-  const geoCoder = async (address, city) => {
-    let location = await getGeocode({ address: "{{address}{city}}" })
-    let { lat, lng } = await getLatLng(location[0])
-    console.log(lat, lng);
-    return { lat, lng }
-  };
-
-  geoCoder();
-
 
   return (
     isLoaded &&
@@ -43,10 +53,9 @@ const ListingMap = () => {
         center={center}
         mapContainerClassName="map-container"
       >
-          // TODO LISTINGS WITH MARKERS
-          {allListings.map(listing => (
-          <Marker position={{ lat: - 9.2670672, lng: - 35.373503 }} />
-          // <Marker position={{ lat: Number(listing?.lat), lng: Number(listing?.lng) }} />
+
+        {locations.map(location => (
+          <Marker key={location?.id} position={{ lat: Number(location[0]), lng: Number(location[1]) }} />
         ))}
       </GoogleMap>
     </div>
