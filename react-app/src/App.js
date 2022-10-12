@@ -12,7 +12,7 @@ import SearchPage from './components/SearchPage';
 import { authenticate } from './store/session';
 import { getListings } from './store/listing';
 import { getReviews } from './store/review';
-import { getBookings, getUserBookings } from './store/booking';
+import { getUserBookings } from './store/booking';
 
 // import ListingsGoogleMaps from './components/ListingsGoogleMaps';
 
