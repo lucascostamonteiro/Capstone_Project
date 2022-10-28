@@ -48,7 +48,7 @@ const CreateListing = ({ setShowModal }) => {
     }
   };
 
-  
+
 
 
   return (
@@ -148,10 +148,10 @@ const CreateListing = ({ setShowModal }) => {
       />
 
       <label htmlFor="state">State</label>
-      <select onChange={(e) => setState(e.target.value)} required >
-        <option disabled selected value> </option>
+      <select onChange={(e) => setState(e.target.value)} defaultValue="" required >
+        <option disabled value=""> </option>
         {states.map(state => (
-          <option value={state}>{state}</option>
+          <option key={state?.id} value={state}>{state}</option>
         ))}
       </select>
 

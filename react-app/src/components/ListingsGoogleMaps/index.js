@@ -25,13 +25,14 @@ const ListingMap = () => {
 
   const geoCoder = async () => {
     let LOCATIONSARRAY = Promise.all(allListings?.map(async listing => {
-
+      console.log('DEBUG#1', listing)
+      // TODO getGeoCode function breaks when adress is invalid 
       let location = await getGeocode({ address: `${listing?.address}${listing?.city}${listing?.state}` });
+      console.log('DEBUG#2', location)
       let { lat, lng } = await getLatLng(location[0]);
       return [lat, lng];
     }));
     setLocations(await LOCATIONSARRAY);
-
   };
 
   useEffect(() => {
