@@ -14,6 +14,7 @@ const ListingMap = () => {
   const allListings = Object.values(allListingsObj);
 
   const [locations, setLocations] = useState([]);
+  const [errors, setErrors] = useState([]);
 
 
   const { isLoaded } = useLoadScript({
@@ -22,17 +23,29 @@ const ListingMap = () => {
   });
 
 
+  // TODO -- change database to include lat and lng
+  // TODO --  move geoCoder to create and edit listing to get the lat and lng from address once its created
+  // TODO -- validate address before saving in database
+  // TODO -- pass lat and lng to Marker component
+
+  // , componentRestrictions: { country: 'BR' }
 
   const geoCoder = async () => {
     let LOCATIONSARRAY = Promise.all(allListings?.map(async listing => {
-
-      let location = await getGeocode({ address: `${listing?.address}${listing?.city}${listing?.state}` });
-      let { lat, lng } = await getLatLng(location[0]);
-      return [lat, lng];
+      try {
+        let location = await getGeocode({ address: `${listing?.address}${listing?.city}${listing?.state}` });
+        let { lat, lng } = await getLatLng(location[0]);
+        if (lat && lng) return [lat, lng];
+      } catch (error) {
+        setErrors("This is an invalid address")
+      }
     }));
-    setLocations(await LOCATIONSARRAY);
-
+    let allLocations = (await LOCATIONSARRAY).filter(location => location !== undefined);
+    setLocations(allLocations);
   };
+
+
+  console.log('LOCATIONS', locations)
 
   useEffect(() => {
     if (isLoaded) geoCoder();
@@ -53,9 +66,10 @@ const ListingMap = () => {
         center={center}
         mapContainerClassName="map-container"
       >
-
-        {locations.map(location => (
-          <Marker key={location?.id} position={{ lat: Number(location[0]), lng: Number(location[1]) }} />
+        {locations?.length && locations?.map(location => (
+          <div key={location?.id}>
+            <Marker key={location?.id} position={{ lat: Number(location[0]), lng: Number(location[1]) }} />
+          </div>
         ))}
       </GoogleMap>
     </div>
