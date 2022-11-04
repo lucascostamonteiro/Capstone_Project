@@ -37,7 +37,7 @@ const MyListings = () => {
         </div> :
         <div>
           {userListings?.map(listing => (
-            <div className="main-listings-div">
+            <div key={listing?.id} className="main-listings-div">
               <Link className="link-image" key={listing?.id} to={`/listings/${listing?.id}`}>
                 <img className="my-image-listings" crossOrigin="anonymous" key={listing?.id} src={listing?.url} onError={handleImgError} alt={""}/>
               </Link>

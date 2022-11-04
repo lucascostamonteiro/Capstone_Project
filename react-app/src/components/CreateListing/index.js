@@ -1,13 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+// import { getGeocode, getLatLng } from 'use-places-autocomplete';
+// import { useLoadScript } from "@react-google-maps/api";
 import { createListing } from '../../store/listing';
 import { states } from '../../utils';
-import './CreateListing.css'
+import './CreateListing.css';
+
 
 const CreateListing = ({ setShowModal }) => {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
+  // const allListingsObj = useSelector(state => state.listings);
+  // const allListings = Object.values(allListingsObj);
+
   const history = useHistory();
 
   const [title, setTitle] = useState('');
@@ -20,7 +26,35 @@ const CreateListing = ({ setShowModal }) => {
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
   const [url, setUrl] = useState('');
+  // const [lat, setLat] = useState('');
+  // const [lng, setLng] = useState('');
   const [errors, setErrors] = useState([]);
+
+  // const [locations, setLocations] = useState([]);
+
+  // const { isLoaded } = useLoadScript({
+  //   id: 'google-map-script',
+  //   googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
+  // });
+
+  // const geoCoder = async () => {
+  //   let LOCATIONSARRAY = Promise.all(allListings?.map(async listing => {
+  //     // console.log('DEBUG#1', listing)
+  //     let location = await getGeocode({ address: `${listing?.address}${listing?.city}${listing?.state}` });
+  //     // console.log('DEBUG#2', location)
+  //     let { lat, lng } = await getLatLng(location[0]);
+  //     console.log(lat, lng)
+  //     return [lat, lng];
+  //   }));
+  //   setLat(await LOCATIONSARRAY[0]);
+  //   setLng(await LOCATIONSARRAY[1]);
+  // };
+
+  // console.log(lat, lng)
+
+  // useEffect(() => {
+  //   if (isLoaded) geoCoder();
+  // }, [isLoaded]);
 
 
   const handleSubmit = async (e) => {
@@ -36,7 +70,9 @@ const CreateListing = ({ setShowModal }) => {
       address,
       city,
       state,
-      url
+      url,
+      // lat,
+      // lng
     };
 
     const data = await dispatch(createListing(newListing))
@@ -47,7 +83,6 @@ const CreateListing = ({ setShowModal }) => {
       setShowModal(false)
     }
   };
-
 
 
 

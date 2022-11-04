@@ -145,7 +145,7 @@ const EditListing = ({ setShowModal }) => {
       />
       <label htmlFor="state">State</label>
       <select onChange={(e) => setState(e.target.value)} value={state} required >
-        <option disabled selected value> </option>
+        <option disabled value=""> </option>
         {states.map(state => (
           <option value={state} >{state}</option>
         ))}
@@ -161,8 +161,8 @@ const EditListing = ({ setShowModal }) => {
       <div className='button-div'>
         <button
           className='edit-listing-button'
-          >
-          Edit Listing
+        >
+          Submit Listing
         </button>
       </div>
     </form>
