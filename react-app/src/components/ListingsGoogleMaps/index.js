@@ -28,24 +28,20 @@ const ListingMap = () => {
   // TODO -- validate address before saving in database
   // TODO -- pass lat and lng to Marker component
 
-
+  // , componentRestrictions: { country: 'BR' }
 
   const geoCoder = async () => {
     let LOCATIONSARRAY = Promise.all(allListings?.map(async listing => {
       try {
-        let location = await getGeocode({ address: `${listing?.address}${listing?.city}${listing?.state}`, componentRestrictions: { country: 'BR' } });
-        console.log('DEBUG', location)
+        let location = await getGeocode({ address: `${listing?.address}${listing?.city}${listing?.state}` });
         let { lat, lng } = await getLatLng(location[0]);
-        console.log('DEBUG++++', lat, lng)
-        return [lat, lng];
+        if (lat && lng) return [lat, lng];
       } catch (error) {
-        console.log(error)
         setErrors("This is an invalid address")
-
       }
     }));
-    console.log('locations', LOCATIONSARRAY)
-    setLocations(await LOCATIONSARRAY);
+    let allLocations = (await LOCATIONSARRAY).filter(location => location !== undefined);
+    setLocations(allLocations);
   };
 
 
@@ -70,8 +66,8 @@ const ListingMap = () => {
         center={center}
         mapContainerClassName="map-container"
       >
-          {locations?.length && locations?.map(location => (
-            <div key={location?.id}>
+        {locations?.length && locations?.map(location => (
+          <div key={location?.id}>
             <Marker key={location?.id} position={{ lat: Number(location[0]), lng: Number(location[1]) }} />
           </div>
         ))}
