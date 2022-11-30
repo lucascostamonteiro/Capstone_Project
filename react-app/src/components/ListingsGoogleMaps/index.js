@@ -45,7 +45,7 @@ const ListingMap = () => {
   };
 
 
-  console.log('LOCATIONS', locations)
+  // console.log('LOCATIONS', locations)
 
   useEffect(() => {
     if (isLoaded) geoCoder();

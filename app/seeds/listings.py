@@ -13,7 +13,9 @@ def seed_listings():
       address="Estrada da Rainha, 1009 ",
       city="Balneario Camboriu",
       state="Santa Catarina",
-      url="https://a0.muscache.com/im/pictures/265abca4-c237-4510-853b-1e4d6ea8d747.jpg?im_w=1200"
+      url="https://a0.muscache.com/im/pictures/265abca4-c237-4510-853b-1e4d6ea8d747.jpg?im_w=1200",
+      # lat=,
+      # lng=
   )
   listing_2 = Listing(
       user_id=2,

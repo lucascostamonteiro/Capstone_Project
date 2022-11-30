@@ -16,7 +16,9 @@ class Listing(db.Model):
     address = db.Column(db.String, nullable=False)
     city = db.Column(db.String, nullable=False)
     state = db.Column(db.String, nullable=False)
-    url= db.Column(db.String, nullable=False)
+    url = db.Column(db.String, nullable=False)
+    # lat = db.Column(db.Integer)
+    # lng = db.Column(db.Integer)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now(), onupdate=datetime.now())
 
@@ -40,6 +42,8 @@ class Listing(db.Model):
             'city': self.city,
             'state': self.state,
             'url': self.url,
+            # 'lat': self.lat,
+            # 'lng': self.lng,
             'username': self.user.username
             # 'image': [{'id':url.id,"image":url.url} for url in self.image],
         }
