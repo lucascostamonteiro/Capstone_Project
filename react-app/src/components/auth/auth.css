@@ -11,7 +11,6 @@
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  /* overflow-y: auto; */
 }
 
 .main-user-login {
@@ -22,11 +21,10 @@
   background-color: white;
   min-height: 100px;
   max-height: 400px;
-  padding: 40px 30px 40px 10px;
+  padding: 20px 47px 39px 20px;
   justify-content: center;
   align-items: center;
   border-radius: 7px;
-  /* overflow-y: auto; */
 }
 
 .user-buttons,

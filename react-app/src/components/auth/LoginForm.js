@@ -15,9 +15,7 @@ const LoginForm = () => {
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
-    if (data) {
-      setErrors(data);
-    }
+    if (data) setErrors(data);
   };
 
   const updateEmail = (e) => {
@@ -28,9 +26,7 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
-  if (user) {
-    return <Redirect to='/' />;
-  }
+  if (user) return <Redirect to='/' />;
 
   return (
     <>
