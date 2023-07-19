@@ -21,14 +21,7 @@ const CreateBookingForm = ({ setShowModal }) => {
   const bookingsObj = useSelector(state => state?.bookings);
   const bookings = Object.values(bookingsObj).reverse();
   const currentBookings = bookings.filter(booking => booking?.listing_id === listing?.id);
-
-
-  // console.log('LISTINGS', currentBookings[0].end_date)
-
   const moment = extendMoment(Moment);
-  // const tomorrow = moment().add(1, 'days');
-  // const dayAfterTomorrow = moment().add(2, 'days');
-
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [guest, setGuest] = useState(1);
@@ -44,8 +37,6 @@ const CreateBookingForm = ({ setShowModal }) => {
   const datesOnFocusHandler = focusedInput => {
     setFocusedInput(focusedInput)
   }
-
-  // console.log('BOOKINGS ***', bookings)
 
   const isBlocked = date => {
     if (firstBlocked !== null && startDate && date > firstBlocked) return true;

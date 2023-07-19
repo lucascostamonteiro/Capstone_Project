@@ -22,12 +22,13 @@ const ListingMap = ({ hoveredListing }) => {
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
   });
 
-  // , componentRestrictions: { country: 'BR' }
 
   // const geoCoder = async () => {
   //   let LOCATIONSARRAY = Promise.all(allListings?.map(async listing => {
   //     try {
-  //       let location = await getGeocode({ address: `${listing?.address}${listing?.city}${listing?.state}` });
+  //       let location = await getGeocode({
+  //          address: `${listing?.address}${listing?.city}${listing?.state}`,
+  //         componentRestrictions: { country: 'BR' }});
   //       let { lat, lng } = await getLatLng(location[0]);
   //       if (lat && lng) return [lat, lng];
   //     } catch (error) {
@@ -87,8 +88,8 @@ const ListingMap = ({ hoveredListing }) => {
             <Marker
               key={location?.id}
               // position={{ lat: Number(location[0]), lng: Number(location[1]) }}
-              position={{ lat: Number(location.lat), lng: Number(location.lng) }}
-              visible={activeListingId === location.id}
+              position={{ lat: Number(location?.lat), lng: Number(location?.lng) }}
+              visible={activeListingId === location?.id}
             />
           </div>
         ))}

@@ -9,8 +9,8 @@ class Review(db.Model):
     listing_id = db.Column(db.Integer, db.ForeignKey('listings.id'), nullable=False)
     content = db.Column(db.Text)
     rating = db.Column(db.Integer, nullable=False)
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
-    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now(), onupdate=datetime.now())
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
+    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.now, onupdate=datetime.now())
 
     listing = db.relationship('Listing', back_populates='reviews', lazy='subquery')
     user = db.relationship("User", back_populates="reviews", lazy='subquery')
@@ -25,4 +25,5 @@ class Review(db.Model):
             "rating": self.rating,
             "listing": self.listing.to_dict(),
             "user": self.user.to_dict(),
+            "created_at": self.created_at.isoformat(),
         }

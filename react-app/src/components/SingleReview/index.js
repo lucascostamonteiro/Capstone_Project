@@ -29,11 +29,11 @@ const SingleReview = () => {
             <div className='review-username'><span><i className="fa-solid fa-circle-user"></i> </span> {review.user.username}</div>
             <div className='rating-date-div'>
               <div className='star-rating'>
-                {[...Array(review.rating)].map((star, i) => (
+                {[...Array(review?.rating)].map((star, i) => (
                   <i className="fa-solid fa-star" key={i}></i>
                 ))}
               </div>
-              <div className='review-date'>{dayjs(review.createdAt).format("MMMM YYYY")}</div>
+              <div className='review-date'>{dayjs(review?.created_at).format("MMMM YYYY")}</div>
             </div>
           </div>
           <div className='review-content'>{review.content}</div>
