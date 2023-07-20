@@ -15,10 +15,11 @@
 }
 
 .review-content-box {
-  height: 100px;
-  width: 200px;
+  width: 290px;
+  height: 138px;
   margin-bottom: 10px;
   border-radius: 7px;
+  font-size: 15px;
 }
 
 .button-review {
