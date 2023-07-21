@@ -97,14 +97,16 @@ const EditBookingForm = ({ setShowModal, booking }) => {
         onFocusChange={datesOnFocusHandler} // PropTypes.func.isRequired,
         isDayBlocked={isBlocked} //PropTypes.func,
       />
-      <label className='guest-form'>
-        Guests
+      <div className="guest-number-div">
+        <label className='guest-form'>
+          Guests
+        </label>
         <select className="guest-input" defaultValue={guest} onChange={(e) => setGuest(e.target.value)}>
           {[...Array(listing.guest).keys()].map((num, i) => (
             <option className="guest-option" key={i}>{num + 1}</option>
           ))}
         </select>
-      </label>
+      </div>
       <div className="booking-button-div">
         <button className='booking-button' type='submit'>
           Edit Booking
